@@ -1,0 +1,6 @@
+res://main.tscn
+res://Materials/floor.tres
+res://thruster_flame.tscn
+res://ship.tscn
+res://ship.gd
+res://ship_cam.gd

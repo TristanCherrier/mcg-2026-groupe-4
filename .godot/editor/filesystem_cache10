@@ -1,0 +1,9 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1773855601
+icon.svg::CompressedTexture2D::1653218664422103794::1773855307::1773855482::1::::<><><>0<>0<>6f4da6f8626b7604d21a98569801541d<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+main.tscn::PackedScene::3395423121271981052::1773855307::0::1::::<><><>0<>0<><>::
+README.md::TextFile::-1::1773855307::0::1::::<><><>0<>0<><>::
+::res://Imports/::1773855618
+exhaust.glb::PackedScene::4629686393183638702::1773490796::1773855620::1::::<><><>0<>0<>4c91d84253919724774056bcdbca6056<>res://.godot/imported/exhaust.glb-d06966e350f5fe509d2fcb43948c3144.scn::
+ship_frame.glb::PackedScene::6566792693593904441::1773490867::1773855621::1::::<><><>0<>0<>ee33cd173cf00fc6e6b8bae6606fe74e<>res://.godot/imported/ship_frame.glb-79d899e326aaa71ed5ea86fb54c8f0d3.scn::
+thruster_flame.glb::PackedScene::1630929798805227658::1773488104::1773855621::1::::<><><>0<>0<>0b0bf0493246f07e731d93b9b40d403b<>res://.godot/imported/thruster_flame.glb-6d6de5c6f908364bb59aa1917c4707c2.scn::

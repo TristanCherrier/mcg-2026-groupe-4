@@ -1,3 +1,68 @@
 [gd_scene format=3 uid="uid://bom1ef41jsxwu"]
 
-[node name="main" type="Node3D" unique_id=1229673520]
+[ext_resource type="Material" uid="uid://doxjrqjvofjfr" path="res://Materials/floor.tres" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bsoailc7aym4d" path="res://ship.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dhhkw374rrofe" path="res://ship_cam.gd" id="3_h2yge"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ig7tw"]
+sky_material = SubResource("ProceduralSkyMaterial_7dm0k")
+
+[sub_resource type="Environment" id="Environment_0xm2m"]
+background_mode = 2
+sky = SubResource("Sky_ig7tw")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h2yge"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_272bh"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+albedo_color = Color(0.0978094, 0.00012636729, 0.26394445, 1)
+metallic = 1.0
+roughness = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+material = SubResource("StandardMaterial3D_0xm2m")
+size = Vector3(7.34, 35.31, 1.51)
+
+[node name="main" type="Node3D" unique_id=377797802]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=305465705]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 5, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=317989656]
+environment = SubResource("Environment_0xm2m")
+
+[node name="floor" type="StaticBody3D" parent="." unique_id=1980367190]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor" unique_id=364249872]
+mesh = SubResource("PlaneMesh_h2yge")
+surface_material_override/0 = ExtResource("1_ig7tw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor" unique_id=1836026218]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+visible = false
+shape = SubResource("BoxShape3D_272bh")
+
+[node name="Ship" parent="." unique_id=50604899 instance=ExtResource("2_0xm2m")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=997238360]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.268544, 0)
+mesh = SubResource("BoxMesh_h2yge")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2000411279 node_paths=PackedStringArray("ship", "target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.88208, 24.002111)
+script = ExtResource("3_h2yge")
+ship = NodePath("../Ship")
+target = NodePath("../cam_target")
+
+[node name="cam_target" type="Node3D" parent="." unique_id=1650192674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.543671, 17.603008)

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bsoailc7aym4d"]
+
+[ext_resource type="Script" uid="uid://uryfumkhqcsm" path="res://ship.gd" id="1_78o8j"]
+[ext_resource type="PackedScene" uid="uid://c0tad7m22i3ld" path="res://Imports/ship_frame.glb" id="1_v4325"]
+[ext_resource type="PackedScene" uid="uid://b67wi12xuykg1" path="res://Imports/exhaust.glb" id="2_c3vuw"]
+[ext_resource type="PackedScene" uid="uid://bkp3iqyyuwuhf" path="res://thruster_flame.tscn" id="3_78o8j"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_c3vuw"]
+points = PackedVector3Array(0.59225845, 0.018816158, 0.15291691, 0.06991619, 0.16884495, 0.056846976, 0, 0.18273805, 0.056846976, -0.59225845, 0.018816158, 0.15291691, -0.59225845, -0.018857926, 0.15306222, 0.59225845, -0.018857926, 0.15291691, -0.000115931034, 0.018774435, -1.3317327, -0.000115931034, 0.20772894, -0.2934227, 0.076988935, 0.19329347, -0.06683743, 0, 0.21311097, -0.06683743, -0.07003212, 0.16884495, 0.056846976, -0.59225845, -0.01347591, 0.15291691, -0.077104926, 0.19329347, -0.06683743, -0.07003212, -0.16888672, 0.056846976, 0, -0.18277982, 0.056846976, -0.000115931034, -0.018816203, -1.3317327, -0.000115931034, -0.2077707, -0.2934227, -0.077104926, -0.19333524, -0.06683743, 0, -0.213111, -0.06683743, 0.06991619, -0.16888672, 0.056846976, 0.076988935, -0.19333524, -0.06683743)
+
+[node name="Ship" type="RigidBody3D" unique_id=50604899 node_paths=PackedStringArray("exhaust")]
+gravity_scale = 0.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0, -0.4)
+linear_damp = 10.0
+angular_damp = 20.0
+script = ExtResource("1_78o8j")
+exhaust = NodePath("exhaust")
+
+[node name="ship_frame" parent="." unique_id=503982954 instance=ExtResource("1_v4325")]
+
+[node name="exhaust" parent="." unique_id=1193845716 instance=ExtResource("2_c3vuw")]
+transform = Transform3D(1, 0, 0, 0, 0.99863863, -0.052161664, 0, 0.052161664, 0.99863863, 0, 0, 0)
+
+[node name="thruster_flame" parent="exhaust" unique_id=882116047 instance=ExtResource("3_78o8j")]
+transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 0.009555028, 0.18293166)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=17168898]
+shape = SubResource("ConvexPolygonShape3D_c3vuw")
