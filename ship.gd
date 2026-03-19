@@ -12,7 +12,7 @@ var mouse_motion : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	print("Ship ready")
 	
 func _integrate_forces(state : PhysicsDirectBodyState3D) -> void:
 	exhaust.basis = Basis.IDENTITY
@@ -28,7 +28,8 @@ func _integrate_forces(state : PhysicsDirectBodyState3D) -> void:
 	rotY = 0
 	rotX = 0
 	
-	apply_force(-exhaust.global_basis.z * thrust_force * mass * linear_damp, exhaust.position)
+	if Input.is_action_pressed("Ship_Thrust"):
+		apply_force(-exhaust.global_basis.z * thrust_force * mass * (linear_damp+1), exhaust.position)
 	
 func _input(event):
 	if event is InputEventMouseMotion:

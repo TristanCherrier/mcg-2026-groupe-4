@@ -12,8 +12,9 @@ points = PackedVector3Array(0.59225845, 0.018816158, 0.15291691, 0.06991619, 0.1
 gravity_scale = 0.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0, -0.4)
-linear_damp = 10.0
-angular_damp = 20.0
+can_sleep = false
+linear_damp = 2.0
+angular_damp = 4.0
 script = ExtResource("1_78o8j")
 exhaust = NodePath("exhaust")
 

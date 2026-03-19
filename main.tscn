@@ -53,6 +53,7 @@ visible = false
 shape = SubResource("BoxShape3D_272bh")
 
 [node name="Ship" parent="." unique_id=50604899 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9073486e-06, 12.645378, 17.842396)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=997238360]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.268544, 0)
