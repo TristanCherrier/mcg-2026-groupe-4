@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bsoailc7aym4d"]
 
-[ext_resource type="Script" uid="uid://uryfumkhqcsm" path="res://ship.gd" id="1_78o8j"]
+[ext_resource type="Script" uid="uid://uryfumkhqcsm" path="res://Scripts/ship.gd" id="1_78o8j"]
 [ext_resource type="PackedScene" uid="uid://c0tad7m22i3ld" path="res://Imports/ship_frame.glb" id="1_v4325"]
 [ext_resource type="PackedScene" uid="uid://b67wi12xuykg1" path="res://Imports/exhaust.glb" id="2_c3vuw"]
 [ext_resource type="PackedScene" uid="uid://bkp3iqyyuwuhf" path="res://thruster_flame.tscn" id="3_78o8j"]

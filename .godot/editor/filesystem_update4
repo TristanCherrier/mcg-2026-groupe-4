@@ -1,6 +1,10 @@
-res://main.tscn
+res://robot.tscn
 res://Materials/floor.tres
-res://thruster_flame.tscn
-res://ship.tscn
+res://Phys_Materials/pm_robot_ball.tres
+res://main.tscn
+res://ball_rb.gd
+res://robot_cam.gd
 res://ship.gd
-res://ship_cam.gd
+res://ship.tscn
+res://Scripts/robot_cam.gd
+res://Scripts/ball_rb.gd

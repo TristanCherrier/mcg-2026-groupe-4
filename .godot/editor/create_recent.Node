@@ -1,0 +1,6 @@
+Node3D
+StaticBody3D
+CollisionShape3D
+Camera3D
+RigidBody3D
+PinJoint3D

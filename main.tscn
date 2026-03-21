@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bom1ef41jsxwu"]
 
 [ext_resource type="Material" uid="uid://doxjrqjvofjfr" path="res://Materials/floor.tres" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://bsoailc7aym4d" path="res://ship.tscn" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://dhhkw374rrofe" path="res://ship_cam.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://cmaqtmp273qpo" path="res://Scripts/robot_cam.gd" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dn1a0psrdpmyg" path="res://robot.tscn" id="4_1bvp3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -29,7 +29,10 @@ roughness = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
 material = SubResource("StandardMaterial3D_0xm2m")
-size = Vector3(7.34, 35.31, 1.51)
+size = Vector3(8, 35, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1bvp3"]
+size = Vector3(8, 35, 2)
 
 [node name="main" type="Node3D" unique_id=377797802]
 
@@ -52,18 +55,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 visible = false
 shape = SubResource("BoxShape3D_272bh")
 
-[node name="Ship" parent="." unique_id=50604899 instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9073486e-06, 12.645378, 17.842396)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=997238360]
+[node name="Monolith" type="StaticBody3D" parent="." unique_id=1397754345]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.268544, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Monolith" unique_id=997238360]
 mesh = SubResource("BoxMesh_h2yge")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=2000411279 node_paths=PackedStringArray("ship", "target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.88208, 24.002111)
-script = ExtResource("3_h2yge")
-ship = NodePath("../Ship")
-target = NodePath("../cam_target")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Monolith" unique_id=1862417788]
+visible = false
+shape = SubResource("BoxShape3D_1bvp3")
 
 [node name="cam_target" type="Node3D" parent="." unique_id=1650192674]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.543671, 17.603008)
+
+[node name="Robot" parent="." unique_id=957209711 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15002039, 10.349202)
+
+[node name="ball_rb" parent="Robot" index="0" unique_id=1427333599 node_paths=PackedStringArray("CamNode")]
+angular_damp = 100.0
+CamNode = NodePath("../body_rb/cam_node")
+
+[node name="cam_node" type="Node3D" parent="Robot/body_rb" parent_id_path=PackedInt32Array(957209711, 1075911092) index="3" unique_id=302605313]
+script = ExtResource("3_h2yge")
+
+[node name="cam_subNode" type="Node3D" parent="Robot/body_rb/cam_node" unique_id=1944482211]
+
+[node name="RobotCam" type="Camera3D" parent="Robot/body_rb/cam_node/cam_subNode" unique_id=1358367430]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4076464, 0.9859104)
+current = true
+
+[editable path="Robot"]

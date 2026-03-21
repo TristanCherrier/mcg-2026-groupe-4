@@ -10,9 +10,6 @@ var smooth_rotX : float
 var thrust_force : float = 20
 var mouse_motion : Vector2
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	print("Ship ready")
 	
 func _integrate_forces(state : PhysicsDirectBodyState3D) -> void:
 	exhaust.basis = Basis.IDENTITY
