@@ -4,3 +4,7 @@ res://Scripts/robot_cam.gd
 res://Phys_Materials/pm_robot_ball.tres
 res://Scripts/robot.gd
 res://Materials/Flame2.tres
+res://main.tscn
+res://Scripts/mode_swicher.gd
+res://ship.tscn
+res://Scripts/ship_cam.gd

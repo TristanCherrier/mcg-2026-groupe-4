@@ -18,8 +18,7 @@ var mouse_motion : Vector2
 var rotY_offset : float
 
 func _ready() -> void:
-	pass
-	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(delta: float) -> void:
 	rotY = mouse_motion.x /50

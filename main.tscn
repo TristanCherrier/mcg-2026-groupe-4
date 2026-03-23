@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://bom1ef41jsxwu"]
 
 [ext_resource type="Material" uid="uid://doxjrqjvofjfr" path="res://Materials/floor.tres" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bsoailc7aym4d" path="res://ship.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dn1a0psrdpmyg" path="res://robot.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://cn4rvywhvpsp6" path="res://Scripts/mode_swicher.gd" id="5_lquwl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -65,8 +67,14 @@ mesh = SubResource("BoxMesh_h2yge")
 visible = false
 shape = SubResource("BoxShape3D_1bvp3")
 
-[node name="cam_target" type="Node3D" parent="." unique_id=1650192674]
+[node name="Robot" parent="." unique_id=317561797 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51459, 10.286908)
+
+[node name="Ship" parent="." unique_id=50604899 instance=ExtResource("3_h2yge")]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.543671, 17.603008)
 
-[node name="Robot" parent="." unique_id=317561797 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15002039, 10.349202)
+[node name="Mode Swicher" type="Node3D" parent="." unique_id=605745117 node_paths=PackedStringArray("Mode_Nodes", "robot")]
+script = ExtResource("5_lquwl")
+Mode_Nodes = [NodePath("../Robot"), NodePath("../Ship")]
+robot = NodePath("../Robot")

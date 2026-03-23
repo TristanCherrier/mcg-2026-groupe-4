@@ -1,6 +1,7 @@
+Camera3D
 Node3D
+SubViewport
 StaticBody3D
 CollisionShape3D
-Camera3D
 RigidBody3D
 PinJoint3D
