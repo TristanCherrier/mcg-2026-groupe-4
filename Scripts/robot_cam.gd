@@ -44,8 +44,10 @@ func _process(delta: float) -> void:
 		zoom_offset -= zoom_step
 	if Input.is_action_just_pressed("Zoom_Out"):
 		zoom_offset += zoom_step
+	
 	zoom_offset = clampf(zoom_offset, 0, 3)
 	smooth_zoom_offset = lerpf(smooth_zoom_offset, zoom_offset, 10 * delta)
+	Head.get_parent_node_3d().visible = false if smooth_zoom_offset < 0.25 else true
 	Cam.position.z = smooth_zoom_offset
 
 func _input(event):

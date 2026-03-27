@@ -13,11 +13,11 @@ var mouse_motion : Vector2
 	
 func _integrate_forces(state : PhysicsDirectBodyState3D) -> void:
 	exhaust.basis = Basis.IDENTITY
-	rotY = mouse_motion.x /50
-	rotX = mouse_motion.y /50
+	rotY = mouse_motion.x /150
+	rotX = mouse_motion.y /150
 	mouse_motion = Vector2.ZERO
-	rotY = clampf(rotY, -.5, .5)
-	rotX = clampf(rotX, -.5, .5)
+	rotY = clampf(rotY, -.1, .1)
+	rotX = clampf(rotX, -.1, .1)
 	smooth_rotY = lerpf(smooth_rotY, rotY, 0.1)
 	smooth_rotX = lerpf(smooth_rotX, rotX, 0.1)
 	exhaust.rotate_object_local(exhaust.basis.y, smooth_rotY)
