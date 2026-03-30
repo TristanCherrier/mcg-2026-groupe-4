@@ -21,6 +21,7 @@ height = 0.36702538
 [node name="ball_rb" type="RigidBody3D" parent="." unique_id=1427333599 node_paths=PackedStringArray("CamNode")]
 mass = 10.0
 physics_material_override = ExtResource("1_dfm56")
+gravity_scale = 10.0
 can_sleep = false
 angular_damp = 100.0
 script = ExtResource("2_7xofo")
@@ -62,6 +63,7 @@ Cam = NodePath("cam_subNode/robot_cam")
 
 [node name="robot_cam" type="Camera3D" parent="body_rb/cam_node/cam_subNode" unique_id=297775819]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 1)
+visible = false
 current = true
 
 [node name="PinJoint3D" type="PinJoint3D" parent="." unique_id=1863421410]
