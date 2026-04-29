@@ -1,6 +1,2 @@
-res://Scripts/ship.gd
-res://robot.tscn
 res://Materials/floor.tres
-res://Materials/Flame.tres
-res://main.tscn
-res://Scripts/robot_cam.gd
+res://classroom.tscn
