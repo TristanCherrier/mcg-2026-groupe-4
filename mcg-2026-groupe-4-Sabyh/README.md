@@ -17,5 +17,5 @@ Commandes principales :
 - Propulseur : `Z` pousser, souris pour orienter le reacteur.
 
 Blender :
-- source fournie dans le dossier `Blender_Source` de l'archive finale
+- source fournie dans le dossier `Blender_Source` 
 
