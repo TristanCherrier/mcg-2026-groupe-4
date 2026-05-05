@@ -1,8 +1,4 @@
-# MCG 2026 - Groupe 4
 
-Projet Godot PC base sur le projet d'origine du groupe.
-
-Le socle conserve vos scenes et scripts de base :
 - `main.tscn`
 - `classroom.tscn`
 - `robot.tscn`
