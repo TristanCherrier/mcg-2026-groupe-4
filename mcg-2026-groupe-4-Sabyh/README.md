@@ -19,8 +19,3 @@ Commandes principales :
 Blender :
 - source fournie dans le dossier `Blender_Source` de l'archive finale
 
-Git :
-- projet prevu pour etre suivi avec Git
-
-Version recommandee :
-- Godot 4.6.x
