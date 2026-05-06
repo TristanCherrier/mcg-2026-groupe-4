@@ -1,3 +1,5 @@
 res://main.tscn
 res://Materials/floor.tres
 res://classroom.tscn
+res://classroom_2.tscn
+res://Imports/Classroom/classroom_2.tscn

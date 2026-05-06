@@ -4,4 +4,4 @@
 
 [node name="classroom2" unique_id=619868367 instance=ExtResource("1_npggw")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="classroom" parent_id_path=PackedInt32Array(1863967895) index="0" unique_id=1497801134]
+[node name="classroomRB" type="RigidBody3D" parent="." index="8" unique_id=1475387243]

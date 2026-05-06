@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://be0hgt7gls2r3"]
 
-[ext_resource type="PackedScene" uid="uid://n10p2bde28ce" path="res://Imports/Classroom/classroom.glb" id="1_2hgm5"]
+[ext_resource type="PackedScene" uid="uid://dxyrscfjwxhlr" path="res://classroom_2.tscn" id="1_6e7js"]
 [ext_resource type="PackedScene" uid="uid://cptgpngwtjs8p" path="res://Imports/Classroom/table.glb" id="2_wx4mr"]
 [ext_resource type="PackedScene" uid="uid://cr74o1fgw2nop" path="res://Imports/Classroom/plug_strip.glb" id="3_6e7js"]
 [ext_resource type="PackedScene" uid="uid://dopko7uc5xypi" path="res://Imports/Classroom/computer.glb" id="4_0hcv4"]
@@ -19,7 +19,7 @@ size = Vector3(0.4489746, 0.7763672, 0.47540283)
 
 [node name="Classroom" type="Node3D" unique_id=1757342605]
 
-[node name="classroom2" parent="." unique_id=104414661 instance=ExtResource("1_2hgm5")]
+[node name="classroom" parent="." unique_id=619868367 instance=ExtResource("1_6e7js")]
 
 [node name="Tables" type="Node3D" parent="." unique_id=1287314034]
 
