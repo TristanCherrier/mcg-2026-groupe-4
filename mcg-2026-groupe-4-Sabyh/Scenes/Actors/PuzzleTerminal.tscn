@@ -14,6 +14,21 @@ size = Vector3(0.68, 0.46, 0.08)
 [sub_resource type="BoxMesh" id="4"]
 size = Vector3(0.54, 0.08, 0.06)
 
+[sub_resource type="BoxMesh" id="5"]
+size = Vector3(0.52, 0.05, 0.02)
+
+[sub_resource type="BoxMesh" id="6"]
+size = Vector3(0.34, 0.03, 0.018)
+
+[sub_resource type="BoxMesh" id="7"]
+size = Vector3(0.24, 0.03, 0.018)
+
+[sub_resource type="BoxMesh" id="8"]
+size = Vector3(0.06, 0.24, 0.018)
+
+[sub_resource type="BoxMesh" id="9"]
+size = Vector3(0.04, 0.04, 0.018)
+
 [node name="PuzzleTerminal" type="Area3D"]
 script = ExtResource("1")
 collision_layer = 4
@@ -29,6 +44,26 @@ mesh = SubResource("3")
 [node name="AccentMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0.24)
 mesh = SubResource("4")
+
+[node name="HeaderStrip" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("5")
+
+[node name="DataStripA" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("6")
+
+[node name="DataStripB" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("7")
+
+[node name="SideStrip" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("8")
+
+[node name="StatusDot" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("9")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("2")

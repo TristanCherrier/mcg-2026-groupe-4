@@ -4,12 +4,11 @@ const CHECKPOINT_SCENE := preload("res://Scenes/Actors/Checkpoint.tscn")
 const FINISH_SCENE := preload("res://Scenes/Actors/FinishZone.tscn")
 const TURRET_SCENE := preload("res://Scenes/Actors/Turret.tscn")
 const MOVING_OBSTACLE_SCENE := preload("res://Scenes/Actors/MovingObstacle.tscn")
-const MONSTER_SCENE := preload("res://Scenes/Actors/MonsterRobot.tscn")
 
-const FLOOR_COLOR := Color(0.83, 0.84, 0.82)
-const CEILING_COLOR := Color(0.96, 0.97, 0.99)
-const WALL_COLOR := Color(0.76, 0.8, 0.84)
-const METAL_COLOR := Color(0.32, 0.36, 0.42)
+const FLOOR_COLOR := Color(0.14, 0.15, 0.18)
+const CEILING_COLOR := Color(0.24, 0.26, 0.3)
+const WALL_COLOR := Color(0.2, 0.23, 0.28)
+const METAL_COLOR := Color(0.44, 0.48, 0.54)
 const BLUE_ACCENT := Color(0.2, 0.68, 0.94)
 const ORANGE_ACCENT := Color(0.95, 0.47, 0.18)
 const HAZARD_COLOR := Color(0.9, 0.34, 0.14)
@@ -48,19 +47,20 @@ func _ready() -> void:
 	hud.configure("Niveau 2 - Couloir motorisé", true, false)
 	car_root.add_to_group("car_player")
 	car_body.add_to_group("car_player")
-	respawn_transform = car_body.global_transform
 	car_body.contact_monitor = true
 	car_body.max_contacts_reported = 10
 	car_body.body_entered.connect(_on_car_body_entered)
 	var car_camera := car_root.get_node("cam") as Camera3D
 	car_camera.current = true
 	_build_level()
+	respawn_transform = Transform3D(Basis.IDENTITY, Vector3(0.0, car_body.global_position.y, -8.8))
 	if car_body.has_method("reset_vehicle"):
 		car_body.call("reset_vehicle", respawn_transform)
 	if car_camera.has_method("snap_to_target"):
 		car_camera.snap_to_target()
-	_set_level_started(false)
-	GameState.push_message("Appuyez sur Z pour lancer le vehicule.", 3.0)
+	_set_level_started(true)
+	call_deferred("_refresh_start_camera")
+	GameState.push_message("Course lancee : suis la piste orange et passe les checkpoints.", 3.0)
 
 
 func _physics_process(delta: float) -> void:
@@ -128,10 +128,6 @@ func _build_level() -> void:
 	_spawn_turret(Vector3(6.2, 1.1, -48.0), Vector3.LEFT)
 	_spawn_turret(Vector3(-6.2, 1.1, -74.0), Vector3.RIGHT)
 
-	_spawn_monster(Vector3(-6.0, 0.0, -27.0))
-	_spawn_monster(Vector3(6.0, 0.0, -53.0))
-	_spawn_monster(Vector3(-6.0, 0.0, -81.0))
-
 	for z in [2.0, -16.0, -34.0, -52.0, -70.0, -88.0, -104.0]:
 		_make_light(Vector3(0, 4.45, z), Color(1.0, 0.94, 0.88), 0.98, 9.5)
 	for z in [-8.0, -26.0, -44.0, -62.0, -80.0, -98.0]:
@@ -186,16 +182,6 @@ func _spawn_turret(position: Vector3, fire_direction: Vector3) -> void:
 	turret.projectile_message = "Projectile latéral dans le couloir."
 	gameplay_root.add_child(turret)
 	turrets.append(turret)
-
-
-func _spawn_monster(position: Vector3) -> void:
-	var monster := MONSTER_SCENE.instantiate()
-	monster.position = position
-	monster.patrol_axis = Vector3(0, 0, 1)
-	monster.patrol_distance = 0.35
-	npc_root.add_child(monster)
-
-
 func _on_checkpoint_reached(checkpoint: Area3D) -> void:
 	checkpoints_hit += 1
 	respawn_transform = Transform3D(Basis.IDENTITY, checkpoint.global_position + Vector3(0, 0.55, 4.0))
@@ -257,6 +243,12 @@ func _set_level_started(value: bool) -> void:
 	for turret in turrets:
 		if turret != null and turret.has_method("set_active"):
 			turret.set_active(value)
+
+
+func _refresh_start_camera() -> void:
+	var car_camera := car_root.get_node_or_null("cam")
+	if car_camera != null and car_camera.has_method("snap_to_target"):
+		car_camera.snap_to_target()
 
 
 func _make_box(

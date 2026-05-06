@@ -1,8 +1,12 @@
 extends Control
 
+@onready var start_button: Button = $CenterContainer/Panel/Margin/VBox/StartButton
+@onready var controls_text: RichTextLabel = $CenterContainer/Panel/Margin/VBox/ControlsText
+
 
 func _ready() -> void:
-	$CenterContainer/Panel/VBoxContainer/StartButton.grab_focus()
+	start_button.grab_focus()
+	controls_text.visible = false
 
 
 func _on_start_button_pressed() -> void:
@@ -11,7 +15,7 @@ func _on_start_button_pressed() -> void:
 
 
 func _on_controls_button_pressed() -> void:
-	$CenterContainer/Panel/VBoxContainer/ControlsText.visible = not $CenterContainer/Panel/VBoxContainer/ControlsText.visible
+	controls_text.visible = not controls_text.visible
 
 
 func _on_quit_button_pressed() -> void:

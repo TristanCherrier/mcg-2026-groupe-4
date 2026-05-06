@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bvitwk75h3mf1"
-path="res://.godot/imported/mission_campus_assets.blend-1b816d1e695e265534f086b9655012e7.scn"
+path="res://.godot/imported/mission_campus_assets.blend-454d59e3b3d200e5dc1837c65b70ed92.scn"
 
 [deps]
 
-source_file="res://Assets/mission_campus_assets.blend"
-dest_files=["res://.godot/imported/mission_campus_assets.blend-1b816d1e695e265534f086b9655012e7.scn"]
+source_file="res://Blender_Source/mission_campus_assets.blend"
+dest_files=["res://.godot/imported/mission_campus_assets.blend-454d59e3b3d200e5dc1837c65b70ed92.scn"]
 
 [params]
 

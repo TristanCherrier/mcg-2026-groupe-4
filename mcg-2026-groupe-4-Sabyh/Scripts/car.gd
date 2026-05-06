@@ -20,7 +20,7 @@ var WheelBackLeft_Model : MeshInstance3D
 
 var engineSpeed : float = 0
 var maxSpeed : float = 5.4
-var maxReverseSpeed : float = 8.0 #TODO
+var maxReverseSpeed : float = 3.4
 var acceleration : float = 0.7
 var deceleration : float = 0.9
 @export
@@ -66,14 +66,14 @@ var wheel_mount_local_positions : Array[Vector3]
 var wheel_mount_local_bases : Array[Basis]
 var drive_enabled := true
 
-const WHEEL_REST_OFFSET := -0.081
+const WHEEL_REST_OFFSET := -0.1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	can_sleep = false
 	linear_damp = maxf(linear_damp, 0.55)
 	angular_damp = maxf(angular_damp, 2.1)
-	Chassis_Model = Chassis.get_child(0)
+	Chassis_Model = _find_first_mesh(Chassis)
 	wheels.append(WheelFrontRight)
 	wheels.append(WheelFrontLeft)
 	wheels.append(WheelBackRight)
@@ -83,7 +83,7 @@ func _ready() -> void:
 		wheel_mount_local_positions.append(wheels[i].position)
 		wheel_mount_local_bases.append(wheels[i].basis)
 		wheelRBs.append(wheels[i].get_child(0))
-		wheelModels.append(wheelRBs[i].get_child(0).get_child(0))
+		wheelModels.append(_find_first_mesh(wheelRBs[i]))
 		springs.append(wheels[i].get_child(1))
 		springs[i].node_a = self.get_path()
 		rays.append(wheelRBs[i].get_child(1))
@@ -99,10 +99,12 @@ func _process(delta: float) -> void:
 	else:
 		blend_wheels = lerp(blend_wheels, 0.0, 0.1)
 		blend_chassis = lerp(blend_chassis, 0.0, 0.1)
-	Chassis_Model.set_blend_shape_value(0, blend_chassis * 0.2)
+	if _has_blend_shapes(Chassis_Model):
+		Chassis_Model.set_blend_shape_value(0, blend_chassis * 0.2)
 
 	for i in range(4):
-		wheelModels[i].set_blend_shape_value(0, blend_wheels)
+		if _has_blend_shapes(wheelModels[i]):
+			wheelModels[i].set_blend_shape_value(0, blend_wheels)
 
 func _physics_process(_delta: float) -> void:
 	backWheelsOffset = (wheelRBs[2].global_position + wheelRBs[3].global_position) / 2 - global_position
@@ -134,15 +136,19 @@ func _integrate_forces(_state : PhysicsDirectBodyState3D) -> void:
 		return
 	
 	if Input.is_action_pressed("Gas"):
-		engineSpeed += acceleration
-		going = true
+		if engineSpeed < 0.0:
+			engineSpeed = move_toward(engineSpeed, 0.0, acceleration * 1.35)
+		else:
+			engineSpeed += acceleration
+	elif Input.is_action_pressed("Brake"):
+		if LocalVelocity.z < -0.4 or engineSpeed > 0.15:
+			engineSpeed = move_toward(engineSpeed, 0.0, brakePower * 0.42)
+		else:
+			engineSpeed -= acceleration * 0.78
 	else:
-		engineSpeed -= deceleration
-		engineSpeed = max(engineSpeed, 0)
-		going = false
-	if Input.is_action_pressed("Brake"):
-		# --- !!! IMPLEMENT REVERSE !!! ---
-		engineSpeed /= brakePower
+		engineSpeed = move_toward(engineSpeed, 0.0, deceleration)
+
+	going = absf(engineSpeed) > 0.08
 	if Input.is_action_pressed("E-Brake"):
 		grip = lerp(grip, minGrip, 0.3)
 		lerpFriction = lerp(lerpFriction, eBrakeFriction, 0.03)
@@ -215,3 +221,19 @@ func set_drive_enabled(value: bool) -> void:
 	if not drive_enabled:
 		engineSpeed = 0.0
 		going = false
+
+
+func _find_first_mesh(node: Node) -> MeshInstance3D:
+	if node is MeshInstance3D:
+		return node as MeshInstance3D
+
+	for child in node.get_children():
+		var mesh := _find_first_mesh(child)
+		if mesh != null:
+			return mesh
+
+	return null
+
+
+func _has_blend_shapes(mesh: MeshInstance3D) -> bool:
+	return mesh != null and mesh.mesh != null and mesh.mesh.get_blend_shape_count() > 0
