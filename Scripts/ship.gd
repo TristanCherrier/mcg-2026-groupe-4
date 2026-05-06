@@ -11,7 +11,7 @@ var thrust_force : float = 20
 var mouse_motion : Vector2
 
 	
-func _integrate_forces(state : PhysicsDirectBodyState3D) -> void:
+func _integrate_forces(_state : PhysicsDirectBodyState3D) -> void:
 	exhaust.basis = Basis.IDENTITY
 	rotY = mouse_motion.x /150
 	rotX = mouse_motion.y /150

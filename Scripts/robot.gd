@@ -8,7 +8,7 @@ var going : bool
 func _ready() -> void:
 	pass
 
-func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 	going = false
 	if Input.is_action_pressed("Roll_Forward"):
 		apply_torque(-CamNode.global_basis.x * (angular_damp + 1))

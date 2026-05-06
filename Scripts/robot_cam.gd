@@ -21,14 +21,14 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(delta: float) -> void:
-	rotY = mouse_motion.x /50
-	rotX = mouse_motion.y /50
+	rotY = mouse_motion.x / 200
+	rotX = mouse_motion.y / 200
 	mouse_motion = Vector2.ZERO
 	smooth_rotY = lerpf(smooth_rotY, rotY, 20 * delta)
 	smooth_rotX = lerpf(smooth_rotX, rotX, 20 * delta)
 	rotate_y(-smooth_rotY)
-	var quat_rot = quaternion.from_euler(rotation)
-	var head_quat_rot = quaternion.from_euler(Head.rotation)
+	var quat_rot = Quaternion.from_euler(rotation)
+	var head_quat_rot = Quaternion.from_euler(Head.rotation)
 	head_quat_rot = head_quat_rot.slerp(quat_rot, 10 * delta)
 	Head.rotation = head_quat_rot.get_euler()
 	#rotY_offset = Head.rotation.signed_angle_to(rotation, Vector3.UP)
