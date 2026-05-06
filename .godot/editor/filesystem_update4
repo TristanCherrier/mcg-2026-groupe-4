@@ -1,9 +1,2 @@
-res://Car.tscn
-res://Materials/floor.tres
-res://Scripts/car.gd
-res://Phys_Materials/pm_Tire.tres
 res://main.tscn
-res://Scripts/ship.gd
-res://Scripts/robot.gd
-res://Scripts/robot_cam.gd
-res://Scripts/mode_swicher.gd
+res://Materials/floor.tres
