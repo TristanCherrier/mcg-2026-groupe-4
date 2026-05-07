@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://142ticl2twb7" path="res://Scripts/car.gd" id="2_0plkr"]
 [ext_resource type="PackedScene" uid="uid://jqofig4t4ox1" path="res://Imports/Car.glb" id="3_f8n80"]
 [ext_resource type="PackedScene" uid="uid://c3qk1rgqu22q5" path="res://Wheel.tscn" id="4_5au2c"]
-[ext_resource type="Script" uid="uid://osskftcdcf0n" path="res://car_cam.gd" id="5_knk1u"]
+[ext_resource type="Script" uid="uid://osskftcdcf0n" path="res://Scripts/car_cam.gd" id="5_knk1u"]
+
 
 [sub_resource type="BoxMesh" id="BoxMesh_nscyy"]
 

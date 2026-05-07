@@ -24,6 +24,7 @@ var maxReverseSpeed : float = 0.5 #TODO
 var acceleration : float = 0.01
 var deceleration : float = 0.01
 var brakePower : float = 0.95 #multiplies engineRotation. Should be lower than 1.
+var ebraking : int = 0
 var minBackFriction : float = 0.1 #back wheels friction for drifting.
 var maxBackFriction : float = 0.3
 var backFriction : float = 0.3
@@ -31,8 +32,8 @@ var grip : float = 5
 var maxSteerAngle : float = deg_to_rad(45)
 var wishSteerAngle : float;
 var currentSteerAngle : float = 0.0
-@export_range(0,0.1)
-var adaptiveSteering : float #0 (full steering) to 0.1 (no steering).
+@export_range(0,1)
+var adaptiveSteering : float #0 (full steering) to 1 (no steering).
 var going = false
 var frontGrounded = false
 var backGrounded = false
@@ -93,25 +94,33 @@ func _integrate_forces(_state : PhysicsDirectBodyState3D) -> void:
 		engineRotation *= brakePower
 
 	if Input.is_action_pressed("E-Brake"):
+		ebraking = 0
 		backFriction = minBackFriction
+		engineRotation *= brakePower
+		for i in range(2,4):
+			wheelRBs[i].physics_material_override.friction = 1
 	else:
-		backFriction = maxBackFriction
+		ebraking = 1
+		for i in range(2,4):
+			wheelRBs[i].physics_material_override.friction = 0.0
 		
-	for i in range(2,4):
-		wheelRBs[i].physics_material_override.friction = backFriction
+	#for i in range(2,4):
+		#wheelRBs[i].physics_material_override.friction = backFriction
 	
 	wishSteerAngle = 0.0
 	if Input.is_action_pressed("Steer_Right"):
-		wishSteerAngle = -maxSteerAngle / max(1, (abs(LocalVelocity.z) * adaptiveSteering) + 1)
+		wishSteerAngle = -maxSteerAngle / max(1, (abs(LocalVelocity.z) * adaptiveSteering / 10) + 1)
 	if Input.is_action_pressed("Steer_Left"):
-		wishSteerAngle = maxSteerAngle / max(1, (abs(LocalVelocity.z) * adaptiveSteering) + 1)
+		wishSteerAngle = maxSteerAngle / max(1, (abs(LocalVelocity.z) * adaptiveSteering / 10) + 1)
 	
 	currentSteerAngle = lerp(currentSteerAngle, wishSteerAngle, 0.1)
 	
 	wheelModels[0].rotate_y((wishSteerAngle - currentSteerAngle) * 0.1)
 	wheelModels[1].rotate_y((wishSteerAngle - currentSteerAngle) * 0.1)
-	for i in range(4):
-		wheelModels[i].rotate_object_local(Vector3.RIGHT, -engineRotation)
+	for i in range(2):
+		wheelModels[i].rotate_object_local(Vector3.RIGHT, LocalVelocity.z / 100)
+	for i in range(2, 4):
+		wheelModels[i].rotate_object_local(Vector3.RIGHT, (LocalVelocity.z / 100) * ebraking)
 	
 	engineRotation = max(min(engineRotation, maxSpeed), -maxReverseSpeed)
 	
@@ -122,12 +131,10 @@ func _integrate_forces(_state : PhysicsDirectBodyState3D) -> void:
 		#RWD
 		apply_force(-global_basis.z * engineRotation * 20 * (forwardForceLoss if frontGrounded else 1.0) * mass, backWheelsOffset)
 		DebugCube.global_position = global_position + backWheelsOffset
+		apply_force(global_basis.x * -LocalVelocity.x * grip * mass * 0.5, backWheelsOffset)
 	if frontGrounded:
 		#Steering
 		var steerVector : Vector3
 		steerVector = -global_basis.z.rotated(global_basis.y, currentSteerAngle)
-		apply_force(steerVector * -LocalVelocity.z * (1 - forwardForceLoss) * mass, frontWheelsOffset)
-	if frontGrounded or backGrounded:
-		#Sideways Drag
-		apply_force(global_basis.x * -LocalVelocity.x * grip * mass * 0.5, frontWheelsOffset)#
-		apply_force(global_basis.x * -LocalVelocity.x * grip * mass * 0.5 * remap(backFriction, minBackFriction, maxBackFriction, 0.85, 1), backWheelsOffset)#* grip
+		apply_force(steerVector * -LocalVelocity.z * (1 - forwardForceLoss) * mass * 2, frontWheelsOffset)
+		apply_force(global_basis.x * -LocalVelocity.x * grip * mass * 0.5, frontWheelsOffset)

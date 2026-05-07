@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://142ticl2twb7" path="res://Scripts/car.gd" id="2_eryuy"]
 [ext_resource type="PackedScene" uid="uid://jqofig4t4ox1" path="res://Imports/Car.glb" id="3_w8o8f"]
 [ext_resource type="PackedScene" uid="uid://c3qk1rgqu22q5" path="res://Wheel.tscn" id="4_02hxf"]
-[ext_resource type="Script" uid="uid://osskftcdcf0n" path="res://car_cam.gd" id="5_4iter"]
+[ext_resource type="Script" uid="uid://osskftcdcf0n" path="res://Scripts/car_cam.gd" id="5_4iter"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nscyy"]
 
@@ -59,7 +59,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.1, 1.4631705)
 
 [node name="cam" type="Camera3D" parent="." unique_id=1713626830 node_paths=PackedStringArray("car_rb", "target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3.5)
-visible = false
 script = ExtResource("5_4iter")
 car_rb = NodePath("../CarRB")
 target = NodePath("../CarRB/cam_target")

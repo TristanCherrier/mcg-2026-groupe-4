@@ -1,13 +1,14 @@
-[gd_scene format=3 uid="uid://dn1a0psrdpmyg"]
+[gd_scene format=3 uid="uid://dr5q47o5hwpq0"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://cgmdivt82aw86" path="res://Phys_Materials/pm_robot_ball.tres" id="1_crsa2"]
-[ext_resource type="Script" uid="uid://bt3jli15au83j" path="res://Scripts/robot.gd" id="2_pdxcx"]
+[ext_resource type="Script" uid="uid://bt3jli15au83j" path="res://Scripts/robot_ball.gd" id="2_pdxcx"]
 [ext_resource type="PackedScene" uid="uid://c1i6u8fh3ab6n" path="res://Imports/robot_ball.glb" id="3_t7r3x"]
 [ext_resource type="PhysicsMaterial" uid="uid://bxmmdfnlf2jt1" path="res://Phys_Materials/pm_robot_body.tres" id="4_anpm0"]
 [ext_resource type="PackedScene" uid="uid://dcpya1ejwsnck" path="res://Imports/robot_body.glb" id="5_vvp5k"]
 [ext_resource type="PackedScene" uid="uid://bxx0biypbr7nx" path="res://Imports/robot_head.glb" id="6_o84uv"]
 [ext_resource type="PackedScene" uid="uid://bdly4b0y1rdqo" path="res://Imports/robot_head2.glb" id="7_ekfic"]
 [ext_resource type="Script" uid="uid://cmaqtmp273qpo" path="res://Scripts/robot_cam.gd" id="8_21svx"]
+[ext_resource type="PackedScene" uid="uid://wkps7bjuope8" path="res://Flash.tscn" id="8_pdxcx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ru5oq"]
 radius = 0.11
@@ -21,7 +22,6 @@ height = 0.36702538
 [node name="ball_rb" type="RigidBody3D" parent="." unique_id=1427333599 node_paths=PackedStringArray("CamNode")]
 mass = 10.0
 physics_material_override = ExtResource("1_crsa2")
-gravity_scale = 10.0
 can_sleep = false
 angular_damp = 100.0
 script = ExtResource("2_pdxcx")
@@ -47,6 +47,9 @@ angular_damp = 10.0
 
 [node name="robot_head2" parent="body_rb/robot_head" unique_id=318069149 instance=ExtResource("7_ekfic")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.151, 0)
+
+[node name="Flash" parent="body_rb/robot_head/robot_head2" unique_id=1513400258 instance=ExtResource("8_pdxcx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.044436783, -0.09860327)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body_rb" unique_id=1253267929]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08342457, 0)

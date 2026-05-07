@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://bom1ef41jsxwu"]
 
 [ext_resource type="Material" uid="uid://doxjrqjvofjfr" path="res://Materials/floor.tres" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://bsoailc7aym4d" path="res://ship.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://dn1a0psrdpmyg" path="res://robot.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dr5q47o5hwpq0" path="res://Robot.tscn" id="2_7mycd"]
+[ext_resource type="PackedScene" path="res://ship.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://b0qry0hlr6e1d" path="res://Car.tscn" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://cn4rvywhvpsp6" path="res://Scripts/mode_swicher.gd" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://o6frgai0u24b" path="res://MonsterManager.tscn" id="7_272bh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -68,8 +69,11 @@ mesh = SubResource("BoxMesh_h2yge")
 visible = false
 shape = SubResource("BoxShape3D_1bvp3")
 
-[node name="Robot" parent="." unique_id=317561797 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51459, 10.286908)
+[node name="Robot" parent="." unique_id=317561797 instance=ExtResource("2_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7179706, 7.6018095)
+
+[node name="ball_rb" parent="Robot" index="0" unique_id=1427333599]
+mass = 20.0
 
 [node name="Ship" parent="." unique_id=50604899 instance=ExtResource("3_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.543671, 17.603008)
@@ -77,9 +81,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.543671, 17.603008)
 [node name="Car" parent="." unique_id=379070049 instance=ExtResource("4_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.278104, 18.49559)
 
-[node name="Mode Swicher" type="Node3D" parent="." unique_id=605745117 node_paths=PackedStringArray("Mode_Nodes", "robot")]
+[node name="Mode Swicher" type="Node3D" parent="." unique_id=605745117 node_paths=PackedStringArray("Mode_Nodes")]
 script = ExtResource("5_lquwl")
 Mode_Nodes = [NodePath("../Robot"), NodePath("../Ship"), NodePath("../Car")]
-robot = NodePath("../Robot")
 
+[node name="MonsterManager" parent="." unique_id=1076305989 node_paths=PackedStringArray("player") instance=ExtResource("7_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3280216, 4.299262)
+player = NodePath("../Robot")
+
+[editable path="Robot"]
 [editable path="Car"]

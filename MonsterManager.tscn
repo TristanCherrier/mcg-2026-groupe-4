@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://o6frgai0u24b"]
+
+[ext_resource type="Script" uid="uid://opiyjffjs7t2" path="res://MonsterManager.gd" id="1_5hniu"]
+
+[node name="MonsterManager" type="Node3D" unique_id=172152581 node_paths=PackedStringArray("spawnPoints")]
+script = ExtResource("1_5hniu")
+spawnPoints = [NodePath("SpawnPoint0"), NodePath("SpawnPoint1"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3")]
+
+[node name="SpawnPoint0" type="Node3D" parent="." unique_id=1914715799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6122259, 1.020265, -2.2407122)
+
+[node name="SpawnPoint1" type="Node3D" parent="." unique_id=714348468]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027156115, 0.2767251, -2.647755)
+
+[node name="SpawnPoint2" type="Node3D" parent="." unique_id=578697405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6661072, 2.41359, 1.2665064)
+
+[node name="SpawnPoint3" type="Node3D" parent="." unique_id=119590466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7548553, 0, 1.1602764)
