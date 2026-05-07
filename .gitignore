@@ -1,1 +1,6 @@
-.godot/.editor/
+.godot/
+.nomedia
+.import/
+export.cfg
+export_credentials.cfg
+*.tmp
