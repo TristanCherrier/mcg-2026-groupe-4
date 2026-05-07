@@ -27,6 +27,7 @@ center_of_mass = Vector3(0, -0.2, 0)
 inertia = Vector3(5000, 5000, 2500)
 freeze_mode = 1
 continuous_cd = true
+linear_damp = 0.3
 angular_damp = 2.0
 script = ExtResource("2_eryuy")
 DebugCube = NodePath("../DebugCube")
@@ -36,7 +37,7 @@ WheelFrontLeft = NodePath("../Wheel_FrontLeft")
 WheelBackRight = NodePath("../Wheel_BackRight")
 WheelBackLeft = NodePath("../Wheel_BackLeft")
 
-[node name="Car" parent="CarRB" unique_id=1543335313 instance=ExtResource("3_w8o8f")]
+[node name="Car" parent="CarRB" unique_id=1836274955 instance=ExtResource("3_w8o8f")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CarRB" unique_id=491382928]
 visible = false
@@ -48,13 +49,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 [node name="Wheel_FrontRight" parent="." unique_id=1439131984 instance=ExtResource("4_02hxf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.1, -1.3244373)
 
-[node name="Wheel_FrontLeft" parent="." unique_id=904916321 instance=ExtResource("4_02hxf")]
+[node name="Wheel_FrontLeft" parent="." unique_id=1579955003 instance=ExtResource("4_02hxf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.1, -1.3244373)
 
-[node name="Wheel_BackRight" parent="." unique_id=154170976 instance=ExtResource("4_02hxf")]
+[node name="Wheel_BackRight" parent="." unique_id=1566198291 instance=ExtResource("4_02hxf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.1, 1.4631705)
 
-[node name="Wheel_BackLeft" parent="." unique_id=958828909 instance=ExtResource("4_02hxf")]
+[node name="Wheel_BackLeft" parent="." unique_id=1772575289 instance=ExtResource("4_02hxf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.1, 1.4631705)
 
 [node name="cam" type="Camera3D" parent="." unique_id=1713626830 node_paths=PackedStringArray("car_rb", "target")]

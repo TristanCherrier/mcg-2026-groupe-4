@@ -19,3 +19,4 @@ res://Scripts/robot_ball.gd
 res://flash.gd
 res://Flash.tscn
 res://classroom.tscn
+res://Scripts/mode_swicher.gd

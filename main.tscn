@@ -75,7 +75,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7179706, 7.6018095)
 [node name="ball_rb" parent="Robot" index="0" unique_id=1427333599]
 mass = 20.0
 
-[node name="Ship" parent="." unique_id=50604899 instance=ExtResource("3_h2yge")]
+[node name="Ship" parent="." unique_id=1728071699 instance=ExtResource("3_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.543671, 17.603008)
 
 [node name="Car" parent="." unique_id=379070049 instance=ExtResource("4_lquwl")]
