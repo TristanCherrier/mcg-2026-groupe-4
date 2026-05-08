@@ -75,7 +75,6 @@ func _try_damage() -> void:
 		return
 	_cooldown_timer = damage_cooldown
 	GameState.add_points(-score_penalty)
-	GameState.push_message("Le monstre vous a touché !  -%d points" % score_penalty, 2.0)
 	_flash_danger()
 
 

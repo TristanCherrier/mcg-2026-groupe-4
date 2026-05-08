@@ -1,20 +1,21 @@
 extends Node3D
 
-var timer = 0
+var timer : float = 0
+var cooldown : float = 3
 
 func _ready() -> void:
 	$zone.monitoring = false
 
 func _process(delta: float) -> void:
 	timer -= delta
-	clampf(timer, 0, 3)
-	if timer < 2.9:
+	timer = clampf(timer, 0, cooldown)
+	if timer < cooldown - 0.1:
 		visible = false
 		$zone.monitoring = false
 	if Input.is_action_just_pressed("Flash") and timer <= 0:
 		visible = true
 		$zone.monitoring = true
-		timer = 3
+		timer = cooldown
 	
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	body.queue_free()

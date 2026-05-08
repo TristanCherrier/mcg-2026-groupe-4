@@ -8,7 +8,7 @@
 [ext_resource type="PhysicsMaterial" uid="uid://bxmmdfnlf2jt1" path="res://Phys_Materials/pm_robot_body.tres" id="4_hvhn1"]
 [ext_resource type="PackedScene" uid="uid://bdly4b0y1rdqo" path="res://Imports/robot_head2.glb" id="6_bkaji"]
 [ext_resource type="Script" uid="uid://cmaqtmp273qpo" path="res://Scripts/robot_cam.gd" id="6_yyxj1"]
-[ext_resource type="PackedScene" path="res://Flash.tscn" id="8_ydsf0"]
+[ext_resource type="PackedScene" uid="uid://tvph5mrds3gt" path="res://Flash.tscn" id="8_ydsf0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ru5oq"]
 radius = 0.11
@@ -35,6 +35,8 @@ visible = false
 shape = SubResource("SphereShape3D_ru5oq")
 
 [node name="body_rb" type="RigidBody3D" parent="." unique_id=1075911092]
+collision_layer = 4
+collision_mask = 6
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 mass = 10.0

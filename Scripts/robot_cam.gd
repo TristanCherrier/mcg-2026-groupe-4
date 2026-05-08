@@ -28,8 +28,8 @@ func _process(delta: float) -> void:
 	smooth_rotY = lerpf(smooth_rotY, rotY, 20 * delta)
 	smooth_rotX = lerpf(smooth_rotX, rotX, 20 * delta)
 	rotate_y(-smooth_rotY)
-	var quat_rot = quaternion.from_euler(rotation)
-	var head_quat_rot = quaternion.from_euler(Head.rotation)
+	var quat_rot = Quaternion.from_euler(rotation)
+	var head_quat_rot = Quaternion.from_euler(Head.rotation)
 	head_quat_rot = head_quat_rot.slerp(quat_rot, 10 * delta)
 	Head.rotation = head_quat_rot.get_euler()
 	#rotY_offset = Head.rotation.signed_angle_to(rotation, Vector3.UP)
@@ -51,7 +51,9 @@ func _process(delta: float) -> void:
 	
 	zoom_offset = clampf(zoom_offset, 0, 3)
 	smooth_zoom_offset = lerpf(smooth_zoom_offset, zoom_offset, 10 * delta)
-	Head.get_parent_node_3d().visible = false if smooth_zoom_offset < 0.25 else true
+	var headVisible : bool = smooth_zoom_offset >= 0.25
+	Head.get_child(0).visible = headVisible
+	Head2.get_child(0).visible = headVisible
 	Cam.position.z = smooth_zoom_offset
 	_update_prompt()
 

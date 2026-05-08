@@ -80,7 +80,6 @@ func submit_answer(index: int) -> bool:
 		return true
 	return false
 
-
 func _on_body_entered(body: Node) -> void:
 	if solved:
 		return
@@ -109,57 +108,12 @@ func _node_or_parent_in_group(node: Node, group_name: String) -> bool:
 
 
 func _update_visual() -> void:
-	var body_material := StandardMaterial3D.new()
-	body_material.albedo_color = Color(0.22, 0.76, 0.46, 1) if solved else Color(0.23, 0.27, 0.34, 1)
-	body_material.metallic = 0.18
-	body_material.roughness = 0.3
-	body_material.emission_enabled = true
-	body_material.emission = Color(0.16, 0.95, 0.44, 1) if solved else Color(0.22, 0.68, 1.0, 1)
-	$MeshInstance3D.material_override = body_material
-
-	var screen_material := StandardMaterial3D.new()
-	screen_material.albedo_color = Color(0.88, 1.0, 0.94, 1) if solved else Color(0.06, 0.13, 0.22, 1)
-	screen_material.emission_enabled = true
-	screen_material.emission = Color(0.42, 1.0, 0.7, 1) if solved else Color(0.18, 0.72, 1.0, 1)
-	$ScreenMesh.material_override = screen_material
-
-	var accent_material := StandardMaterial3D.new()
-	accent_material.albedo_color = Color(1.0, 0.83, 0.28) if solved else Color(0.98, 0.52, 0.24)
-	accent_material.emission_enabled = true
-	accent_material.emission = accent_material.albedo_color
-	$AccentMesh.material_override = accent_material
-
-	var overlay_material := StandardMaterial3D.new()
-	overlay_material.albedo_color = Color(0.86, 1.0, 0.92, 1) if solved else Color(0.55, 0.9, 1.0, 1)
-	overlay_material.emission_enabled = true
-	overlay_material.emission = Color(0.4, 1.0, 0.68, 1) if solved else Color(0.24, 0.88, 1.0, 1)
-	$HeaderStrip.material_override = overlay_material
-	$DataStripA.material_override = overlay_material
-	$DataStripB.material_override = overlay_material
-	$SideStrip.material_override = overlay_material
-	$StatusDot.material_override = accent_material
-
 	$OmniLight3D.light_color = Color(0.25, 1, 0.45) if solved else Color(0.25, 0.72, 1.0)
 
 
 func _apply_layout_mode() -> void:
 	if not screen_mode:
 		return
-
-	$MeshInstance3D.visible = false
-	$AccentMesh.visible = false
-	$ScreenMesh.visible = false
-	$HeaderStrip.visible = false
-	$DataStripA.visible = false
-	$DataStripB.visible = false
-	$SideStrip.visible = false
-	$StatusDot.visible = false
-	$OmniLight3D.visible = false
-	$CollisionShape3D.position = Vector3(0.0, 0.0, 0.22)
-
-	var collision_shape := $CollisionShape3D.shape as BoxShape3D
-	if collision_shape != null:
-		collision_shape.size = Vector3(0.96, 0.74, 0.34)
 
 
 func _open_from_approach() -> void:

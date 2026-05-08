@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://wkps7bjuope8"]
+[gd_scene format=3 uid="uid://tvph5mrds3gt"]
 
-[ext_resource type="Script" uid="uid://d3bej0fysikvt" path="res://Scripts/flash.gd" id="1_0dd8c"]
+[ext_resource type="Script" path="res://Scripts/flash.gd" id="1_0dd8c"]
 [ext_resource type="Material" uid="uid://cb6f1q26hyuod" path="res://Materials/flash.tres" id="2_ak60a"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_crsa2"]
