@@ -4,7 +4,7 @@ signal fell
 
 @export
 var CamNode : Node3D
-
+var speed_scale : float = 0.3
 var going : bool
 var respawn_lock := false
 var respawn_safe_time := 0.0
@@ -21,16 +21,16 @@ func _ready() -> void:
 func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 	going = false
 	if Input.is_action_pressed("Roll_Forward"):
-		apply_torque(-CamNode.global_basis.x * (angular_damp + 1))
+		apply_torque(-CamNode.global_basis.x * (angular_damp * speed_scale + 1))
 		going = true
 	if Input.is_action_pressed("Roll_Back"):
-		apply_torque(CamNode.global_basis.x * (angular_damp + 1))
+		apply_torque(CamNode.global_basis.x * (angular_damp * speed_scale + 1))
 		going = true
 	if Input.is_action_pressed("Roll_Left"):
-		apply_torque(CamNode.global_basis.z * (angular_damp + 1))
+		apply_torque(CamNode.global_basis.z * (angular_damp * speed_scale + 1))
 		going = true
 	if Input.is_action_pressed("Roll_Right"):
-		apply_torque(-CamNode.global_basis.z * (angular_damp + 1))
+		apply_torque(-CamNode.global_basis.z * (angular_damp * speed_scale + 1))
 		going = true
 		
 	if going:

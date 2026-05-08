@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://qibyhbciwxik" path="res://Imports/Classroom/keyboard.glb" id="6_5spf0"]
 [ext_resource type="PackedScene" uid="uid://cl3e0q0h40lf8" path="res://Imports/Classroom/mouse.glb" id="7_ubcxn"]
 [ext_resource type="PackedScene" uid="uid://byf5mpdrpeim1" path="res://Imports/Classroom/chair.glb" id="8_lxqy8"]
+[ext_resource type="PhysicsMaterial" uid="uid://b14psdio4rvtv" path="res://Phys_Materials/pm_chair.tres" id="9_5spf0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6e7js"]
 
@@ -19,7 +20,7 @@ size = Vector3(1.5920639, 1.4169312, 0.69955444)
 size = Vector3(0.4489746, 0.7763672, 0.47540283)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_37esg"]
-size = Vector3(11.327148, 2.6304321, 10.172852)
+size = Vector3(11.327148, 2.6300545, 10.172852)
 
 [node name="Classroom" type="Node3D" unique_id=1757342605]
 
@@ -357,6 +358,7 @@ shape = SubResource("BoxShape3D_0hcv4")
 [node name="Chaises" type="Node3D" parent="." unique_id=2027199874]
 
 [node name="chaise2RB" type="RigidBody3D" parent="Chaises" unique_id=657552506]
+physics_material_override = ExtResource("9_5spf0")
 
 [node name="chair2" parent="Chaises/chaise2RB" unique_id=1864140521 instance=ExtResource("8_lxqy8")]
 transform = Transform3D(0.9975409, 0, -0.07008727, 0, 1, 0, 0.07008727, 0, 0.9975409, -2.8585029, 0, 1.8631663)
@@ -366,6 +368,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8544104, 0.35689735, 1.847
 shape = SubResource("BoxShape3D_6e7js")
 
 [node name="chaise3RB" type="RigidBody3D" parent="Chaises" unique_id=1436372605]
+physics_material_override = ExtResource("9_5spf0")
 
 [node name="chair3" parent="Chaises/chaise3RB" unique_id=913378183 instance=ExtResource("8_lxqy8")]
 transform = Transform3D(0.96906745, 0, 0.24679606, 0, 1, 0, -0.24679606, 0, 0.96906745, -1.6884646, 0, 1.407335)
@@ -375,6 +378,7 @@ transform = Transform3D(0.9690157, 0, 0.24699901, 0, 1, 0, -0.24699901, 0, 0.969
 shape = SubResource("BoxShape3D_6e7js")
 
 [node name="chaise4RB" type="RigidBody3D" parent="Chaises" unique_id=2071693919]
+physics_material_override = ExtResource("9_5spf0")
 
 [node name="chair4" parent="Chaises/chaise4RB" unique_id=2014991585 instance=ExtResource("8_lxqy8")]
 transform = Transform3D(0.7256386, 0, -0.688076, 0, 1, 0, 0.688076, 0, 0.7256386, -2.838081, 0, 3.6084948)
@@ -384,6 +388,7 @@ transform = Transform3D(0.7253744, 0, -0.68835455, 0, 1, 0, 0.68835455, 0, 0.725
 shape = SubResource("BoxShape3D_6e7js")
 
 [node name="chaise5RB" type="RigidBody3D" parent="Chaises" unique_id=680246583]
+physics_material_override = ExtResource("9_5spf0")
 
 [node name="chair5" parent="Chaises/chaise5RB" unique_id=482130773 instance=ExtResource("8_lxqy8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6008272, 0, 3.5115662)
@@ -393,6 +398,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5887039, 0.357, 3.4676137)
 shape = SubResource("BoxShape3D_6e7js")
 
 [node name="chaise6RB" type="RigidBody3D" parent="Chaises" unique_id=1611596489]
+physics_material_override = ExtResource("9_5spf0")
 
 [node name="chair6" parent="Chaises/chaise6RB" unique_id=1173686419 instance=ExtResource("8_lxqy8")]
 transform = Transform3D(0.9906576, 0, -0.13637263, 0, 1, 0, 0.13637263, 0, 0.9906576, -0.9626299, 0, 3.5328193)
@@ -402,6 +408,7 @@ transform = Transform3D(0.99074787, 0, -0.13571557, 0, 1, 0, 0.13571557, 0, 0.99
 shape = SubResource("BoxShape3D_6e7js")
 
 [node name="chaise7RB" type="RigidBody3D" parent="Chaises" unique_id=860803814]
+physics_material_override = ExtResource("9_5spf0")
 
 [node name="chair7" parent="Chaises/chaise7RB" unique_id=30076841 instance=ExtResource("8_lxqy8")]
 transform = Transform3D(0.98178005, 0, -0.19002084, 0, 1, 0, 0.19002084, 0, 0.98178005, -2.9648662, -2.3841858e-07, -0.30700755)
@@ -411,6 +418,7 @@ transform = Transform3D(0.98162717, 0, -0.190809, 0, 1, 0, 0.190809, 0, 0.981627
 shape = SubResource("BoxShape3D_6e7js")
 
 [node name="chaise8RB" type="RigidBody3D" parent="Chaises" unique_id=2107929487]
+physics_material_override = ExtResource("9_5spf0")
 
 [node name="chair8" parent="Chaises/chaise8RB" unique_id=1132636070 instance=ExtResource("8_lxqy8")]
 transform = Transform3D(0.99062425, 0, -0.1366147, 0, 1, 0, 0.1366147, 0, 0.99062425, -1.5411726, -2.3841858e-07, -0.47617072)
@@ -420,6 +428,7 @@ transform = Transform3D(0.99050945, 0, -0.13744454, 0, 1, 0, 0.13744454, 0, 0.99
 shape = SubResource("BoxShape3D_6e7js")
 
 [node name="chaise9RB" type="RigidBody3D" parent="Chaises" unique_id=1350935303]
+physics_material_override = ExtResource("9_5spf0")
 
 [node name="chair9" parent="Chaises/chaise9RB" unique_id=1867893953 instance=ExtResource("8_lxqy8")]
 transform = Transform3D(0.98073757, 0, 0.19532996, 0, 1, 0, -0.19532996, 0, 0.98073757, -0.84437287, 0, -0.5029086)
@@ -429,6 +438,7 @@ transform = Transform3D(0.98061466, 0, 0.19594614, 0, 1, 0, -0.19594614, 0, 0.98
 shape = SubResource("BoxShape3D_6e7js")
 
 [node name="chaise10RB" type="RigidBody3D" parent="Chaises" unique_id=1536509709]
+physics_material_override = ExtResource("9_5spf0")
 
 [node name="chair10" parent="Chaises/chaise10RB" unique_id=1590920503 instance=ExtResource("8_lxqy8")]
 transform = Transform3D(0.99721, 0, -0.07464808, 0, 1, 0, 0.07464808, 0, 0.99721, -3.0938504, 2.3841858e-07, -2.1030974)
@@ -438,6 +448,7 @@ transform = Transform3D(0.9971851, 0, -0.074978724, 0, 1, 0, 0.074978724, 0, 0.9
 shape = SubResource("BoxShape3D_6e7js")
 
 [node name="chaise11RB" type="RigidBody3D" parent="Chaises" unique_id=589051167]
+physics_material_override = ExtResource("9_5spf0")
 
 [node name="chair11" parent="Chaises/chaise11RB" unique_id=1676228169 instance=ExtResource("8_lxqy8")]
 transform = Transform3D(0.97160697, 0, -0.23660074, 0, 1, 0, 0.23660074, 0, 0.97160697, -1.7383449, 0, -2.0267515)
@@ -447,6 +458,7 @@ transform = Transform3D(0.9715491, 0, -0.23683815, 0, 1, 0, 0.23683815, 0, 0.971
 shape = SubResource("BoxShape3D_6e7js")
 
 [node name="chaise12RB" type="RigidBody3D" parent="Chaises" unique_id=165033622]
+physics_material_override = ExtResource("9_5spf0")
 
 [node name="chair12" parent="Chaises/chaise12RB" unique_id=1518691863 instance=ExtResource("8_lxqy8")]
 transform = Transform3D(0.9972385, 0, -0.07426514, 0, 1, 0, 0.07426514, 0, 0.9972385, -0.9337738, 0, -2.4355369)
@@ -456,6 +468,7 @@ transform = Transform3D(0.99718505, 0, -0.07497872, 0, 1, 0, 0.07497872, 0, 0.99
 shape = SubResource("BoxShape3D_6e7js")
 
 [node name="chaise13RB" type="RigidBody3D" parent="Chaises" unique_id=65062984]
+physics_material_override = ExtResource("9_5spf0")
 
 [node name="chair13" parent="Chaises/chaise13RB" unique_id=685855305 instance=ExtResource("8_lxqy8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8519366, 2.3841858e-07, -1.5689335)
@@ -465,6 +478,7 @@ transform = Transform3D(0.99718505, 0, -0.07497872, 0, 1, 0, 0.07497872, 0, 0.99
 shape = SubResource("BoxShape3D_6e7js")
 
 [node name="chaise14RB" type="RigidBody3D" parent="Chaises" unique_id=801090248]
+physics_material_override = ExtResource("9_5spf0")
 
 [node name="chair14" parent="Chaises/chaise14RB" unique_id=2127891242 instance=ExtResource("8_lxqy8")]
 transform = Transform3D(0.97062, 0, 0.24061769, 0, 1, 0, -0.24061769, 0, 0.97062, 2.8424685, 0, 0.78529274)
@@ -474,6 +488,7 @@ transform = Transform3D(0.97071636, 0, 0.24022801, 0, 1, 0, -0.24022801, 0, 0.97
 shape = SubResource("BoxShape3D_6e7js")
 
 [node name="chaise15RB" type="RigidBody3D" parent="Chaises" unique_id=332590097]
+physics_material_override = ExtResource("9_5spf0")
 
 [node name="chair15" parent="Chaises/chaise15RB" unique_id=930616980 instance=ExtResource("8_lxqy8")]
 transform = Transform3D(0.94627744, 0, 0.32335597, 0, 1, 0, -0.32335597, 0, 0.94627744, 3.1316633, 0, 2.3219967)
@@ -483,6 +498,7 @@ transform = Transform3D(0.9460852, 0, 0.3239174, 0, 1, 0, -0.3239174, 0, 0.94608
 shape = SubResource("BoxShape3D_6e7js")
 
 [node name="chaise16RB" type="RigidBody3D" parent="Chaises" unique_id=814663385]
+physics_material_override = ExtResource("9_5spf0")
 
 [node name="chair16" parent="Chaises/chaise16RB" unique_id=2120646969 instance=ExtResource("8_lxqy8")]
 transform = Transform3D(0.9712507, 0, -0.23805884, 0, 1, 0, 0.23805884, 0, 0.9712507, -0.8690063, 0, 1.5225887)
@@ -494,7 +510,7 @@ shape = SubResource("BoxShape3D_6e7js")
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=440257865]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=450051901]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3144915, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2921606, 0)
 shape = SubResource("BoxShape3D_37esg")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=1172192003]

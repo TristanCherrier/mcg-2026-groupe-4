@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dn1a0psrdpmyg"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://cgmdivt82aw86" path="res://Phys_Materials/pm_robot_ball.tres" id="1_dfm56"]
-[ext_resource type="Script" path="res://Scripts/robot.gd" id="2_7xofo"]
+[ext_resource type="Script" uid="uid://bt3jli15au83j" path="res://Scripts/robot.gd" id="2_7xofo"]
 [ext_resource type="PackedScene" uid="uid://c1i6u8fh3ab6n" path="res://Imports/robot_ball.glb" id="2_yhfw1"]
 [ext_resource type="PackedScene" uid="uid://dcpya1ejwsnck" path="res://Imports/robot_body.glb" id="3_ru5oq"]
 [ext_resource type="PackedScene" uid="uid://bxx0biypbr7nx" path="res://Imports/robot_head.glb" id="4_7xofo"]
@@ -63,16 +63,19 @@ shape = SubResource("CapsuleShape3D_yyxj1")
 script = ExtResource("6_yyxj1")
 Head = NodePath("../robot_head")
 Head2 = NodePath("../robot_head/robot_head2")
-Cam = NodePath("cam_subNode/robot_cam")
+Cam = NodePath("cam_subNode/SpringArm3D/robot_cam")
 
 [node name="cam_subNode" type="Node3D" parent="body_rb/cam_node" unique_id=1390316879]
 
-[node name="robot_cam" type="Camera3D" parent="body_rb/cam_node/cam_subNode" unique_id=297775819]
+[node name="SpringArm3D" type="SpringArm3D" parent="body_rb/cam_node/cam_subNode" unique_id=2136308341]
+collision_mask = 15
+
+[node name="robot_cam" type="Camera3D" parent="body_rb/cam_node/cam_subNode/SpringArm3D" unique_id=297775819]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 1)
 visible = false
 current = true
 
-[node name="InteractRay" type="RayCast3D" parent="body_rb/cam_node/cam_subNode/robot_cam" unique_id=333273792]
+[node name="InteractRay" type="RayCast3D" parent="body_rb/cam_node/cam_subNode/SpringArm3D/robot_cam" unique_id=333273792]
 target_position = Vector3(0, 0, -3.2)
 collide_with_areas = true
 

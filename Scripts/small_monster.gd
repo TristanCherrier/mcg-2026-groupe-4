@@ -1,7 +1,7 @@
 extends RigidBody3D
 
 @export
-var speed : float = 1
+var speed : float = 0.5
 var cooldown_timer: float = 0.0
 var score_penalty: int = 50
 var damage_cooldown: float = 1.5
