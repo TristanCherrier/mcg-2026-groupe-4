@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c3qk1rgqu22q5"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://darkqiu06y2ai" path="res://Phys_Materials/pm_Tire.tres" id="1_5it63"]
+[ext_resource type="PhysicsMaterial" uid="uid://darkqiu06y2ai" path="res://Phys_Materials/pm_tire.tres" id="1_5it63"]
 [ext_resource type="PackedScene" uid="uid://c46sgc6rxltvj" path="res://Imports/Wheel.glb" id="2_5it63"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5it63"]
@@ -9,8 +9,12 @@ radius = 0.20394622
 [node name="Wheel" type="Node3D" unique_id=1439131984]
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1797573263]
-mass = 8.0
+process_physics_priority = -1
+collision_layer = 2
+collision_priority = -1.0
+mass = 20.0
 physics_material_override = ExtResource("1_5it63")
+continuous_cd = true
 
 [node name="Wheel" parent="RigidBody3D" unique_id=235218247 instance=ExtResource("2_5it63")]
 

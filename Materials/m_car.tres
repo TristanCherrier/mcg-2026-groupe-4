@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://co2gg2vvc05xj"]
+
+[resource]
+resource_name = "m_car"
+cull_mode = 2
+albedo_color = Color(0.83698505, 0.86434877, 0.9211498, 1)
+clearcoat_enabled = true

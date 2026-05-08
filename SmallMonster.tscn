@@ -31,16 +31,31 @@ shape = SubResource("SphereShape3D_iry7b")
 [node name="ptitmonstre" parent="CollisionShape3D" unique_id=186284791 instance=ExtResource("2_fgeg3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.057247043, -0.08483809)
 
-[node name="thruster_flame" parent="CollisionShape3D" unique_id=882116047 instance=ExtResource("3_fgeg3")]
-transform = Transform3D(2.129723, 0, 0, 0, 2.2558901, 0, 0, 0, 1.9642191, 0.042051315, -0.025343716, 0.89185005)
+[node name="ptitmonstre" parent="CollisionShape3D/ptitmonstre/Armature/Skeleton3D" parent_id_path=PackedInt32Array(186284791, 2020859258) index="0" unique_id=59050467]
+layers = 8
 
-[node name="Thruster_Flame" parent="CollisionShape3D/thruster_flame" index="0" unique_id=1803452053]
+[node name="thruster_flame" parent="." unique_id=882116047 instance=ExtResource("3_fgeg3")]
+transform = Transform3D(0.21297231, 0, 0, 0, 0.22558902, 0, 0, 0, 0.1964219, 0.0042051314, -0.0025343716, 0.08918501)
+
+[node name="Thruster_Flame" parent="thruster_flame" index="0" unique_id=1803452053]
 material_override = SubResource("StandardMaterial3D_wh7m3")
 
-[node name="Thruster_Flame2" parent="CollisionShape3D/thruster_flame" index="1" unique_id=308824746]
+[node name="Thruster_Flame2" parent="thruster_flame" index="1" unique_id=308824746]
 material_override = SubResource("StandardMaterial3D_2s5v5")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=456656397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.12993655)
+light_color = Color(1, 0.5, 0, 1)
+omni_range = 0.887
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1407377330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.006573051, -0.056126542)
+light_color = Color(1, 0, 0, 1)
+light_energy = 7.2
+spot_range = 10.0
+spot_angle = 10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 
 [editable path="CollisionShape3D/ptitmonstre"]
-[editable path="CollisionShape3D/thruster_flame"]
+[editable path="thruster_flame"]

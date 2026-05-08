@@ -7,6 +7,7 @@ noise_type = 3
 width = 1204
 height = 1024
 noise = SubResource("FastNoiseLite_1bvp3")
+seamless = true
 
 [resource]
 albedo_color = Color(0.3134508, 0.36802152, 0.38613716, 1)

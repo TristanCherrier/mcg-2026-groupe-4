@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cl3e0q0h40lf8" path="res://Imports/Classroom/mouse.glb" id="7_ubcxn"]
 [ext_resource type="PackedScene" uid="uid://byf5mpdrpeim1" path="res://Imports/Classroom/chair.glb" id="8_lxqy8"]
 [ext_resource type="PhysicsMaterial" uid="uid://b14psdio4rvtv" path="res://Phys_Materials/pm_chair.tres" id="9_5spf0"]
+[ext_resource type="PhysicsMaterial" uid="uid://c2o0toilrsgpm" path="res://Phys_Materials/pm_classroom_floor.tres" id="11_5spf0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6e7js"]
 
@@ -20,7 +21,7 @@ size = Vector3(1.5920639, 1.4169312, 0.69955444)
 size = Vector3(0.4489746, 0.7763672, 0.47540283)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_37esg"]
-size = Vector3(11.327148, 2.6300545, 10.172852)
+size = Vector3(11.327148, 2.6334658, 10.172852)
 
 [node name="Classroom" type="Node3D" unique_id=1757342605]
 
@@ -508,9 +509,12 @@ transform = Transform3D(0.9711342, 0, -0.23853344, 0, 1, 0, 0.23853344, 0, 0.971
 shape = SubResource("BoxShape3D_6e7js")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=440257865]
+collision_layer = 9
+collision_mask = 9
+physics_material_override = ExtResource("11_5spf0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=450051901]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2921606, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.297, 0)
 shape = SubResource("BoxShape3D_37esg")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=1172192003]

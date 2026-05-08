@@ -1,8 +1,6 @@
 extends RigidBody3D
 
 @export
-var DebugCube : Node3D
-@export
 var Chassis : Node3D
 var Chassis_Model : MeshInstance3D
 @export
@@ -130,7 +128,6 @@ func _integrate_forces(_state : PhysicsDirectBodyState3D) -> void:
 	if backGrounded:
 		#RWD
 		apply_force(-global_basis.z * engineRotation * 20 * (forwardForceLoss if frontGrounded else 1.0) * mass, backWheelsOffset)
-		DebugCube.global_position = global_position + backWheelsOffset
 		apply_force(global_basis.x * -LocalVelocity.x * grip * mass * 0.5, backWheelsOffset)
 	if frontGrounded:
 		#Steering

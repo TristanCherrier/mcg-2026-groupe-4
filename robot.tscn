@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://dn1a0psrdpmyg"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://cgmdivt82aw86" path="res://Phys_Materials/pm_robot_ball.tres" id="1_dfm56"]
-[ext_resource type="Script" uid="uid://bt3jli15au83j" path="res://Scripts/robot.gd" id="2_7xofo"]
-[ext_resource type="PackedScene" uid="uid://c1i6u8fh3ab6n" path="res://Imports/robot_ball.glb" id="2_yhfw1"]
-[ext_resource type="PackedScene" uid="uid://dcpya1ejwsnck" path="res://Imports/robot_body.glb" id="3_ru5oq"]
-[ext_resource type="PackedScene" uid="uid://bxx0biypbr7nx" path="res://Imports/robot_head.glb" id="4_7xofo"]
-[ext_resource type="PhysicsMaterial" uid="uid://bxmmdfnlf2jt1" path="res://Phys_Materials/pm_robot_body.tres" id="4_hvhn1"]
-[ext_resource type="PackedScene" uid="uid://bdly4b0y1rdqo" path="res://Imports/robot_head2.glb" id="6_bkaji"]
-[ext_resource type="Script" uid="uid://cmaqtmp273qpo" path="res://Scripts/robot_cam.gd" id="6_yyxj1"]
-[ext_resource type="PackedScene" uid="uid://tvph5mrds3gt" path="res://Flash.tscn" id="8_ydsf0"]
+[ext_resource type="PhysicsMaterial" uid="uid://cgmdivt82aw86" path="res://Phys_Materials/pm_robot_ball.tres" id="1_pdxcx"]
+[ext_resource type="Script" uid="uid://bt3jli15au83j" path="res://Scripts/robot.gd" id="2_t7r3x"]
+[ext_resource type="PackedScene" uid="uid://c1i6u8fh3ab6n" path="res://Imports/robot_ball.glb" id="3_anpm0"]
+[ext_resource type="PhysicsMaterial" uid="uid://bxmmdfnlf2jt1" path="res://Phys_Materials/pm_robot_body.tres" id="4_vvp5k"]
+[ext_resource type="PackedScene" uid="uid://dcpya1ejwsnck" path="res://Imports/robot_body.glb" id="5_o84uv"]
+[ext_resource type="PackedScene" uid="uid://bxx0biypbr7nx" path="res://Imports/robot_head.glb" id="6_ekfic"]
+[ext_resource type="PackedScene" uid="uid://bdly4b0y1rdqo" path="res://Imports/robot_head2.glb" id="7_21svx"]
+[ext_resource type="PackedScene" uid="uid://tvph5mrds3gt" path="res://Flash.tscn" id="8_d811p"]
+[ext_resource type="Script" uid="uid://cmaqtmp273qpo" path="res://Scripts/robot_cam.gd" id="9_04yja"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ru5oq"]
 radius = 0.11
@@ -21,14 +21,14 @@ height = 0.36702538
 
 [node name="ball_rb" type="RigidBody3D" parent="." unique_id=1427333599 node_paths=PackedStringArray("CamNode")]
 mass = 10.0
-physics_material_override = ExtResource("1_dfm56")
+physics_material_override = ExtResource("1_pdxcx")
 gravity_scale = 10.0
 can_sleep = false
 angular_damp = 100.0
-script = ExtResource("2_7xofo")
+script = ExtResource("2_t7r3x")
 CamNode = NodePath("../body_rb/cam_node")
 
-[node name="robot_ball" parent="ball_rb" unique_id=1729454176 instance=ExtResource("2_yhfw1")]
+[node name="robot_ball" parent="ball_rb" unique_id=1729454176 instance=ExtResource("3_anpm0")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ball_rb" unique_id=964995164]
 visible = false
@@ -40,18 +40,18 @@ collision_mask = 6
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 mass = 10.0
-physics_material_override = ExtResource("4_hvhn1")
+physics_material_override = ExtResource("4_vvp5k")
 can_sleep = false
 angular_damp = 10.0
 
-[node name="robot_body" parent="body_rb" unique_id=1425795593 instance=ExtResource("3_ru5oq")]
+[node name="robot_body" parent="body_rb" unique_id=1425795593 instance=ExtResource("5_o84uv")]
 
-[node name="robot_head" parent="body_rb" unique_id=1320634771 instance=ExtResource("4_7xofo")]
+[node name="robot_head" parent="body_rb" unique_id=1320634771 instance=ExtResource("6_ekfic")]
 
-[node name="robot_head2" parent="body_rb/robot_head" unique_id=318069149 instance=ExtResource("6_bkaji")]
+[node name="robot_head2" parent="body_rb/robot_head" unique_id=318069149 instance=ExtResource("7_21svx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.151, 0)
 
-[node name="Flash" parent="body_rb/robot_head/robot_head2" unique_id=1513400258 instance=ExtResource("8_ydsf0")]
+[node name="Flash" parent="body_rb/robot_head/robot_head2" unique_id=1513400258 instance=ExtResource("8_d811p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.045, -0.1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body_rb" unique_id=1253267929]
@@ -59,25 +59,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08342457, 0)
 visible = false
 shape = SubResource("CapsuleShape3D_yyxj1")
 
-[node name="cam_node" type="Node3D" parent="body_rb" unique_id=259758962 node_paths=PackedStringArray("Head", "Head2", "Cam")]
-script = ExtResource("6_yyxj1")
+[node name="cam_node" type="Node3D" parent="body_rb" unique_id=259758962 node_paths=PackedStringArray("Head", "Head2", "Cam", "SpringArm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21714059, 0)
+script = ExtResource("9_04yja")
 Head = NodePath("../robot_head")
 Head2 = NodePath("../robot_head/robot_head2")
 Cam = NodePath("cam_subNode/SpringArm3D/robot_cam")
+SpringArm = NodePath("cam_subNode/SpringArm3D")
 
 [node name="cam_subNode" type="Node3D" parent="body_rb/cam_node" unique_id=1390316879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.06132025)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="body_rb/cam_node/cam_subNode" unique_id=2136308341]
-collision_mask = 15
+collision_mask = 8
+spring_length = 10.0
 
 [node name="robot_cam" type="Camera3D" parent="body_rb/cam_node/cam_subNode/SpringArm3D" unique_id=297775819]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 1)
-visible = false
 current = true
+near = 0.03
 
-[node name="InteractRay" type="RayCast3D" parent="body_rb/cam_node/cam_subNode/SpringArm3D/robot_cam" unique_id=333273792]
-target_position = Vector3(0, 0, -3.2)
-collide_with_areas = true
+[node name="InteractRay" type="RayCast3D" parent="body_rb/cam_node/cam_subNode/SpringArm3D/robot_cam" unique_id=1257315860]
 
 [node name="PinJoint3D" type="PinJoint3D" parent="." unique_id=1863421410]
 node_a = NodePath("../ball_rb")

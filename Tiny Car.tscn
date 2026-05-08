@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://b0qry0hlr6e1d"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://b2o7y28op0vnc" path="res://Phys_Materials/pm_Chassis.tres" id="1_47788"]
+[ext_resource type="PhysicsMaterial" uid="uid://b2o7y28op0vnc" path="res://Phys_Materials/pm_chassis.tres" id="1_47788"]
 [ext_resource type="Script" uid="uid://142ticl2twb7" path="res://Scripts/car.gd" id="2_eryuy"]
 [ext_resource type="PackedScene" uid="uid://jqofig4t4ox1" path="res://Imports/Car.glb" id="3_w8o8f"]
 [ext_resource type="PackedScene" uid="uid://c3qk1rgqu22q5" path="res://Wheel.tscn" id="4_02hxf"]
-[ext_resource type="Script" uid="uid://osskftcdcf0n" path="res://car_cam.gd" id="5_4iter"]
+[ext_resource type="Script" uid="uid://b6nih42axnhei" path="res://car_cam.gd" id="5_4iter"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nscyy"]
 

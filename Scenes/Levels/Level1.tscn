@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://2r5vtebmrixa"]
 
 [ext_resource type="Script" uid="uid://dchsngyc3fodw" path="res://Scripts/level1.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://dn1a0psrdpmyg" path="res://robot.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dn1a0psrdpmyg" path="res://Robot.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://cm6gj324r6uw8" path="res://Scenes/UI/HUD.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://be0hgt7gls2r3" path="res://classroom.tscn" id="4_xvio3"]
 

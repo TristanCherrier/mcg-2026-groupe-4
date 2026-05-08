@@ -9,7 +9,7 @@ var _cooldown_timer: float = 0.0
 var _gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 # Rayon de contact adapté au nouveau gabarit (capsule 0.22 + bille 0.11 + marge)
-const CONTACT_DISTANCE := 0.42
+const CONTACT_DISTANCE = 0.42
 
 @onready var glow_light: OmniLight3D = $GlowLight
 

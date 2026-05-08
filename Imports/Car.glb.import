@@ -37,6 +37,34 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"Glass Windows": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/Glass Windows.tres",
+"use_external/path": "uid://cx778jngelrjr"
+},
+"m_car": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/m_car.tres",
+"use_external/path": "uid://co2gg2vvc05xj"
+},
+"m_car_headlights": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/m_car_headlights.tres",
+"use_external/path": "uid://cg50y2cjesa1p"
+},
+"m_car_rearlights": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/m_car_rearlights.tres",
+"use_external/path": "uid://ctb5lpu85xd23"
+},
+"m_car_roof": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/m_car_roof.tres",
+"use_external/path": "uid://bycfr25iftt86"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1

@@ -8,25 +8,25 @@ signal quiz_requested(terminal: Node)
 signal integrity_changed(value: float)
 signal energy_changed(value: float)
 
-const TITLE_SCENE := "res://Scenes/UI/TitleScreen.tscn"
-const MENU_SCENE := "res://Scenes/UI/MainMenu.tscn"
-const VICTORY_SCENE := "res://Scenes/UI/VictoryScreen.tscn"
-const DEFEAT_SCENE := "res://Scenes/UI/DefeatScreen.tscn"
+const TITLE_SCENE = "res://Scenes/UI/TitleScreen.tscn"
+const MENU_SCENE = "res://Scenes/UI/MainMenu.tscn"
+const VICTORY_SCENE = "res://Scenes/UI/VictoryScreen.tscn"
+const DEFEAT_SCENE = "res://Scenes/UI/DefeatScreen.tscn"
 
-var score := 0
-var objective := ""
-var help_text := ""
-var current_level_path := ""
-var current_level_name := ""
-var next_level_path := ""
-var defeat_reason := ""
-var integrity := 100.0
-var energy := 100.0
-var rings_collected := 0
-var checkpoints_reached := 0
-var puzzles_solved := 0
-var bonus_found := 0
-var _restarting := false
+var score = 0
+var objective = ""
+var help_text = ""
+var current_level_path = ""
+var current_level_name = ""
+var next_level_path = ""
+var defeat_reason = ""
+var integrity = 100.0
+var energy = 100.0
+var rings_collected = 0
+var checkpoints_reached = 0
+var puzzles_solved = 0
+var bonus_found = 0
+var _restarting = false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -56,7 +56,7 @@ func _ensure_action(action_name: String, key_names: Array[String]) -> void:
 	if not InputMap.action_get_events(action_name).is_empty():
 		return
 	for key_name in key_names:
-		var event := InputEventKey.new()
+		var event = InputEventKey.new()
 		event.keycode = OS.find_keycode_from_string(key_name)
 		InputMap.action_add_event(action_name, event)
 

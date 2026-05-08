@@ -6,6 +6,8 @@ var Head : Node3D
 var Head2 : Node3D
 @export
 var Cam : Node3D
+@export
+var SpringArm : SpringArm3D
 
 var rotY : float
 var rotX : float
@@ -22,8 +24,8 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(delta: float) -> void:
-	rotY = mouse_motion.x /50
-	rotX = mouse_motion.y /50
+	rotY = mouse_motion.x /300
+	rotX = mouse_motion.y /300
 	mouse_motion = Vector2.ZERO
 	smooth_rotY = lerpf(smooth_rotY, rotY, 20 * delta)
 	smooth_rotX = lerpf(smooth_rotX, rotX, 20 * delta)
@@ -51,10 +53,10 @@ func _process(delta: float) -> void:
 	
 	zoom_offset = clampf(zoom_offset, 0, 3)
 	smooth_zoom_offset = lerpf(smooth_zoom_offset, zoom_offset, 10 * delta)
-	var headVisible : bool = smooth_zoom_offset >= 0.25
+	SpringArm.spring_length = smooth_zoom_offset
+	var headVisible : bool = SpringArm.get_hit_length() >= 0.2
 	Head.get_child(0).visible = headVisible
 	Head2.get_child(0).visible = headVisible
-	Cam.position.z = smooth_zoom_offset
 	_update_prompt()
 
 func _input(event):

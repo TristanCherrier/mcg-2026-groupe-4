@@ -19,6 +19,7 @@ const WALL_THICKNESS := 0.42
 const RESPAWN_SIDE_LIMIT := 7.35
 const REQUIRED_CHECKPOINTS := 3
 
+var car_camera : Node3D
 var checkpoints_hit := 0
 var collision_cooldown := 0.0
 var respawn_transform := Transform3D.IDENTITY
@@ -50,7 +51,7 @@ func _ready() -> void:
 	car_body.contact_monitor = true
 	car_body.max_contacts_reported = 10
 	car_body.body_entered.connect(_on_car_body_entered)
-	var car_camera := car_root.get_node("cam") as Camera3D
+	car_camera = car_root.get_node("cam") as Camera3D
 	car_camera.current = true
 	_build_level()
 	respawn_transform = Transform3D(Basis.IDENTITY, Vector3(0.0, car_body.global_position.y, -8.8))
@@ -213,9 +214,6 @@ func _respawn_car(apply_penalty: bool) -> void:
 			return
 	if car_body.has_method("reset_vehicle"):
 		car_body.call("reset_vehicle", respawn_transform)
-	var car_camera := car_root.get_node_or_null("cam")
-	if car_camera != null and car_camera.has_method("snap_to_target"):
-		car_camera.snap_to_target()
 
 
 func _wants_to_start_level() -> bool:
@@ -234,7 +232,6 @@ func _set_level_started(value: bool) -> void:
 		car_body.call("set_drive_enabled", value)
 	if car_body.has_method("reset_vehicle"):
 		car_body.call("reset_vehicle", respawn_transform)
-	var car_camera := car_root.get_node_or_null("cam")
 	if car_camera != null and car_camera.has_method("snap_to_target"):
 		car_camera.snap_to_target()
 	for obstacle in moving_obstacles:
@@ -246,7 +243,6 @@ func _set_level_started(value: bool) -> void:
 
 
 func _refresh_start_camera() -> void:
-	var car_camera := car_root.get_node_or_null("cam")
 	if car_camera != null and car_camera.has_method("snap_to_target"):
 		car_camera.snap_to_target()
 

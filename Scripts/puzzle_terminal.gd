@@ -2,16 +2,16 @@ extends Area3D
 
 signal solved_terminal(terminal: Area3D)
 
-@export_multiline var question := ""
+@export_multiline var question = ""
 @export var answers: Array = ["", "", ""]
-@export var correct_index := 0
-@export var objective_hint := ""
-@export var screen_mode := false
-@export var auto_open_on_approach := false
+@export var correct_index = 0
+@export var objective_hint = ""
+@export var screen_mode = false
+@export var auto_open_on_approach = false
 
-var solved := false
+var solved = false
 var player_in_range: Node = null
-var quiz_open := false
+var quiz_open = false
 
 
 func _ready() -> void:
