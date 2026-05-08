@@ -1,0 +1,8 @@
+.godot/
+.nomedia
+.import/
+export.cfg
+export_credentials.cfg
+*.tmp
+.DS_Store
+__MACOSX/
