@@ -1,9 +1,9 @@
+CollisionShape3D
+RigidBody3D
 Area3D
 StaticBody3D
 MeshInstance3D
-CollisionShape3D
 Node3D
-RigidBody3D
 Node
 AnimationPlayer
 Camera3D
