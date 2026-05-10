@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bebg3q5ljghdq"]
+
+[ext_resource type="Script" uid="uid://ba4xu5gkiyo7c" path="res://Scripts/charge_station.gd" id="1_4fhc2"]
+[ext_resource type="PackedScene" uid="uid://deft7qw0hqxf4" path="res://Imports/ChargeStation.glb" id="1_p5tdp"]
+[ext_resource type="Material" uid="uid://t5wia0xqjf5j" path="res://Materials/Battery_Green.tres" id="2_4fhc2"]
+[ext_resource type="Material" uid="uid://mki6frsxhnpu" path="res://Materials/chargeZoneCharging.tres" id="2_lhyq0"]
+[ext_resource type="Material" uid="uid://duxweb4ts66ci" path="res://Materials/Battery_Black.tres" id="3_jfg2y"]
+[ext_resource type="Material" uid="uid://dq4nrruln72k8" path="res://Materials/Battery_Orange.tres" id="5_jfg2y"]
+[ext_resource type="PackedScene" uid="uid://bn1cibxj0tsvt" path="res://Imports/ChargeZone.glb" id="6_kbdmv"]
+[ext_resource type="Material" uid="uid://ck80bt4iwhb20" path="res://Materials/chargeZoneNotCharging.tres" id="7_agsyr"]
+[ext_resource type="Material" uid="uid://ccc48v45ynryc" path="res://Materials/chargeZoneBolt.tres" id="8_lhyq0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4fhc2"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lhyq0"]
+height = 3.3500001
+
+[node name="ChargeStation" type="Node3D" unique_id=159111224 node_paths=PackedStringArray("Bar", "NotBar", "ChargeBar", "Gyro", "ChargeZone")]
+script = ExtResource("1_4fhc2")
+Bar = NodePath("ChargeStation/Bar")
+NotBar = NodePath("ChargeStation/NotBar")
+ChargeBar = NodePath("ChargeStation/ChargeBar")
+Gyro = NodePath("ChargeStation/Gyro")
+ChargeZone = NodePath("Area3D/ChargeZone/ChargeZone")
+ChargingMat = ExtResource("2_lhyq0")
+NotChargingMat = ExtResource("7_agsyr")
+
+[node name="ChargeStation" parent="." unique_id=1926499712 instance=ExtResource("1_p5tdp")]
+
+[node name="Bar" parent="ChargeStation" index="1" unique_id=123037422]
+material_override = ExtResource("2_4fhc2")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="ChargeStation/Gyro" parent_id_path=PackedInt32Array(1926499712, 1816735153) index="0" unique_id=448881198]
+transform = Transform3D(1, 0, 0, 0, 0.8535509, 0.5210097, 0, -0.5210097, 0.8535509, 0, 3.039, -0.3)
+light_color = Color(1, 0.48333335, 0, 1)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 30.0
+spot_attenuation = 0.01
+spot_angle = 20.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="ChargeStation/Gyro" parent_id_path=PackedInt32Array(1926499712, 1816735153) index="1" unique_id=570787666]
+transform = Transform3D(-1, 4.5548116e-08, -7.4619784e-08, 0, 0.8535509, 0.5210097, 8.742278e-08, 0.5210097, -0.8535509, 0, 3.039, 0.3)
+light_color = Color(1, 0.5019608, 0, 1)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 30.0
+spot_attenuation = 0.01
+spot_angle = 20.0
+
+[node name="NotBar" parent="ChargeStation" index="3" unique_id=1090644208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45, 0)
+material_override = ExtResource("3_jfg2y")
+
+[node name="ChargeBar" parent="ChargeStation" index="4" unique_id=746842890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+material_override = ExtResource("5_jfg2y")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=591088048]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=983684385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.92499995, 0)
+shape = SubResource("BoxShape3D_4fhc2")
+
+[node name="ChargeZone" parent="Area3D" unique_id=7929959 instance=ExtResource("6_kbdmv")]
+
+[node name="ChargeZone" parent="Area3D/ChargeZone" index="0" unique_id=1204175762]
+material_override = ExtResource("7_agsyr")
+
+[node name="Bolt" parent="Area3D/ChargeZone" index="1" unique_id=1367335303]
+material_override = ExtResource("8_lhyq0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=798467744]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=956814935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4250001, 0)
+shape = SubResource("CylinderShape3D_lhyq0")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+
+[editable path="ChargeStation"]
+[editable path="Area3D/ChargeZone"]

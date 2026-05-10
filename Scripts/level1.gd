@@ -35,9 +35,9 @@ var terminal_display_map: Dictionary = {}
 
 func _ready() -> void:
 	GameState.enter_level("Niveau 1 - Salle de TP", scene_file_path)
-	GameState.set_next_level("res://Scenes/Levels/Level2.tscn")
+	GameState.set_next_level("res://Scenes/Levels/Arena.tscn")
 	GameState.set_objective(_build_progress_objective())
-	GameState.set_help("Robot : ZQSD pour rouler, souris pour regarder, V pour changer de vue. Les questions s'ouvrent automatiquement devant les PC.")
+	GameState.set_help("Robot : ZQSD pour rouler, souris pour regarder, V pour changer de vue.")
 	GameState.set_integrity(100.0)
 	GameState.set_energy(100.0)
 	hud.configure("Niveau 1 - Salle de TP", false, false)
@@ -45,7 +45,7 @@ func _ready() -> void:
 	_build_level()
 	spawn_transform = Transform3D(Basis.IDENTITY.rotated(Vector3.UP, PI), Vector3.ZERO)
 	player_ball.respawn_at(spawn_transform)
-	GameState.push_message("Validez les 3 ecrans d'ordinateur dans la salle. Le niveau 2 s'ouvrira automatiquement.", 4.0)
+	GameState.push_message("Validez les 3 ecrans d'ordinateur dans la salle.", 4.0)
 
 func _build_level() -> void:
 	var screen_nodes: Array[Node3D] = []
@@ -55,7 +55,7 @@ func _build_level() -> void:
 			screen_nodes.append(screen_node)
 
 	if screen_nodes.size() < TOTAL_TERMINALS:
-		push_error("Impossible de trouver les 3 ecrans de terminal dans classroom.tscn.")
+		push_error("Impossible de trouver les 3 ecrans dans classroom.tscn.")
 		return
 
 	var terminal_a = _spawn_terminal_on_screen(

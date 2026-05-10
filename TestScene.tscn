@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://2wofqmlj5f4m"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://crm4rwi54oqa7" path="res://Phys_Materials/pm_road.tres" id="1_sreuk"]
+[ext_resource type="PhysicsMaterial" uid="uid://crm4rwi54oqa7" path="res://Phys_Materials/pm_asphalt.tres" id="1_sreuk"]
 [ext_resource type="PackedScene" uid="uid://cw4fa1uibyywi" path="res://Saw.tscn" id="1_wicfy"]
 [ext_resource type="Material" uid="uid://doxjrqjvofjfr" path="res://Materials/floor.tres" id="2_go42g"]
-[ext_resource type="PackedScene" uid="uid://dvyeegwsnfoxv" path="res://VBCar.tscn" id="3_wicfy"]
+[ext_resource type="PackedScene" uid="uid://dvyeegwsnfoxv" path="res://CarVB.tscn" id="3_wicfy"]
 [ext_resource type="PackedScene" uid="uid://bnigusx1udv7f" path="res://Imports/Road.glb" id="4_go42g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tq6uv"]

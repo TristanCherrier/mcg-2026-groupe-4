@@ -1,9 +1,9 @@
 extends CanvasLayer
 
-var message_timer := 0.0
+var message_timer = 0.0
 var quiz_terminal: Node = null
-var show_integrity := false
-var show_energy := false
+var show_integrity = false
+var show_energy = false
 
 
 func _ready() -> void:
@@ -50,7 +50,7 @@ func _process(delta: float) -> void:
 
 
 func _toggle_pause() -> void:
-	var new_state := not get_tree().paused
+	var new_state = not get_tree().paused
 	get_tree().paused = new_state
 	$PausePanel.visible = new_state
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if new_state else Input.MOUSE_MODE_CAPTURED

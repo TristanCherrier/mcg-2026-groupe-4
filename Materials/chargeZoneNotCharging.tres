@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ck80bt4iwhb20"]
+
+[resource]
+transparency = 1
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+albedo_color = Color(0, 0.7529412, 1, 0.2)
+texture_filter = 0
+texture_repeat = false
+disable_receive_shadows = true

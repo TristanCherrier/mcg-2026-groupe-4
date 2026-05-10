@@ -1,36 +1,36 @@
 extends Node3D
 
-const CHECKPOINT_SCENE := preload("res://Scenes/Actors/Checkpoint.tscn")
-const FINISH_SCENE := preload("res://Scenes/Actors/FinishZone.tscn")
-const TURRET_SCENE := preload("res://Scenes/Actors/Turret.tscn")
-const MOVING_OBSTACLE_SCENE := preload("res://Scenes/Actors/MovingObstacle.tscn")
+const CHECKPOINT_SCENE = preload("res://Scenes/Actors/Checkpoint.tscn")
+const FINISH_SCENE = preload("res://Scenes/Actors/FinishZone.tscn")
+const TURRET_SCENE = preload("res://Scenes/Actors/Turret.tscn")
+const MOVING_OBSTACLE_SCENE = preload("res://Scenes/Actors/MovingObstacle.tscn")
 
-const FLOOR_COLOR := Color(0.14, 0.15, 0.18)
-const CEILING_COLOR := Color(0.24, 0.26, 0.3)
-const WALL_COLOR := Color(0.2, 0.23, 0.28)
-const METAL_COLOR := Color(0.44, 0.48, 0.54)
-const BLUE_ACCENT := Color(0.2, 0.68, 0.94)
-const ORANGE_ACCENT := Color(0.95, 0.47, 0.18)
-const HAZARD_COLOR := Color(0.9, 0.34, 0.14)
-const TRACK_WIDTH := 16.2
-const TRACK_LENGTH := 112.0
-const TRACK_CENTER_Z := -52.0
-const WALL_THICKNESS := 0.42
-const RESPAWN_SIDE_LIMIT := 7.35
-const REQUIRED_CHECKPOINTS := 3
+const FLOOR_COLOR = Color(0.14, 0.15, 0.18)
+const CEILING_COLOR = Color(0.24, 0.26, 0.3)
+const WALL_COLOR = Color(0.2, 0.23, 0.28)
+const METAL_COLOR = Color(0.44, 0.48, 0.54)
+const BLUE_ACCENT = Color(0.2, 0.68, 0.94)
+const ORANGE_ACCENT = Color(0.95, 0.47, 0.18)
+const HAZARD_COLOR = Color(0.9, 0.34, 0.14)
+const TRACK_WIDTH = 16.2
+const TRACK_LENGTH = 112.0
+const TRACK_CENTER_Z = -52.0
+const WALL_THICKNESS = 0.42
+const RESPAWN_SIDE_LIMIT = 7.35
+const REQUIRED_CHECKPOINTS = 3
 
 var car_camera : Node3D
-var checkpoints_hit := 0
-var collision_cooldown := 0.0
-var respawn_transform := Transform3D.IDENTITY
-var respawn_cooldown := 0.0
-var level_started := false
+var checkpoints_hit = 0
+var collision_cooldown = 0.0
+var respawn_transform = Transform3D.IDENTITY
+var respawn_cooldown = 0.0
+var level_started = false
 var moving_obstacles: Array[Node3D] = []
 var turrets: Array[Node3D] = []
 
 @onready var hud: CanvasLayer = $HUD
 @onready var car_root: Node3D = $Vehicle
-@onready var car_body: RigidBody3D = $Vehicle/CarRB
+@onready var car_body: VehicleBody3D = $Vehicle
 @onready var architecture_root: Node3D = $Architecture
 @onready var decor_root: Node3D = $Decor
 @onready var gameplay_root: Node3D = $GameplayNodes
@@ -51,7 +51,7 @@ func _ready() -> void:
 	car_body.contact_monitor = true
 	car_body.max_contacts_reported = 10
 	car_body.body_entered.connect(_on_car_body_entered)
-	car_camera = car_root.get_node("cam") as Camera3D
+	car_camera = car_root.find_child("cam") as Camera3D
 	car_camera.current = true
 	_build_level()
 	respawn_transform = Transform3D(Basis.IDENTITY, Vector3(0.0, car_body.global_position.y, -8.8))
@@ -97,7 +97,7 @@ func _build_level() -> void:
 	]:
 		_make_hazard_box(hazard_data.size, hazard_data.position)
 
-	var moving_a := MOVING_OBSTACLE_SCENE.instantiate()
+	var moving_a = MOVING_OBSTACLE_SCENE.instantiate()
 	moving_a.position = Vector3(0, 1.0, -42.0)
 	moving_a.distance = 0.42
 	moving_a.speed = 0.42
@@ -106,7 +106,7 @@ func _build_level() -> void:
 	gameplay_root.add_child(moving_a)
 	moving_obstacles.append(moving_a)
 
-	var moving_b := MOVING_OBSTACLE_SCENE.instantiate()
+	var moving_b = MOVING_OBSTACLE_SCENE.instantiate()
 	moving_b.position = Vector3(0, 1.0, -80.0)
 	moving_b.distance = 0.5
 	moving_b.speed = 0.46
@@ -119,7 +119,7 @@ func _build_level() -> void:
 	_spawn_checkpoint(Vector3(0, 1.2, -50.0))
 	_spawn_checkpoint(Vector3(0, 1.2, -79.0))
 
-	var finish := FINISH_SCENE.instantiate()
+	var finish = FINISH_SCENE.instantiate()
 	finish.position = Vector3(0, 0.12, -99.5)
 	finish.target_group = "car_player"
 	finish.finish_entered.connect(_on_finish_entered)
@@ -138,7 +138,7 @@ func _build_level() -> void:
 
 func _make_test_lane() -> void:
 	for z in range(0, 21):
-		var lane_z := 1.5 - float(z) * 5.2
+		var lane_z = 1.5 - float(z) * 5.2
 		_make_visual_box(Vector3(0.24, 0.03, 2.4), Vector3(0, 0.05, lane_z), ORANGE_ACCENT, decor_root, "CenterDash", ORANGE_ACCENT)
 		_make_visual_box(Vector3(0.18, 0.03, 2.4), Vector3(-4.2, 0.05, lane_z), BLUE_ACCENT, decor_root, "LeftGuide", BLUE_ACCENT)
 		_make_visual_box(Vector3(0.18, 0.03, 2.4), Vector3(4.2, 0.05, lane_z), BLUE_ACCENT, decor_root, "RightGuide", BLUE_ACCENT)
@@ -154,7 +154,7 @@ func _make_service_bays() -> void:
 
 
 func _make_bay(anchor: Vector3, mirrored: bool, accent: Color) -> void:
-	var bay := Node3D.new()
+	var bay = Node3D.new()
 	bay.name = "ServiceBay"
 	bay.position = anchor
 	bay.rotation.y = PI if mirrored else 0.0
@@ -168,7 +168,7 @@ func _make_bay(anchor: Vector3, mirrored: bool, accent: Color) -> void:
 
 
 func _spawn_checkpoint(position: Vector3) -> void:
-	var checkpoint := CHECKPOINT_SCENE.instantiate()
+	var checkpoint = CHECKPOINT_SCENE.instantiate()
 	checkpoint.position = position
 	checkpoint.target_group = "car_player"
 	checkpoint.checkpoint_reached.connect(_on_checkpoint_reached)
@@ -176,7 +176,7 @@ func _spawn_checkpoint(position: Vector3) -> void:
 
 
 func _spawn_turret(position: Vector3, fire_direction: Vector3) -> void:
-	var turret := TURRET_SCENE.instantiate()
+	var turret = TURRET_SCENE.instantiate()
 	turret.position = position
 	turret.fire_interval = 5.8
 	turret.fire_direction = fire_direction
@@ -252,20 +252,20 @@ func _make_box(
 	position: Vector3,
 	color: Color,
 	parent: Node3D,
-	node_name := "StaticBox",
-	emission_color := Color(0, 0, 0, 1),
-	metallic := 0.1,
-	roughness := 0.62
+	node_name = "StaticBox",
+	emission_color = Color(0, 0, 0, 1),
+	metallic = 0.1,
+	roughness = 0.62
 ) -> StaticBody3D:
-	var body := StaticBody3D.new()
+	var body = StaticBody3D.new()
 	body.name = node_name
-	var mesh := MeshInstance3D.new()
-	var box_mesh := BoxMesh.new()
+	var mesh = MeshInstance3D.new()
+	var box_mesh = BoxMesh.new()
 	box_mesh.size = size
 	mesh.mesh = box_mesh
 	mesh.material_override = _create_material(color, emission_color, metallic, roughness)
-	var collider := CollisionShape3D.new()
-	var shape := BoxShape3D.new()
+	var collider = CollisionShape3D.new()
+	var shape = BoxShape3D.new()
 	shape.size = size
 	collider.shape = shape
 	body.add_child(mesh)
@@ -280,14 +280,14 @@ func _make_visual_box(
 	position: Vector3,
 	color: Color,
 	parent: Node3D,
-	node_name := "VisualBox",
-	emission_color := Color(0, 0, 0, 1),
-	metallic := 0.08,
-	roughness := 0.44
+	node_name = "VisualBox",
+	emission_color = Color(0, 0, 0, 1),
+	metallic = 0.08,
+	roughness = 0.44
 ) -> MeshInstance3D:
-	var mesh := MeshInstance3D.new()
+	var mesh = MeshInstance3D.new()
 	mesh.name = node_name
-	var box_mesh := BoxMesh.new()
+	var box_mesh = BoxMesh.new()
 	box_mesh.size = size
 	mesh.mesh = box_mesh
 	mesh.material_override = _create_material(color, emission_color, metallic, roughness)
@@ -297,12 +297,12 @@ func _make_visual_box(
 
 
 func _make_hazard_box(size: Vector3, position: Vector3) -> void:
-	var body := _make_box(size, position, HAZARD_COLOR, gameplay_root, "HazardBox", ORANGE_ACCENT, 0.08, 0.38)
+	var body = _make_box(size, position, HAZARD_COLOR, gameplay_root, "HazardBox", ORANGE_ACCENT, 0.08, 0.38)
 	body.add_to_group("hazard_obstacle")
 
 
 func _create_material(color: Color, emission_color: Color, metallic: float, roughness: float) -> StandardMaterial3D:
-	var material := StandardMaterial3D.new()
+	var material = StandardMaterial3D.new()
 	material.albedo_color = color
 	material.metallic = metallic
 	material.roughness = roughness
@@ -313,7 +313,7 @@ func _create_material(color: Color, emission_color: Color, metallic: float, roug
 
 
 func _make_light(position: Vector3, color: Color, energy: float, range_value: float) -> void:
-	var light := OmniLight3D.new()
+	var light = OmniLight3D.new()
 	light.position = position
 	light.light_color = color
 	light.light_energy = energy

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://omktug8y4y67" path="res://Scripts/level2.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cm6gj324r6uw8" path="res://Scenes/UI/HUD.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://b5fmb0suq3e76" path="res://Car.tscn" id="2_svn12"]
+[ext_resource type="PackedScene" uid="uid://dvyeegwsnfoxv" path="res://CarVB.tscn" id="2_svn12"]
 
 [sub_resource type="ProceduralSkyMaterial" id="1"]
 sky_horizon_color = Color(0.74, 0.8, 0.88, 1)
@@ -41,6 +41,6 @@ shadow_enabled = true
 
 [node name="AccentLights" type="Node3D" parent="." unique_id=252492970]
 
-[node name="Vehicle" parent="." unique_id=379070049 instance=ExtResource("2_svn12")]
+[node name="Vehicle" parent="." unique_id=488546642 instance=ExtResource("2_svn12")]
 
 [node name="HUD" parent="." unique_id=2106537208 instance=ExtResource("2")]

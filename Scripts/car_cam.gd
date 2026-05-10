@@ -1,7 +1,7 @@
 extends Camera3D
 
 @export
-var car_rb : Node3D
+var car_body : RigidBody3D
 @export
 var target_Y : Node3D
 @export
@@ -25,16 +25,8 @@ func _process(delta: float) -> void:
 	target_Y.rotate_y(-smooth_rotY)
 	target_X.rotate_x(smooth_rotX)
 	target_X.rotation_degrees.x = min(80,max(-15, target_X.rotation_degrees.x))
-	
-	#target.global_position = car_rb.global_position + car_rb.global_basis.y * 1 + car_rb.global_basis.z * 3.5
 	look_at(target_X.global_position)
-	
-	global_position = (target_X.global_position + target_X.global_basis.y * 0.1 + -target_X.global_basis.z * 3.5)
-
-	#var target_quat = Quaternion(target.basis.orthonormalized())
-	#var cam_quat = Quaternion(basis)
-	#cam_quat = cam_quat.normalized().slerp(target_quat.normalized(), 50 * delta)
-	#basis = Basis(cam_quat)
+	fov = 75 + car_body.get_LocalVelocity().z
 
 func _input(event):
 	if event is InputEventMouseMotion:

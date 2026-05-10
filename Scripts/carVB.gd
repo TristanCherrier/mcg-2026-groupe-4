@@ -9,13 +9,14 @@ var Wheel_BackRight : VehicleWheel3D
 @export
 var Wheel_BackLeft : VehicleWheel3D
 
-var max_steer_angle : float = deg_to_rad(20)
+var max_steer_angle : float = deg_to_rad(25)
 var wish_steer_angle : float = 0
 var smooth_steer_angle : float = 0
 var deceleration_force : float = 0
 var brake_force : float = 0
 var rearLightsMaterial : BaseMaterial3D
 var LocalVelocity : Vector3 = Vector3.ZERO
+func get_LocalVelocity(): return LocalVelocity
 
 func _ready() -> void:
 	rearLightsMaterial = $Car/Car.get_active_material(4)
@@ -25,8 +26,8 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("Gas"):
 		deceleration_force = 0
-		Wheel_BackRight.engine_force = 8000
-		Wheel_BackLeft.engine_force = 8000
+		Wheel_BackRight.engine_force = 6000
+		Wheel_BackLeft.engine_force = 6000
 	else:
 		deceleration_force = 2
 		Wheel_BackRight.engine_force = 0
@@ -45,20 +46,26 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_pressed("Brake"):
 		for node : SpotLight3D in $rearLights.get_children():
-			node.light_energy = 5
-		rearLightsMaterial.emission_energy_multiplier = 5
+			node.light_energy = 1
+		rearLightsMaterial.emission_energy_multiplier = 4
 		if LocalVelocity.z < -0.15 or LocalVelocity.z > 0.1:
 			Wheel_BackRight.engine_force = -6000
 			Wheel_BackLeft.engine_force = -6000
+			Wheel_BackRight.wheel_friction_slip = .9
+			Wheel_BackLeft.wheel_friction_slip = .9
+			Wheel_FrontRight.wheel_friction_slip = 1
+			Wheel_FrontLeft.wheel_friction_slip = 1
 		else:
 			Wheel_BackRight.engine_force = -2000
 			Wheel_BackLeft.engine_force = -2000
 		brake_force = 30
 	else:
 		for node : SpotLight3D in $rearLights.get_children():
-			node.light_energy = 2
+			node.light_energy = 0.5
 		rearLightsMaterial.emission_energy_multiplier = 2
 		brake_force = 0
+		Wheel_FrontRight.wheel_friction_slip = 1.5
+		Wheel_FrontLeft.wheel_friction_slip = 1.5
 	brake = deceleration_force + brake_force
 		
 	wish_steer_angle = 0
