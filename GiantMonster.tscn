@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dtqqdu73iaipp"]
+
+[ext_resource type="Script" uid="uid://jm5w16jy65jd" path="res://Scripts/giant_monster.gd" id="1_61kqj"]
+[ext_resource type="PackedScene" uid="uid://c3cuyupwi4rtr" path="res://Imports/ptitmonstre.glb" id="1_wya5j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_61kqj"]
+size = Vector3(1.2424316, 1.2861328, 0.94433594)
+
+[node name="GiantMonster" type="Node3D" unique_id=891362101 node_paths=PackedStringArray("animation_player")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+script = ExtResource("1_61kqj")
+animation_player = NodePath("passiptitmonstre/AnimationPlayer")
+
+[node name="passiptitmonstre" parent="." unique_id=1907063195 instance=ExtResource("1_wya5j")]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1998061700]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.09552017)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=657257191]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.027832024)
+shape = SubResource("BoxShape3D_61kqj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=575371705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.16689005)
+light_color = Color(1, 0, 0, 1)
+omni_range = 90.83182
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=404669570]
+transform = Transform3D(1, 0, 0, 0, -1, 1.509958e-07, 0, -1.509958e-07, -1, 0, 0, -3.906105)
+spot_range = 81.27012
+spot_attenuation = 0.5
+spot_angle = 7.1803017
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+
+[editable path="passiptitmonstre"]

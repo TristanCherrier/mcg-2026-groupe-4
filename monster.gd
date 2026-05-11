@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal player_damaged
+
 @export
 var Player : Node3D
 @export
@@ -42,8 +44,7 @@ func prepare_attack():
 
 func try_attack():
 	if $chomp_node.get_overlapping_bodies().size() > 0:
-		GameState.set_integrity(GameState.integrity - 10)
-		GameState.add_points(-20)
+		player_damaged.emit()
 
 func _on_chomp_node_body_entered(_body: Node3D) -> void:
 	if not attacking:

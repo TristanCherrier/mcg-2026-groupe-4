@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b3dytrbprnrxk"]
+
+[ext_resource type="Texture2D" uid="uid://btmdadso2sstw" path="res://Imports/Arena_concrete_01_color.jpg" id="1_lwxls"]
+[ext_resource type="Texture2D" uid="uid://c22x1nj1e21s7" path="res://Imports/Arena_concrete_01_roughness.png" id="2_kbvrc"]
+[ext_resource type="Texture2D" uid="uid://cncshnrf27epb" path="res://Imports/Arena_concrete_01_normal.jpg" id="3_donns"]
+
+[resource]
+resource_name = "Concrete"
+cull_mode = 2
+albedo_texture = ExtResource("1_lwxls")
+metallic_texture = ExtResource("2_kbvrc")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_kbvrc")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_donns")

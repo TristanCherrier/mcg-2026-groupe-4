@@ -80,7 +80,7 @@ theme_override_constants/margin_bottom = 20
 [node name="Description" type="Label" parent="CenterContainer/VBoxContainer/Panel/MarginContainer" unique_id=735293553]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "Un incident scientifique a transformé le bâtiment du campus en parcours instable. Traversez la salle de TP, le couloir de course et l'atrium au propulseur pour remettre le site en sécurité."
+text = "Un incident scientifique a transformé le bâtiment du campus en parcours instable. Traversez la salle de TP, relancez le générateur, puis echappez vous !"
 horizontal_alignment = 1
 autowrap_mode = 3
 

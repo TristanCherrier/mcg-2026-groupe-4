@@ -1,44 +1,98 @@
 [gd_scene format=3 uid="uid://bsoailc7aym4d"]
 
-[ext_resource type="Script" uid="uid://uryfumkhqcsm" path="res://Scripts/ship.gd" id="1_78o8j"]
-[ext_resource type="PackedScene" uid="uid://c0tad7m22i3ld" path="res://Imports/ship_frame.glb" id="1_v4325"]
-[ext_resource type="PackedScene" uid="uid://b67wi12xuykg1" path="res://Imports/exhaust.glb" id="2_c3vuw"]
-[ext_resource type="PackedScene" uid="uid://bkp3iqyyuwuhf" path="res://thruster_flame.tscn" id="3_78o8j"]
-[ext_resource type="Script" uid="uid://dhhkw374rrofe" path="res://Scripts/ship_cam.gd" id="5_78o8j"]
+[ext_resource type="PhysicsMaterial" uid="uid://c88x86wxtapd7" path="res://Phys_Materials/pm_ship.tres" id="1_7se24"]
+[ext_resource type="Script" uid="uid://dowokqyb6wdvx" path="res://Scripts/ship.gd" id="1_s441t"]
+[ext_resource type="PackedScene" uid="uid://c0tad7m22i3ld" path="res://Imports/ship_frame.glb" id="2_7se24"]
+[ext_resource type="PackedScene" uid="uid://b67wi12xuykg1" path="res://Imports/exhaust.glb" id="3_qyh8x"]
+[ext_resource type="PackedScene" uid="uid://bkp3iqyyuwuhf" path="res://thruster_flame.tscn" id="4_0p50t"]
+[ext_resource type="Script" uid="uid://d2nwvd48bgh5e" path="res://Scripts/ship_cam.gd" id="5_oj4er"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_c3vuw"]
-points = PackedVector3Array(0.59225845, 0.018816158, 0.15291691, 0.06991619, 0.16884495, 0.056846976, 0, 0.18273805, 0.056846976, -0.59225845, 0.018816158, 0.15291691, -0.59225845, -0.018857926, 0.15306222, 0.59225845, -0.018857926, 0.15291691, -0.000115931034, 0.018774435, -1.3317327, -0.000115931034, 0.20772894, -0.2934227, 0.076988935, 0.19329347, -0.06683743, 0, 0.21311097, -0.06683743, -0.07003212, 0.16884495, 0.056846976, -0.59225845, -0.01347591, 0.15291691, -0.077104926, 0.19329347, -0.06683743, -0.07003212, -0.16888672, 0.056846976, 0, -0.18277982, 0.056846976, -0.000115931034, -0.018816203, -1.3317327, -0.000115931034, -0.2077707, -0.2934227, -0.077104926, -0.19333524, -0.06683743, 0, -0.213111, -0.06683743, 0.06991619, -0.16888672, 0.056846976, 0.076988935, -0.19333524, -0.06683743)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s441t"]
+radius = 0.18457031
+height = 1.0556641
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s441t"]
+radius = 0.31121808
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7se24"]
+radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qyh8x"]
+radius = 0.1
 
 [node name="Ship" type="Node3D" unique_id=1728071699]
 
-[node name="ship_rb" type="RigidBody3D" parent="." unique_id=50604899 node_paths=PackedStringArray("exhaust")]
+[node name="ship_rb" type="RigidBody3D" parent="." unique_id=50604899 node_paths=PackedStringArray("exhaust", "flame", "sub_flame", "sub_flame2")]
+collision_layer = 3
+physics_material_override = ExtResource("1_7se24")
 gravity_scale = 0.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0, -0.4)
 can_sleep = false
+continuous_cd = true
 linear_damp = 2.0
-angular_damp = 4.0
-script = ExtResource("1_78o8j")
+angular_damp = 3.0
+script = ExtResource("1_s441t")
 exhaust = NodePath("exhaust")
+flame = NodePath("exhaust/thruster_flame")
+sub_flame = NodePath("exhaust/thruster_flame/Thruster_Flame")
+sub_flame2 = NodePath("exhaust/thruster_flame/Thruster_Flame2")
 
-[node name="ship_frame" parent="ship_rb" unique_id=503982954 instance=ExtResource("1_v4325")]
+[node name="ship_frame" parent="ship_rb" unique_id=503982954 instance=ExtResource("2_7se24")]
 
-[node name="exhaust" parent="ship_rb" unique_id=1193845716 instance=ExtResource("2_c3vuw")]
+[node name="exhaust" parent="ship_rb" unique_id=1193845716 instance=ExtResource("3_qyh8x")]
 transform = Transform3D(1, 0, 0, 0, 0.99863863, -0.052161664, 0, 0.052161664, 0.99863863, 0, 0, 0)
 
-[node name="thruster_flame" parent="ship_rb/exhaust" unique_id=882116047 instance=ExtResource("3_78o8j")]
+[node name="thruster_flame" parent="ship_rb/exhaust" unique_id=882116047 instance=ExtResource("4_0p50t")]
 transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 0.009555028, 0.18293166)
 
+[node name="Thruster_Flame" parent="ship_rb/exhaust/thruster_flame" index="0" unique_id=2049783649]
+layers = 32
+
+[node name="Thruster_Flame2" parent="ship_rb/exhaust/thruster_flame" index="1" unique_id=1559257390]
+layers = 32
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ship_rb" unique_id=17168898]
-visible = false
-shape = SubResource("ConvexPolygonShape3D_c3vuw")
+transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 1.9106855e-15, 0, -1.5559376e-08, -0.10428858)
+shape = SubResource("CapsuleShape3D_s441t")
 
-[node name="cam_target" type="Node3D" parent="." unique_id=78353516]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37509948, 1.6979051)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ship_rb" unique_id=13242540]
+transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 1.9106855e-15, 0, -1.5559376e-08, -0.77390075)
+shape = SubResource("SphereShape3D_s441t")
 
-[node name="ship_cam" type="Camera3D" parent="." unique_id=128466678 node_paths=PackedStringArray("ship_rb", "target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37509948, 1.6979051)
-visible = false
-script = ExtResource("5_78o8j")
-ship_rb = NodePath("../ship_rb")
-target = NodePath("../cam_target")
+[node name="SpotLight3D" type="SpotLight3D" parent="ship_rb" unique_id=831579373]
+light_color = Color(0.83, 1, 1, 1)
+light_energy = 5.0
+spot_range = 100.0
+spot_angle_attenuation = 9.513654
+
+[node name="SpringArm3D" type="SpringArm3D" parent="ship_rb" unique_id=2135796650]
+collision_mask = 8
+shape = SubResource("SphereShape3D_7se24")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="ship_rb/SpringArm3D" unique_id=1461333834]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_qyh8x")
+spring_length = 0.6
+
+[node name="Node3D" type="Node3D" parent="ship_rb/SpringArm3D/SpringArm3D" unique_id=1769547769]
+
+[node name="cam_target" type="Node3D" parent="ship_rb/SpringArm3D/SpringArm3D/Node3D" unique_id=1552464347]
+
+[node name="back_cam_target" type="Node3D" parent="ship_rb/SpringArm3D" unique_id=487506444]
+
+[node name="ship_cam" type="Camera3D" parent="." unique_id=1167908812 node_paths=PackedStringArray("ship_body", "target", "back_target", "back_cam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 2)
+current = true
+script = ExtResource("5_oj4er")
+ship_body = NodePath("../ship_rb")
+target = NodePath("../ship_rb/SpringArm3D/SpringArm3D/Node3D/cam_target")
+back_target = NodePath("../ship_rb/SpringArm3D/back_cam_target")
+back_cam = NodePath("../SubViewport/back_cam")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1168633200]
+
+[node name="back_cam" type="Camera3D" parent="SubViewport" unique_id=277164147]
+cull_mask = 1048543
+
+[editable path="ship_rb/exhaust/thruster_flame"]

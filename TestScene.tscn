@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cw4fa1uibyywi" path="res://Saw.tscn" id="1_wicfy"]
 [ext_resource type="Material" uid="uid://doxjrqjvofjfr" path="res://Materials/floor.tres" id="2_go42g"]
 [ext_resource type="PackedScene" uid="uid://dvyeegwsnfoxv" path="res://CarVB.tscn" id="3_wicfy"]
-[ext_resource type="PackedScene" uid="uid://bnigusx1udv7f" path="res://Imports/Road.glb" id="4_go42g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tq6uv"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -58,14 +57,3 @@ mesh = SubResource("BoxMesh_wicfy")
 
 [node name="Car" parent="." unique_id=488546642 instance=ExtResource("3_wicfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.18384, 1.2605524, -8.506765)
-
-[node name="Road2" parent="." unique_id=1259202944 instance=ExtResource("4_go42g")]
-transform = Transform3D(1.7940304, 0, 0, 0, 1.7940304, 0, 0, 0, 1.7940304, 0, 0, 0)
-
-[node name="Road" parent="Road2" index="1" unique_id=1044897759]
-material_override = ExtResource("2_go42g")
-
-[node name="CollisionShape3D" parent="Road2/Road/StaticBody3D" parent_id_path=PackedInt32Array(1259202944, 1047914492) index="0" unique_id=2137332238]
-visible = false
-
-[editable path="Road2"]

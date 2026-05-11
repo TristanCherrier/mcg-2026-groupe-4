@@ -22,7 +22,7 @@ func _ready() -> void:
 	rearLightsMaterial = $Car/Car.get_active_material(4)
 
 func _physics_process(delta: float) -> void:
-	LocalVelocity = linear_velocity.rotated(global_basis.x, -global_rotation.x).rotated(global_basis.y, -global_rotation.y).rotated(global_basis.z, -global_rotation.z)
+	LocalVelocity = linear_velocity * basis
 	
 	if Input.is_action_pressed("Gas"):
 		deceleration_force = 0

@@ -1,0 +1,76 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://b2xuea6rfsdcq"
+path="res://.godot/imported/Tunnel.glb-39d2ce439fb28ee18bdcd4c818fda3b1.scn"
+
+[deps]
+
+source_file="res://Imports/Tunnel.glb"
+dest_files=["res://.godot/imported/Tunnel.glb-39d2ce439fb28ee18bdcd4c818fda3b1.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"m_tunnel": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/Concrete.tres",
+"use_external/path": "uid://b3dytrbprnrxk"
+}
+},
+"nodes": {
+"PATH:Pipes1": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://crm4rwi54oqa7", "res://Phys_Materials/pm_asphalt.tres")
+},
+"PATH:Pipes3": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://crm4rwi54oqa7", "res://Phys_Materials/pm_asphalt.tres")
+},
+"PATH:Pipes4": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://crm4rwi54oqa7", "res://Phys_Materials/pm_asphalt.tres")
+},
+"PATH:Pipes5": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://crm4rwi54oqa7", "res://Phys_Materials/pm_asphalt.tres")
+},
+"PATH:Tube": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://crm4rwi54oqa7", "res://Phys_Materials/pm_asphalt.tres")
+},
+"PATH:Wires": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://crm4rwi54oqa7", "res://Phys_Materials/pm_asphalt.tres")
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1

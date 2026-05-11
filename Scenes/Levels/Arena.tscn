@@ -8,21 +8,21 @@
 [ext_resource type="PackedScene" uid="uid://bebg3q5ljghdq" path="res://ChargeStation.tscn" id="6_ftfxq"]
 [ext_resource type="PackedScene" uid="uid://cm6gj324r6uw8" path="res://Scenes/UI/HUD.tscn" id="6_lf4al"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u45fm"]
-sky_top_color = Color(0.043687776, 0.06211116, 0.08664998, 1)
-sky_horizon_color = Color(0.4548283, 0.40809998, 0.53, 1)
-sky_curve = 0.0923357
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ftfxq"]
+sky_top_color = Color(0.00076558295, 0.00067483884, 0.0006319397, 1)
+sky_horizon_color = Color(0.29, 0.25602168, 0.1827, 1)
 ground_bottom_color = Color(0, 0, 0, 1)
-ground_horizon_color = Color(0, 0, 0, 1)
-sun_angle_max = 0.0
+ground_horizon_color = Color(0.2735067, 0.26942003, 0.26714075, 1)
 
-[sub_resource type="Sky" id="Sky_vbyki"]
-sky_material = SubResource("ProceduralSkyMaterial_u45fm")
+[sub_resource type="Sky" id="Sky_4u74q"]
+sky_material = SubResource("ProceduralSkyMaterial_ftfxq")
 
-[sub_resource type="Environment" id="Environment_uj4qe"]
+[sub_resource type="Environment" id="Environment_l20c8"]
 background_mode = 2
-sky = SubResource("Sky_vbyki")
+sky = SubResource("Sky_4u74q")
 tonemap_mode = 2
+ssao_enabled = true
+ssao_radius = 16.0
 glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u45fm"]
@@ -34,10 +34,10 @@ data = PackedVector3Array(-1.5143305e-06, -4.344768, -100, 19.509031, 4.344768, 
 [node name="Arena" type="Node3D" unique_id=303054128]
 script = ExtResource("1_c3ysh")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=479965966]
-environment = SubResource("Environment_uj4qe")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=156998893]
+environment = SubResource("Environment_l20c8")
 
-[node name="Arena" parent="." unique_id=1779754194 instance=ExtResource("2_ftfxq")]
+[node name="Arena" parent="." unique_id=815561292 instance=ExtResource("2_ftfxq")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Arena" unique_id=1337053878]
 collision_layer = 9
@@ -53,7 +53,7 @@ visible = false
 shape = SubResource("ConcavePolygonShape3D_42pn1")
 
 [node name="Car" parent="." unique_id=488546642 instance=ExtResource("4_l20c8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.190592, -3.4751155, 6.491685)
+transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, 65.574, -3.475, 0)
 
 [node name="SpotLight3D" type="OmniLight3D" parent="." unique_id=415220221]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.777134, 0)
@@ -78,6 +78,7 @@ transform = Transform3D(-1.964194, 0, 0.37675107, 0, 2, 0, -0.37675107, 0, -1.96
 
 [node name="HUD" parent="." unique_id=891001335 instance=ExtResource("6_lf4al")]
 
+[connection signal="player_damaged" from="Monster" to="." method="_on_monster_player_damaged"]
 [connection signal="fully_charged" from="ChargeStation" to="." method="_on_charge_station_fully_charged"]
 [connection signal="fully_charged" from="ChargeStation2" to="." method="_on_charge_station_fully_charged"]
 [connection signal="fully_charged" from="ChargeStation3" to="." method="_on_charge_station_fully_charged"]
