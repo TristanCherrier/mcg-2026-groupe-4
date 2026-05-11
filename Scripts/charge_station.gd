@@ -46,12 +46,12 @@ func _process(delta: float) -> void:
 	Gyro.rotate_y(gyro_speed * delta)
 
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
+func _on_area_3d_body_entered(_body: Node3D) -> void:
 	charging = true
 	ChargeZone.material_override = ChargingMat
 
 
-func _on_area_3d_body_exited(body: Node3D) -> void:
+func _on_area_3d_body_exited(_body: Node3D) -> void:
 	charging = false
 	charge_mid_level = 0
 	ChargeZone.material_override = NotChargingMat
