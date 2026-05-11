@@ -1,0 +1,196 @@
+[gd_scene format=3 uid="uid://cm6gj324r6uw8"]
+
+[ext_resource type="Script" uid="uid://bl20sfe7jwthk" path="res://Scripts/hud.gd" id="1"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.05, 0.08, 0.12, 0.84)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.26, 0.74, 0.86, 0.95)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="HUD" type="CanvasLayer" unique_id=891001335]
+script = ExtResource("1")
+
+[node name="TopPanel" type="Panel" parent="." unique_id=263885244]
+offset_left = 24.0
+offset_top = 22.0
+offset_right = 468.0
+offset_bottom = 248.0
+theme_override_styles/panel = SubResource("1")
+
+[node name="Margin" type="MarginContainer" parent="TopPanel" unique_id=1633549706]
+layout_mode = 0
+offset_right = 444.0
+offset_bottom = 226.0
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="TopPanel/Margin" unique_id=335400911]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="LevelLabel" type="Label" parent="TopPanel/Margin/VBox" unique_id=608706523]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Niveau"
+
+[node name="ScoreLabel" type="Label" parent="TopPanel/Margin/VBox" unique_id=332231540]
+layout_mode = 2
+text = "Score : 0"
+
+[node name="ObjectiveLabel" type="Label" parent="TopPanel/Margin/VBox" unique_id=2001649636]
+layout_mode = 2
+text = "Objectif :"
+autowrap_mode = 3
+
+[node name="HelpLabel" type="Label" parent="TopPanel/Margin/VBox" unique_id=1187716403]
+layout_mode = 2
+text = "Aide :"
+autowrap_mode = 3
+
+[node name="IntegrityLabel" type="Label" parent="TopPanel/Margin/VBox" unique_id=1439211109]
+visible = false
+layout_mode = 2
+text = "Intégrité : 100%"
+
+[node name="EnergyLabel" type="Label" parent="TopPanel/Margin/VBox" unique_id=152608880]
+visible = false
+layout_mode = 2
+text = "Énergie : 100%"
+
+[node name="PromptPanel" type="Panel" parent="." unique_id=262167385]
+visible = false
+offset_left = 24.0
+offset_top = 794.0
+offset_right = 540.0
+offset_bottom = 874.0
+theme_override_styles/panel = SubResource("1")
+
+[node name="PromptLabel" type="Label" parent="PromptPanel" unique_id=1777292487]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 14.0
+offset_right = 486.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="." unique_id=1707243576]
+visible = false
+offset_left = 440.0
+offset_top = 28.0
+offset_right = 1160.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
+[node name="QuizPanel" type="Panel" parent="." unique_id=1930266580]
+visible = false
+offset_left = 420.0
+offset_top = 170.0
+offset_right = 1180.0
+offset_bottom = 620.0
+theme_override_styles/panel = SubResource("1")
+
+[node name="Panel" type="Panel" parent="QuizPanel" unique_id=1257152540]
+layout_mode = 0
+offset_right = 760.0
+offset_bottom = 450.0
+theme_override_styles/panel = SubResource("1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuizPanel/Panel" unique_id=861428859]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 22.0
+offset_right = 734.0
+offset_bottom = 426.0
+theme_override_constants/separation = 12
+
+[node name="QuestionLabel" type="Label" parent="QuizPanel/Panel/VBoxContainer" unique_id=1797049979]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Question"
+autowrap_mode = 3
+
+[node name="AnswerA" type="Button" parent="QuizPanel/Panel/VBoxContainer" unique_id=381073627]
+layout_mode = 2
+text = "Réponse A"
+
+[node name="AnswerB" type="Button" parent="QuizPanel/Panel/VBoxContainer" unique_id=115338520]
+layout_mode = 2
+text = "Réponse B"
+
+[node name="AnswerC" type="Button" parent="QuizPanel/Panel/VBoxContainer" unique_id=1142159202]
+layout_mode = 2
+text = "Réponse C"
+
+[node name="PausePanel" type="Control" parent="." unique_id=1334801460]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shade" type="ColorRect" parent="PausePanel" unique_id=1282574078]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="Panel" type="Panel" parent="PausePanel" unique_id=7487292]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -120.0
+offset_right = 180.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PausePanel/Panel" unique_id=663531883]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 24.0
+offset_right = 330.0
+offset_bottom = 206.0
+theme_override_constants/separation = 12
+
+[node name="PauseLabel" type="Label" parent="PausePanel/Panel/VBoxContainer" unique_id=531209358]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PausePanel/Panel/VBoxContainer" unique_id=1881135222]
+layout_mode = 2
+text = "Reprendre"
+
+[node name="MenuButton" type="Button" parent="PausePanel/Panel/VBoxContainer" unique_id=1537417653]
+layout_mode = 2
+text = "Retour au menu"
+
+[connection signal="pressed" from="QuizPanel/Panel/VBoxContainer/AnswerA" to="." method="_on_answer_a_pressed"]
+[connection signal="pressed" from="QuizPanel/Panel/VBoxContainer/AnswerB" to="." method="_on_answer_b_pressed"]
+[connection signal="pressed" from="QuizPanel/Panel/VBoxContainer/AnswerC" to="." method="_on_answer_c_pressed"]
+[connection signal="pressed" from="PausePanel/Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PausePanel/Panel/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

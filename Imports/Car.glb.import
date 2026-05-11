@@ -1,0 +1,70 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://jqofig4t4ox1"
+path="res://.godot/imported/Car.glb-c272d0ed896cb50aab65fa4b14a02ad6.scn"
+
+[deps]
+
+source_file="res://Imports/Car.glb"
+dest_files=["res://.godot/imported/Car.glb-c272d0ed896cb50aab65fa4b14a02ad6.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"Glass Windows": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/Glass Windows.tres",
+"use_external/path": "uid://cx778jngelrjr"
+},
+"m_car": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/m_car.tres",
+"use_external/path": "uid://co2gg2vvc05xj"
+},
+"m_car_headlights": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/m_car_headlights.tres",
+"use_external/path": "uid://cg50y2cjesa1p"
+},
+"m_car_rearlights": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/m_car_rearlights.tres",
+"use_external/path": "uid://ctb5lpu85xd23"
+},
+"m_car_roof": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/m_car_roof.tres",
+"use_external/path": "uid://bycfr25iftt86"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1

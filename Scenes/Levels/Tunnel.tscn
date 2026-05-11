@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://d0ljr07qp23ba"]
+
+[ext_resource type="Script" uid="uid://708lqva2jn2y" path="res://Scripts/tunnel.gd" id="1_slrk2"]
+[ext_resource type="PackedScene" uid="uid://b2xuea6rfsdcq" path="res://Imports/Tunnel.glb" id="2_la4or"]
+[ext_resource type="PackedScene" uid="uid://dtqqdu73iaipp" path="res://GiantMonster.tscn" id="3_waie4"]
+[ext_resource type="PackedScene" uid="uid://csrkrq681sokx" path="res://Ship.tscn" id="4_qt3k8"]
+[ext_resource type="PackedScene" uid="uid://cm6gj324r6uw8" path="res://Scenes/UI/HUD.tscn" id="5_yhws4"]
+[ext_resource type="Material" uid="uid://cg50y2cjesa1p" path="res://Materials/m_car_headlights.tres" id="6_la4or"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6no5b"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+energy_multiplier = 0.0
+
+[sub_resource type="Sky" id="Sky_74vla"]
+sky_material = SubResource("ProceduralSkyMaterial_6no5b")
+
+[sub_resource type="Environment" id="Environment_b0qxh"]
+background_mode = 2
+sky = SubResource("Sky_74vla")
+ssao_enabled = true
+ssao_radius = 16.0
+ssil_enabled = true
+
+[sub_resource type="Curve3D" id="Curve3D_si3wf"]
+_data = {
+"points": PackedVector3Array(0, 0, 20.02996, 0, 0, -58.487305, 341.20013, 64.606255, 209.05043, 0, 0, 20.02996, 0, 0, -123.556, 341.20013, 64.606255, 123.55572, 120.279236, 74.69998, -59.59413, -120.279236, -74.69998, 59.59413, 315.62418, -70.77234, -115.18814, 18.395752, -78.730225, 7.313629, -18.395782, 78.73033, -7.313629, 258.52847, 0, -273.3323, 33.384712, 47.170116, -57.015625, -33.38475, -47.170174, 57.015686, -45.7611, 0, -276.36414, -63.703056, 0, -16.419922, 63.703064, 0, 16.419922, -21.19295, 40.806114, -90.79617, -72.93493, 0, -18.799515, 72.93499, 0, 18.79953, 117.3296, -44.052307, -130.00067, 64.68345, 0, -88.99286, -64.6835, 0, 88.992935, 160, 80.14055, 150, 0, 0, 65.589714, 0, 0, -65.58978, -7.6293945e-06, 0, 130.31717, 0.013176056, 0, 64.02625, 0, 0, -65.58978, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 10
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_la4or"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_waie4"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_74vla"]
+viewport_path = NodePath("Ship/SubViewport")
+
+[node name="Tunnel" type="Node3D" unique_id=49538784 node_paths=PackedStringArray("player_body", "FollowNode")]
+script = ExtResource("1_slrk2")
+player_body = NodePath("Ship/ship_rb")
+FollowNode = NodePath("TunnelPath/PathFollow3D")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=736711453]
+environment = SubResource("Environment_b0qxh")
+
+[node name="Tunnel" parent="." unique_id=1691195186 instance=ExtResource("2_la4or")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="StaticBody3D" parent="Tunnel/Pipes4" parent_id_path=PackedInt32Array(1691195186, 1333114593) index="0" unique_id=135237289]
+collision_layer = 9
+
+[node name="StaticBody3D" parent="Tunnel/Pipes1" parent_id_path=PackedInt32Array(1691195186, 2072566242) index="0" unique_id=445226700]
+collision_layer = 9
+
+[node name="StaticBody3D" parent="Tunnel/Pipes5" parent_id_path=PackedInt32Array(1691195186, 2019941330) index="0" unique_id=64203450]
+collision_layer = 9
+
+[node name="StaticBody3D" parent="Tunnel/Pipes3" parent_id_path=PackedInt32Array(1691195186, 261327116) index="0" unique_id=1238304462]
+collision_layer = 9
+
+[node name="StaticBody3D" parent="Tunnel/Wires" parent_id_path=PackedInt32Array(1691195186, 2054961023) index="0" unique_id=55149004]
+collision_layer = 9
+
+[node name="StaticBody3D" parent="Tunnel/Tube" parent_id_path=PackedInt32Array(1691195186, 1524302594) index="0" unique_id=1395476066]
+collision_layer = 9
+
+[node name="TunnelPath" type="Path3D" parent="." unique_id=1324841921]
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, 0, 0)
+curve = SubResource("Curve3D_si3wf")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="TunnelPath" unique_id=1699960121]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 341.20013, 64.606255, 209.05043)
+
+[node name="GiantMonster" parent="TunnelPath/PathFollow3D" unique_id=891362101 instance=ExtResource("3_waie4")]
+
+[node name="Ship" parent="." unique_id=1728071699 instance=ExtResource("4_qt3k8")]
+transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 0.99999994, -187.64429, 9.323326, 38.372868)
+
+[node name="ship_rb" parent="Ship" index="0" unique_id=50604899]
+transform = Transform3D(-0.9912155, -0.060659338, 0.11752532, 0, 0.8886172, 0.45864955, -0.1322564, 0.45462054, -0.88081115, 0, 0, 0)
+
+[node name="ship_cam" parent="Ship" index="1" unique_id=1167908812 node_paths=PackedStringArray("back_sprite")]
+back_sprite = NodePath("../../HUD/control/Sprite2D")
+
+[node name="SubViewport" parent="Ship" index="2" unique_id=1168633200]
+size = Vector2i(320, 180)
+
+[node name="FinishZone" type="Area3D" parent="." unique_id=1020679457]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone" unique_id=1050659707]
+shape = SubResource("BoxShape3D_la4or")
+
+[node name="Finish" type="MeshInstance3D" parent="FinishZone" unique_id=2144074082]
+material_override = ExtResource("6_la4or")
+mesh = SubResource("BoxMesh_waie4")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="FinishZone" unique_id=992754986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.88, -5.5)
+light_color = Color(1.2742168, 1.2742168, 1.2742168, 1)
+light_energy = 16.0
+light_indirect_energy = 16.0
+shadow_enabled = true
+shadow_normal_bias = 0.8
+shadow_opacity = 0.9
+shadow_blur = 0.714
+omni_range = 42.933075
+
+[node name="HUD" parent="." unique_id=891001335 instance=ExtResource("5_yhws4")]
+
+[node name="control" type="Control" parent="HUD" unique_id=81057493]
+layout_mode = 3
+anchor_left = 0.8
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/control" unique_id=345953393]
+texture = SubResource("ViewportTexture_74vla")
+centered = false
+
+[connection signal="body_entered" from="FinishZone" to="." method="_on_finish_body_entered"]
+
+[editable path="Tunnel"]
+[editable path="Ship"]
+[editable path="Ship/ship_rb/exhaust/thruster_flame"]

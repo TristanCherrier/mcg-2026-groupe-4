@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bycfr25iftt86"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_r42d1"]
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jvghu"]
+noise = SubResource("FastNoiseLite_r42d1")
+
+[resource]
+resource_name = "m_car_roof"
+cull_mode = 2
+albedo_color = Color(0.120079674, 0.1032268, 0.13693872, 1)
+albedo_texture = SubResource("NoiseTexture2D_jvghu")

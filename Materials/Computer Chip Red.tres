@@ -1,0 +1,23 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cwmax3hh8nnr1"]
+
+[ext_resource type="Texture2D" uid="uid://bxk375urwc282" path="res://Imports/Arena_Chip005_4K_Color.jpg" id="1_7bjrp"]
+[ext_resource type="Texture2D" uid="uid://x08jpdr5bm66" path="res://Imports/Arena_Chip005_4K_Metalness-Chip005_4K_Roughness.png" id="2_iraoa"]
+[ext_resource type="Texture2D" uid="uid://ddug0cewy86rr" path="res://Imports/Arena_Chip005_4K_Emission.jpg" id="2_un7nr"]
+[ext_resource type="Texture2D" uid="uid://c88rmswxeg86s" path="res://Imports/Arena_Chip005_4K_NormalGL.jpg" id="3_un7nr"]
+
+[resource]
+resource_name = "Computer Chip Red"
+cull_mode = 2
+albedo_texture = ExtResource("1_7bjrp")
+metallic = 1.0
+metallic_texture = ExtResource("2_iraoa")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_iraoa")
+roughness_texture_channel = 1
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 3.0
+emission_operator = 1
+emission_texture = ExtResource("2_un7nr")
+normal_enabled = true
+normal_texture = ExtResource("3_un7nr")

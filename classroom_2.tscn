@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dxyrscfjwxhlr"]
+
+[ext_resource type="PackedScene" uid="uid://n10p2bde28ce" path="res://Imports/Classroom/classroom.glb" id="1_npggw"]
+
+[node name="classroom2" unique_id=619868367 instance=ExtResource("1_npggw")]

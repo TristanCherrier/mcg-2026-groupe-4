@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://2wofqmlj5f4m"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://crm4rwi54oqa7" path="res://Phys_Materials/pm_asphalt.tres" id="1_sreuk"]
+[ext_resource type="PackedScene" uid="uid://cw4fa1uibyywi" path="res://Saw.tscn" id="1_wicfy"]
+[ext_resource type="Material" uid="uid://doxjrqjvofjfr" path="res://Materials/floor.tres" id="2_go42g"]
+[ext_resource type="PackedScene" uid="uid://dvyeegwsnfoxv" path="res://CarVB.tscn" id="3_wicfy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tq6uv"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_12c36"]
+sky_material = SubResource("ProceduralSkyMaterial_tq6uv")
+
+[sub_resource type="Environment" id="Environment_5uqhi"]
+background_mode = 2
+sky = SubResource("Sky_12c36")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b3dy1"]
+size = Vector3(100, 4, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wicfy"]
+size = Vector3(100, 4, 100)
+
+[node name="TestScene" type="Node3D" unique_id=474959040]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1497374776]
+environment = SubResource("Environment_5uqhi")
+
+[node name="floor" type="StaticBody3D" parent="." unique_id=1007338827]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.86874, 0)
+physics_material_override = ExtResource("1_sreuk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor" unique_id=1545522886]
+visible = false
+shape = SubResource("BoxShape3D_b3dy1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor" unique_id=176444134]
+material_override = ExtResource("2_go42g")
+mesh = SubResource("BoxMesh_wicfy")
+
+[node name="floor2" type="StaticBody3D" parent="." unique_id=753805105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.86874, -100)
+physics_material_override = ExtResource("1_sreuk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor2" unique_id=1329926748]
+visible = false
+shape = SubResource("BoxShape3D_b3dy1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor2" unique_id=1392748249]
+material_override = ExtResource("2_go42g")
+mesh = SubResource("BoxMesh_wicfy")
+
+[node name="Saw" parent="." unique_id=1128031272 instance=ExtResource("1_wicfy")]
+
+[node name="Car" parent="." unique_id=488546642 instance=ExtResource("3_wicfy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.18384, 1.2605524, -8.506765)
