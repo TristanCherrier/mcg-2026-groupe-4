@@ -1,30 +1,32 @@
 [gd_scene format=3 uid="uid://dvyeegwsnfoxv"]
 
 [ext_resource type="PackedScene" uid="uid://jqofig4t4ox1" path="res://Imports/Car.glb" id="1_0v3gq"]
-[ext_resource type="PhysicsMaterial" uid="uid://b2o7y28op0vnc" path="res://Phys_Materials/pm_chassis.tres" id="1_rlst7"]
+[ext_resource type="PhysicsMaterial" uid="uid://dcq6w2r4o8jkl" path="res://Phys_Materials/pm_chassis.tres" id="1_rlst7"]
 [ext_resource type="Script" uid="uid://b3dvv3l71w035" path="res://Scripts/carVB.gd" id="2_q84y3"]
 [ext_resource type="PackedScene" uid="uid://c46sgc6rxltvj" path="res://Imports/Wheel.glb" id="2_rlst7"]
 [ext_resource type="Script" uid="uid://ww01tw7u18ld" path="res://Scripts/car_cam.gd" id="4_umcgj"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_syaha"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q84y3"]
-radius = 0.25341797
+radius = 0.2
 height = 3.9243164
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v01kb"]
-radius = 0.25341797
+radius = 0.2
 height = 1.3662109
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mpkjn"]
-radius = 0.3232422
+radius = 0.2
 height = 2.012146
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7uins"]
-radius = 0.3232422
+radius = 0.2
 height = 1.621933
 
-[node name="Car" type="VehicleBody3D" unique_id=1682157932 node_paths=PackedStringArray("Wheel_FrontRight", "Wheel_FrontLeft", "Wheel_BackRight", "Wheel_BackLeft")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_syaha"]
+
+[node name="CarVB" type="Node3D" unique_id=173663061]
+
+[node name="Car" type="VehicleBody3D" parent="." unique_id=1682157932 node_paths=PackedStringArray("Wheel_FrontRight", "Wheel_FrontLeft", "Wheel_BackRight", "Wheel_BackLeft")]
 collision_layer = 21
 collision_mask = 21
 mass = 1000.0
@@ -40,15 +42,15 @@ Wheel_FrontLeft = NodePath("Wheel_FrontLeft")
 Wheel_BackRight = NodePath("Wheel_BackRight")
 Wheel_BackLeft = NodePath("Wheel_BackLeft")
 
-[node name="Car" parent="." unique_id=1112233119 instance=ExtResource("1_0v3gq")]
+[node name="Car" parent="Car" unique_id=1112233119 instance=ExtResource("1_0v3gq")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Car" parent="Car" index="0" unique_id=258464936]
+[node name="Car" parent="Car/Car" index="0" unique_id=1041457426]
 layers = 17
 
-[node name="headLights" type="Node3D" parent="." unique_id=1255074091]
+[node name="headLights" type="Node3D" parent="Car" unique_id=1255074091]
 
-[node name="SpotLight3D8" type="SpotLight3D" parent="headLights" unique_id=1471393350]
+[node name="SpotLight3D8" type="SpotLight3D" parent="Car/headLights" unique_id=1471393350]
 transform = Transform3D(-0.9848077, -0.04862676, 0.16670081, -1.502159e-08, 0.9599913, 0.28003013, -0.17364833, 0.27577582, -0.9454069, -0.7646689, 0.011284566, 1.9628243)
 light_color = Color(0.76, 0.9519999, 1, 1)
 light_energy = 5.0
@@ -58,7 +60,7 @@ spot_range = 100.0
 spot_attenuation = 0.8
 spot_angle = 30.0
 
-[node name="SpotLight3D9" type="SpotLight3D" parent="headLights" unique_id=100233731]
+[node name="SpotLight3D9" type="SpotLight3D" parent="Car/headLights" unique_id=100233731]
 transform = Transform3D(-0.9848077, 0.048597716, -0.16670932, 4.2753715e-08, 0.96004015, 0.27986267, 0.17364834, 0.27561086, -0.9454549, 0.76500016, 0.011276493, 1.9623652)
 light_color = Color(0.76, 0.9519999, 1, 1)
 light_energy = 5.0
@@ -69,10 +71,10 @@ spot_range = 100.0
 spot_attenuation = 0.8
 spot_angle = 30.0
 
-[node name="rearLights" type="Node3D" parent="." unique_id=465668747]
+[node name="rearLights" type="Node3D" parent="Car" unique_id=465668747]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="rearLights" unique_id=37525401]
+[node name="SpotLight3D" type="SpotLight3D" parent="Car/rearLights" unique_id=37525401]
 transform = Transform3D(-1, 4.0351875e-08, -1.4550415e-07, 0, 0.96363044, 0.26723838, 1.509958e-07, 0.26723838, -0.96363044, -0.6, 0.10793051, 2.1248033)
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.5
@@ -81,7 +83,7 @@ spot_range = 50.0
 spot_attenuation = 0.9
 spot_angle = 40.0
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="rearLights" unique_id=1286320260]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Car/rearLights" unique_id=1286320260]
 transform = Transform3D(-1, 4.0351875e-08, -1.4550415e-07, 0, 0.96363044, 0.26723838, 1.509958e-07, 0.26723838, -0.96363044, 0.6, 0.10793051, 2.1248033)
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.5
@@ -90,7 +92,7 @@ spot_range = 50.0
 spot_attenuation = 0.9
 spot_angle = 40.0
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="rearLights" unique_id=284113979]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Car/rearLights" unique_id=284113979]
 transform = Transform3D(-1, 4.0351875e-08, -1.4550415e-07, 0, 0.96363044, 0.26723838, 1.509958e-07, 0.26723838, -0.96363044, 0.4, 0.10812336, 2.125274)
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.5
@@ -99,7 +101,7 @@ spot_range = 50.0
 spot_attenuation = 0.9
 spot_angle = 40.0
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="rearLights" unique_id=1240385063]
+[node name="SpotLight3D4" type="SpotLight3D" parent="Car/rearLights" unique_id=1240385063]
 transform = Transform3D(-1, 4.0351875e-08, -1.4550415e-07, 0, 0.96363044, 0.26723838, 1.509958e-07, 0.26723838, -0.96363044, -0.4, 0.10812336, 2.125274)
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.5
@@ -108,7 +110,7 @@ spot_range = 50.0
 spot_attenuation = 0.9
 spot_angle = 40.0
 
-[node name="SpotLight3D5" type="SpotLight3D" parent="rearLights" unique_id=160786688]
+[node name="SpotLight3D5" type="SpotLight3D" parent="Car/rearLights" unique_id=160786688]
 transform = Transform3D(-1, 4.0351875e-08, -1.4550415e-07, 0, 0.96363044, 0.26723838, 1.509958e-07, 0.26723838, -0.96363044, -0.2, 0.10812336, 2.125274)
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.5
@@ -117,7 +119,7 @@ spot_range = 50.0
 spot_attenuation = 0.9
 spot_angle = 40.0
 
-[node name="SpotLight3D6" type="SpotLight3D" parent="rearLights" unique_id=1799420150]
+[node name="SpotLight3D6" type="SpotLight3D" parent="Car/rearLights" unique_id=1799420150]
 transform = Transform3D(-1, 4.0351875e-08, -1.4550415e-07, 0, 0.96363044, 0.26723838, 1.509958e-07, 0.26723838, -0.96363044, 0.2, 0.10812336, 2.125274)
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.5
@@ -126,7 +128,7 @@ spot_range = 50.0
 spot_attenuation = 0.9
 spot_angle = 40.0
 
-[node name="SpotLight3D7" type="SpotLight3D" parent="rearLights" unique_id=1714348270]
+[node name="SpotLight3D7" type="SpotLight3D" parent="Car/rearLights" unique_id=1714348270]
 transform = Transform3D(-1, 4.0351875e-08, -1.4550415e-07, 0, 0.96363044, 0.26723838, 1.509958e-07, 0.26723838, -0.96363044, 0, 0.10812336, 2.125274)
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.5
@@ -135,7 +137,7 @@ spot_range = 50.0
 spot_attenuation = 0.9
 spot_angle = 40.0
 
-[node name="Wheel_FrontRight" type="VehicleWheel3D" parent="." unique_id=1463225691]
+[node name="Wheel_FrontRight" type="VehicleWheel3D" parent="Car" unique_id=1463225691]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88, -0.0838165, 1.3256714)
 use_as_steering = true
 wheel_roll_influence = 1.0
@@ -149,10 +151,10 @@ damping_compression = 1.2
 damping_relaxation = 1.4
 metadata/_edit_group_ = true
 
-[node name="Wheel" parent="Wheel_FrontRight" unique_id=365216478 instance=ExtResource("2_rlst7")]
+[node name="Wheel" parent="Car/Wheel_FrontRight" unique_id=365216478 instance=ExtResource("2_rlst7")]
 transform = Transform3D(1.13, 0, 0, 0, 1.13, 0, 0, 0, 1.13, 0, 0, 0)
 
-[node name="Wheel_FrontLeft" type="VehicleWheel3D" parent="." unique_id=646490230]
+[node name="Wheel_FrontLeft" type="VehicleWheel3D" parent="Car" unique_id=646490230]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88, -0.0838165, 1.3256687)
 use_as_steering = true
 wheel_roll_influence = 1.0
@@ -166,10 +168,10 @@ damping_compression = 1.2
 damping_relaxation = 1.4
 metadata/_edit_group_ = true
 
-[node name="Wheel" parent="Wheel_FrontLeft" unique_id=871794755 instance=ExtResource("2_rlst7")]
+[node name="Wheel" parent="Car/Wheel_FrontLeft" unique_id=871794755 instance=ExtResource("2_rlst7")]
 transform = Transform3D(1.13, 0, 0, 0, 1.13, 0, 0, 0, 1.13, 0, 0, 0)
 
-[node name="Wheel_BackRight" type="VehicleWheel3D" parent="." unique_id=1014741061]
+[node name="Wheel_BackRight" type="VehicleWheel3D" parent="Car" unique_id=1014741061]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88, -0.084185, -1.45)
 wheel_roll_influence = 1.0
 wheel_radius = 0.33
@@ -181,10 +183,10 @@ damping_compression = 1.2
 damping_relaxation = 1.4
 metadata/_edit_group_ = true
 
-[node name="Wheel" parent="Wheel_BackRight" unique_id=1326023982 instance=ExtResource("2_rlst7")]
+[node name="Wheel" parent="Car/Wheel_BackRight" unique_id=1326023982 instance=ExtResource("2_rlst7")]
 transform = Transform3D(1.13, 0, 0, 0, 1.13, 0, 0, 0, 1.13, 0, 0, 0)
 
-[node name="Wheel_BackLeft" type="VehicleWheel3D" parent="." unique_id=1444723373]
+[node name="Wheel_BackLeft" type="VehicleWheel3D" parent="Car" unique_id=1444723373]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88, -0.084185, -1.45)
 wheel_roll_influence = 1.0
 wheel_radius = 0.33
@@ -196,8 +198,32 @@ damping_compression = 1.2
 damping_relaxation = 1.4
 metadata/_edit_group_ = true
 
-[node name="Wheel" parent="Wheel_BackLeft" unique_id=775629876 instance=ExtResource("2_rlst7")]
+[node name="Wheel" parent="Car/Wheel_BackLeft" unique_id=775629876 instance=ExtResource("2_rlst7")]
 transform = Transform3D(1.13, 0, 0, 0, 1.13, 0, 0, 0, 1.13, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car" unique_id=853125647]
+transform = Transform3D(1, 0, 0, 0, -0.026717857, -0.999643, 0, 0.999643, -0.026717857, 0.7, 0.10166334, -0.0022336543)
+shape = SubResource("CapsuleShape3D_q84y3")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Car" unique_id=1710173504]
+transform = Transform3D(1, 0, 0, 0, -0.026717857, -0.999643, 0, 0.999643, -0.026717857, -0.7, 0.102, -0.002)
+shape = SubResource("CapsuleShape3D_q84y3")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Car" unique_id=211326395]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0.04628814, 1.9421889)
+shape = SubResource("CapsuleShape3D_v01kb")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Car" unique_id=1072698407]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0.12987232, -1.7944161)
+shape = SubResource("CapsuleShape3D_v01kb")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Car" unique_id=1603266816]
+transform = Transform3D(1, 0, 0, 0, -0.15493459, -0.98792475, 0, 0.98792475, -0.15493459, 0, 0.25348037, 0.5431755)
+shape = SubResource("CapsuleShape3D_mpkjn")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Car" unique_id=272703952]
+transform = Transform3D(1, 0, 0, 0, 0.13837795, -0.9903795, 0, 0.9903795, 0.13837795, 0, 0.2852888, -0.8943971)
+shape = SubResource("CapsuleShape3D_7uins")
 
 [node name="cam_target_Y" type="Node3D" parent="." unique_id=1358724660]
 
@@ -213,32 +239,8 @@ spring_length = -3.5
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.11468583, -3.4572291)
 current = true
 script = ExtResource("4_umcgj")
-car_body = NodePath("../../../..")
+car_body = NodePath("../../../../Car")
 target_Y = NodePath("../../..")
 target_X = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=853125647]
-transform = Transform3D(1, 0, 0, 0, -0.026717857, -0.999643, 0, 0.999643, -0.026717857, 0.7, 0.0016633434, -0.0022336543)
-shape = SubResource("CapsuleShape3D_q84y3")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1710173504]
-transform = Transform3D(1, 0, 0, 0, -0.026717857, -0.999643, 0, 0.999643, -0.026717857, -0.7, 0.002, -0.002)
-shape = SubResource("CapsuleShape3D_q84y3")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=211326395]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, -0.05371186, 1.9421889)
-shape = SubResource("CapsuleShape3D_v01kb")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="." unique_id=1072698407]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0.029872328, -1.7944161)
-shape = SubResource("CapsuleShape3D_v01kb")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="." unique_id=1603266816]
-transform = Transform3D(1, 0, 0, 0, -0.15493459, -0.98792475, 0, 0.98792475, -0.15493459, 0, 0.15348038, 0.5431755)
-shape = SubResource("CapsuleShape3D_mpkjn")
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="." unique_id=272703952]
-transform = Transform3D(1, 0, 0, 0, 0.13837795, -0.9903795, 0, 0.9903795, 0.13837795, 0, 0.18528882, -0.6222405)
-shape = SubResource("CapsuleShape3D_7uins")
-
-[editable path="Car"]
+[editable path="Car/Car"]

@@ -37,7 +37,7 @@ func _ready() -> void:
 	GameState.enter_level("Niveau 1 - Salle de TP", scene_file_path)
 	GameState.set_next_level("res://Scenes/Levels/Arena.tscn")
 	GameState.set_objective(_build_progress_objective())
-	GameState.set_help("Robot : ZQSD pour rouler, souris pour regarder, V pour changer de vue.")
+	GameState.set_help("Robot : ZQSD pour rouler, souris pour regarder, V ou Molette pour changer de vue, Clic pour attaquer.")
 	GameState.set_integrity(100.0)
 	GameState.set_energy(100.0)
 	hud.configure("Niveau 1 - Salle de TP", false, false)

@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 	ChargeBar.scale.y = clampf(charge_mid_level, 0, 1)
 	NotBar.scale.y = (5 - charge_level) - clampf(charge_mid_level, 0, 1)
 	if charging and charge_level < 5:
-		charge_mid_level += delta
+		charge_mid_level += delta * 2
 		if charge_mid_level > 1 :
 			charge_level += 1
 			Bar.scale.y = charge_level

@@ -52,7 +52,7 @@ shape = SubResource("BoxShape3D_u45fm")
 visible = false
 shape = SubResource("ConcavePolygonShape3D_42pn1")
 
-[node name="Car" parent="." unique_id=488546642 instance=ExtResource("4_l20c8")]
+[node name="CarVB" parent="." unique_id=488546642 instance=ExtResource("4_l20c8")]
 transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, 65.574, -3.475, 0)
 
 [node name="SpotLight3D" type="OmniLight3D" parent="." unique_id=415220221]
@@ -65,7 +65,7 @@ omni_attenuation = 0.01
 
 [node name="Monster" parent="." unique_id=568113895 node_paths=PackedStringArray("Player") instance=ExtResource("5_3slau")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -18.592447, -3.9922695, 8.264278)
-Player = NodePath("../Car")
+Player = NodePath("../CarVB/Car")
 
 [node name="ChargeStation" parent="." unique_id=159111224 instance=ExtResource("6_ftfxq")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -3.882, 0)
@@ -82,3 +82,6 @@ transform = Transform3D(-1.964194, 0, 0.37675107, 0, 2, 0, -0.37675107, 0, -1.96
 [connection signal="fully_charged" from="ChargeStation" to="." method="_on_charge_station_fully_charged"]
 [connection signal="fully_charged" from="ChargeStation2" to="." method="_on_charge_station_fully_charged"]
 [connection signal="fully_charged" from="ChargeStation3" to="." method="_on_charge_station_fully_charged"]
+
+[editable path="CarVB"]
+[editable path="CarVB/Car/Car"]

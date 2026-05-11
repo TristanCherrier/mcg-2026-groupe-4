@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://b65yp81t1oytn"]
 
-[ext_resource type="Script" uid="uid://dc2g5gwlv16kt" path="res://monster.gd" id="1_ssiii"]
+[ext_resource type="Script" uid="uid://dc2g5gwlv16kt" path="res://Scripts/monster.gd" id="1_ssiii"]
 [ext_resource type="PackedScene" uid="uid://cmgdnplkretw2" path="res://Imports/Monster.glb" id="1_vb3nq"]
+
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vb3nq"]
 radius = 1.0

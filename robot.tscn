@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dn1a0psrdpmyg"]
+[gd_scene format=3 uid="uid://bs34uwx0qsad3"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://cgmdivt82aw86" path="res://Phys_Materials/pm_robot_ball.tres" id="1_pdxcx"]
 [ext_resource type="Script" uid="uid://bt3jli15au83j" path="res://Scripts/robot.gd" id="2_t7r3x"]

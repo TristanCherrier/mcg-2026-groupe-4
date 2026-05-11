@@ -217,7 +217,7 @@ custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 bbcode_enabled = true
 text = "[b]Niveau 1[/b] : ZQSD, souris, V
-[b]Niveau 2[/b] : Z, Q, S, D, Espace
+[b]Niveau 2[/b] : ZQSD, Espace
 [b]Niveau 3[/b] : maintiens Z et bouge la souris pour orienter le propulseur"
 fit_content = true
 

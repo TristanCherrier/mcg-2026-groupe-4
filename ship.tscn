@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bsoailc7aym4d"]
+[gd_scene format=3 uid="uid://csrkrq681sokx"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://c88x86wxtapd7" path="res://Phys_Materials/pm_ship.tres" id="1_7se24"]
 [ext_resource type="Script" uid="uid://dowokqyb6wdvx" path="res://Scripts/ship.gd" id="1_s441t"]
@@ -46,7 +46,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99863863, -0.052161664, 0, 0.052161664, 0.
 [node name="thruster_flame" parent="ship_rb/exhaust" unique_id=882116047 instance=ExtResource("4_0p50t")]
 transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 0.009555028, 0.18293166)
 
-[node name="Thruster_Flame" parent="ship_rb/exhaust/thruster_flame" index="0" unique_id=2049783649]
+[node name="Thruster_Flame" parent="ship_rb/exhaust/thruster_flame" index="0" unique_id=189459504]
 layers = 32
 
 [node name="Thruster_Flame2" parent="ship_rb/exhaust/thruster_flame" index="1" unique_id=1559257390]

@@ -1,87 +1,60 @@
 extends CharacterBody3D
 
-@export var speed: float = 1.2
-@export var score_penalty: int = 50
-@export var damage_cooldown: float = 1.5
+signal player_damaged
 
-var _player_ball: RigidBody3D = null
-var _cooldown_timer: float = 0.0
-var _gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-
-# Rayon de contact adapté au nouveau gabarit (capsule 0.22 + bille 0.11 + marge)
-const CONTACT_DISTANCE = 0.42
-
-@onready var glow_light: OmniLight3D = $GlowLight
-
+@export
+var Player : Node3D
+@export
+var animationPlayer : AnimationPlayer
+@export
+var base_speed : float  = 200
+var speed : float = 200
+var acceleration : float = 80
+var attacking : bool = false
+var whish_velocity : Vector3 = Vector3.ZERO
+var previous_velocity : Vector3 = Vector3.ZERO
+var turn_rate : float = 5
 
 func _ready() -> void:
-	add_to_group("monster")
-	# Continuer à tourner même pendant la pause (quiz)
-	process_mode = Node.PROCESS_MODE_ALWAYS
-	await get_tree().physics_frame
-	_find_player()
-
-
-func _find_player() -> void:
-	for node in get_tree().get_nodes_in_group("foot_player"):
-		if node is RigidBody3D:
-			_player_ball = node as RigidBody3D
-			return
-
+	speed = base_speed
+	animationPlayer.play("ani_monster_run")
 
 func _physics_process(delta: float) -> void:
-	_cooldown_timer = maxf(_cooldown_timer - delta, 0.0)
-
-	if _player_ball == null or not is_instance_valid(_player_ball):
-		_find_player()
-		return
-
-	# Gravité
-	if not is_on_floor():
-		velocity.y -= _gravity * delta
-
-	# Vecteur vers le joueur (plan horizontal seulement)
-	var diff: Vector3 = _player_ball.global_position - global_position
-	diff.y = 0.0
-	var dist: float = diff.length()
-
-	if dist > 0.05:
-		var dir: Vector3 = diff / dist
-		velocity.x = dir.x * speed
-		velocity.z = dir.z * speed
-		look_at(Vector3(_player_ball.global_position.x, global_position.y, _player_ball.global_position.z), Vector3.UP)
+	if attacking:
+		velocity -= velocity * 3 * delta
+		turn_rate = 2
 	else:
-		velocity.x = 0.0
-		velocity.z = 0.0
-
+		speed += acceleration * delta
+		animationPlayer.speed_scale = (speed / base_speed) / scale.x
+		turn_rate = 3
+	whish_velocity = Player.global_position - global_position
+	whish_velocity.y = 0
+	whish_velocity = whish_velocity.normalized() * speed * delta
+	velocity = previous_velocity.slerp(whish_velocity, turn_rate * delta)
+	previous_velocity = velocity
+	look_at(global_position + velocity)
 	move_and_slide()
 
-	# Contact : dégâts + petite impulsion pour ne pas coller
-	var real_dist: float = global_position.distance_to(_player_ball.global_position)
-	if real_dist < CONTACT_DISTANCE:
-		# Repousser légèrement la bille pour qu'elle puisse se dégager
-		var push: Vector3 = (_player_ball.global_position - global_position).normalized()
-		push.y = 0.15
-		_player_ball.apply_central_impulse(push * 2.5)
-		_try_damage()
+func prepare_attack():
+	speed = 50
+	attacking = true
+	animationPlayer.speed_scale = 1
+	animationPlayer.play("ani_monster_chomp")
+	Utils.schedule(self, "try_attack", 0.5)
 
-	# Effet lumineux pulsant
-	if glow_light != null:
-		glow_light.light_energy = 1.8 + sin(Time.get_ticks_msec() * 0.005) * 0.5
+func try_attack():
+	if $chomp_node.get_overlapping_bodies().size() > 0:
+		player_damaged.emit()
 
+func _on_chomp_node_body_entered(_body: Node3D) -> void:
+	if not attacking:
+		prepare_attack()
 
-func _try_damage() -> void:
-	if _cooldown_timer > 0.0:
-		return
-	_cooldown_timer = damage_cooldown
-	GameState.add_points(-score_penalty)
-	_flash_danger()
-
-
-func _flash_danger() -> void:
-	if glow_light == null:
-		return
-	glow_light.light_energy = 8.0
-	await get_tree().create_timer(0.12).timeout
-	if is_instance_valid(glow_light):
-		glow_light.light_energy = 1.8
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+	attacking = false
+	if $chomp_node.get_overlapping_bodies().size() > 0:
+		prepare_attack()
+	else:
+		speed = base_speed
+		animationPlayer.speed_scale = 1 / scale.x
+		animationPlayer.play("ani_monster_run")
