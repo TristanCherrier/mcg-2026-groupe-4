@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 	ChargeBar.scale.y = clampf(charge_mid_level, 0, 1)
 	NotBar.scale.y = (5 - charge_level) - clampf(charge_mid_level, 0, 1)
 	if charging and charge_level < 5:
-		charge_mid_level += delta * 2
+		charge_mid_level += delta * 1.2
 		if charge_mid_level > 1 :
 			charge_level += 1
 			Bar.scale.y = charge_level
@@ -38,6 +38,8 @@ func _process(delta: float) -> void:
 			ChargeBar.scale.y = 0
 			ChargeBar.position.y = charge_level / 2.0 - 0.05
 			charge_mid_level = 0
+			$AudioStreamPlayer3D.pitch_scale = 1 + ((charge_level-1) * 0.05)
+			$AudioStreamPlayer3D.play()
 			if charge_level == 5 :
 				fully_charged.emit()
 				(Gyro.get_child(0) as SpotLight3D).light_color = Color(0, 1, 0)

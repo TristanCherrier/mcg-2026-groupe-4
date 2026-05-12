@@ -3,6 +3,7 @@
 [ext_resource type="PhysicsMaterial" uid="uid://cgmdivt82aw86" path="res://Phys_Materials/pm_robot_ball.tres" id="1_pdxcx"]
 [ext_resource type="Script" uid="uid://bt3jli15au83j" path="res://Scripts/robot.gd" id="2_t7r3x"]
 [ext_resource type="PackedScene" uid="uid://c1i6u8fh3ab6n" path="res://Imports/robot_ball.glb" id="3_anpm0"]
+[ext_resource type="AudioStream" uid="uid://bdoc6aoyhehdt" path="res://Sounds/flash.mp3" id="4_754th"]
 [ext_resource type="PhysicsMaterial" uid="uid://bxmmdfnlf2jt1" path="res://Phys_Materials/pm_robot_body.tres" id="4_vvp5k"]
 [ext_resource type="PackedScene" uid="uid://dcpya1ejwsnck" path="res://Imports/robot_body.glb" id="5_o84uv"]
 [ext_resource type="PackedScene" uid="uid://bxx0biypbr7nx" path="res://Imports/robot_head.glb" id="6_ekfic"]
@@ -53,6 +54,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.151, 0)
 
 [node name="Flash" parent="body_rb/robot_head/robot_head2" unique_id=1513400258 instance=ExtResource("8_d811p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.045, -0.1)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="body_rb/robot_head/robot_head2/Flash" unique_id=932131524]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.196, 0.1)
+stream = ExtResource("4_754th")
+volume_db = -25.0
+bus = &"Classroom"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body_rb" unique_id=1253267929]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08342457, 0)

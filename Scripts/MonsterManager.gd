@@ -18,10 +18,11 @@ func _process(delta: float) -> void:
 		spawn_smallmonster()
 		timer = 3 + randf_range(-1,1)
 		
+	
 func spawn_smallmonster():
 	var node : Node3D = SmallMonster.instantiate()
 	node.playerTarget = playerTarget
-	get_tree().root.add_child(node)
+	self.add_child(node)
 	node.add_to_group("small_monsters")
 	node.set_display_folded(true)
 	node.global_position = spawnPoints[randi_range(0,spawnPoints.size()-1)].global_position

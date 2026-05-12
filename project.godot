@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="MCG 2026 Dev"
+config/name="MCG 2026"
 run/main_scene="res://Scenes/UI/MainMenu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"

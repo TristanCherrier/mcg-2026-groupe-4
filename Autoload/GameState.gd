@@ -115,7 +115,7 @@ func add_points(amount: int) -> void:
 	if score <= -300:
 		_restarting = true
 		push_message("Score critique ! Redemarrage du niveau...", 2.0)
-		get_tree().create_timer(2.0).timeout.connect(restart_level, CONNECT_ONE_SHOT)
+		Utils.schedule(self, "restart_level", 2)
 
 
 func award_puzzle() -> void:
@@ -180,6 +180,8 @@ func restore_energy(amount: float) -> void:
 
 
 func go_to_scene(scene_path: String) -> void:
+	for node in get_tree().get_nodes_in_group("small_monsters"):
+		node.queue_free()
 	get_tree().paused = false
 	get_tree().change_scene_to_file(scene_path)
 

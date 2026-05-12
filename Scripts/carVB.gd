@@ -22,8 +22,8 @@ func _ready() -> void:
 	rearLightsMaterial = $Car/Car.get_active_material(4)
 
 func _physics_process(delta: float) -> void:
-	LocalVelocity = linear_velocity * basis
-	
+	LocalVelocity = linear_velocity.rotated(global_basis.x, -global_rotation.x).rotated(global_basis.y, -global_rotation.y).rotated(global_basis.z, -global_rotation.z)
+	$AudioStreamPlayer3D.pitch_scale = clampf(1 + (LocalVelocity.z * 0.035), 0.8, 3)
 	if Input.is_action_pressed("Gas"):
 		deceleration_force = 0
 		Wheel_BackRight.engine_force = 6000

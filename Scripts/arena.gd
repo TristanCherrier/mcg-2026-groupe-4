@@ -19,7 +19,7 @@ func _on_charge_station_fully_charged() -> void:
 	GameState.add_points(100)
 	GameState.set_integrity(GameState.integrity + 40)
 	if charges >= required_charges:
-		GameState.complete_level()
+		Utils.schedule(GameState, "complete_level", 0.5)
 	
 
 func _on_monster_player_damaged() -> void:
