@@ -55,6 +55,10 @@ shape = SubResource("ConcavePolygonShape3D_42pn1")
 [node name="CarVB" parent="." unique_id=488546642 instance=ExtResource("4_l20c8")]
 transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, 65.574, -3.475, 0)
 
+[node name="AudioStreamPlayer3D" parent="CarVB/Car" parent_id_path=PackedInt32Array(488546642, 1682157932) index="13" unique_id=993533039]
+bus = &"Master"
+emission_angle_enabled = false
+
 [node name="SpotLight3D" type="OmniLight3D" parent="." unique_id=415220221]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.777134, 0)
 light_energy = 0.03

@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://dvyeegwsnfoxv"]
 
 [ext_resource type="PackedScene" uid="uid://jqofig4t4ox1" path="res://Imports/Car.glb" id="1_0v3gq"]
-[ext_resource type="PhysicsMaterial" uid="uid://dcq6w2r4o8jkl" path="res://Phys_Materials/pm_chassis.tres" id="1_rlst7"]
+[ext_resource type="PhysicsMaterial" uid="uid://dcq6w2r4o8jkl" path="res://Phys_Materials/pm_Chassis.tres" id="1_rlst7"]
 [ext_resource type="Script" uid="uid://b3dvv3l71w035" path="res://Scripts/carVB.gd" id="2_q84y3"]
 [ext_resource type="PackedScene" uid="uid://c46sgc6rxltvj" path="res://Imports/Wheel.glb" id="2_rlst7"]
-[ext_resource type="Script" uid="uid://ww01tw7u18ld" path="res://Scripts/car_cam.gd" id="4_umcgj"]
+[ext_resource type="Script" uid="uid://4gtv5j1fibcv" path="res://Scripts/car_cam.gd" id="4_umcgj"]
+[ext_resource type="AudioStream" uid="uid://dkpocenn2mbtb" path="res://Sounds/engine.mp3" id="6_4oj1h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q84y3"]
 radius = 0.2
@@ -224,6 +225,14 @@ shape = SubResource("CapsuleShape3D_mpkjn")
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="Car" unique_id=272703952]
 transform = Transform3D(1, 0, 0, 0, 0.13837795, -0.9903795, 0, 0.9903795, 0.13837795, 0, 0.2852888, -0.8943971)
 shape = SubResource("CapsuleShape3D_7uins")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Car" unique_id=993533039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.3354423)
+stream = ExtResource("6_4oj1h")
+autoplay = true
+bus = &"Arena"
+playback_type = 1
+emission_angle_enabled = true
 
 [node name="cam_target_Y" type="Node3D" parent="." unique_id=1358724660]
 

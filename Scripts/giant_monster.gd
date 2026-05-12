@@ -5,6 +5,7 @@ var playerTarget : Node3D
 var animation_player : AnimationPlayer 
 
 func _ready() -> void:
+	$AudioStreamPlayer3D.play()
 	animation_player.play("ani_ptitmonstre_gnaw", -1, 0.5)
 
 func defeat():

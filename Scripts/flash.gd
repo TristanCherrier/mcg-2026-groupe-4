@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 		$zone.monitoring = false
 	if Input.is_action_just_pressed("Flash") and timer <= 0:
 		visible = true
+		$AudioStreamPlayer3D.play()
 		$zone.monitoring = true
 		timer = cooldown
 	

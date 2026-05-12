@@ -81,6 +81,8 @@ spring_length = 0.6
 
 [node name="back_cam_target" type="Node3D" parent="ship_rb/SpringArm3D" unique_id=487506444]
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ship_rb" unique_id=1080245201]
+
 [node name="ship_cam" type="Camera3D" parent="." unique_id=1167908812 node_paths=PackedStringArray("ship_body", "target", "back_target", "back_cam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 2)
 current = true
