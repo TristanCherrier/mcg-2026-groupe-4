@@ -29,10 +29,10 @@ NotChargingMat = ExtResource("7_agsyr")
 
 [node name="ChargeStation" parent="." unique_id=1926499712 instance=ExtResource("1_p5tdp")]
 
-[node name="Bar" parent="ChargeStation" index="1" unique_id=1518424222]
+[node name="Bar" parent="ChargeStation" index="1" unique_id=1607184677]
 material_override = ExtResource("2_4fhc2")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="ChargeStation/Gyro" parent_id_path=PackedInt32Array(1926499712, 1894133693) index="0" unique_id=448881198]
+[node name="SpotLight3D" type="SpotLight3D" parent="ChargeStation/Gyro" parent_id_path=PackedInt32Array(1926499712, 308380583) index="0" unique_id=448881198]
 transform = Transform3D(1, 0, 0, 0, 0.8535509, 0.5210097, 0, -0.5210097, 0.8535509, 0, 3.039, -0.3)
 light_color = Color(1, 0.48333335, 0, 1)
 light_energy = 4.0
@@ -41,7 +41,7 @@ spot_range = 30.0
 spot_attenuation = 0.01
 spot_angle = 20.0
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="ChargeStation/Gyro" parent_id_path=PackedInt32Array(1926499712, 1894133693) index="1" unique_id=570787666]
+[node name="SpotLight3D2" type="SpotLight3D" parent="ChargeStation/Gyro" parent_id_path=PackedInt32Array(1926499712, 308380583) index="1" unique_id=570787666]
 transform = Transform3D(-1, 4.5548116e-08, -7.4619784e-08, 0, 0.8535509, 0.5210097, 8.742278e-08, 0.5210097, -0.8535509, 0, 3.039, 0.3)
 light_color = Color(1, 0.5019608, 0, 1)
 light_energy = 4.0
@@ -50,11 +50,11 @@ spot_range = 30.0
 spot_attenuation = 0.01
 spot_angle = 20.0
 
-[node name="NotBar" parent="ChargeStation" index="3" unique_id=660179413]
+[node name="NotBar" parent="ChargeStation" index="3" unique_id=1749650630]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45, 0)
 material_override = ExtResource("3_jfg2y")
 
-[node name="ChargeBar" parent="ChargeStation" index="4" unique_id=662558141]
+[node name="ChargeBar" parent="ChargeStation" index="4" unique_id=882773667]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 material_override = ExtResource("5_jfg2y")
 
@@ -70,10 +70,10 @@ shape = SubResource("BoxShape3D_4fhc2")
 
 [node name="ChargeZone" parent="Area3D" unique_id=7929959 instance=ExtResource("6_kbdmv")]
 
-[node name="ChargeZone" parent="Area3D/ChargeZone" index="0" unique_id=2039090358]
+[node name="ChargeZone" parent="Area3D/ChargeZone" index="0" unique_id=1268891336]
 material_override = ExtResource("7_agsyr")
 
-[node name="Bolt" parent="Area3D/ChargeZone" index="1" unique_id=682370026]
+[node name="Bolt" parent="Area3D/ChargeZone" index="1" unique_id=558078215]
 material_override = ExtResource("8_lhyq0")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=798467744]

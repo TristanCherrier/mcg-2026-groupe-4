@@ -61,7 +61,7 @@ emission_angle_enabled = false
 
 [node name="SpotLight3D" type="OmniLight3D" parent="." unique_id=415220221]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.777134, 0)
-light_energy = 0.03
+light_energy = 0.525
 light_size = 1.0
 light_bake_mode = 1
 omni_range = 100.0

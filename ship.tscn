@@ -46,7 +46,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99863863, -0.052161664, 0, 0.052161664, 0.
 [node name="thruster_flame" parent="ship_rb/exhaust" unique_id=882116047 instance=ExtResource("4_0p50t")]
 transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 0.009555028, 0.18293166)
 
-[node name="Thruster_Flame" parent="ship_rb/exhaust/thruster_flame" index="0" unique_id=189459504]
+[node name="Thruster_Flame" parent="ship_rb/exhaust/thruster_flame" index="0" unique_id=401044362]
 layers = 32
 
 [node name="Thruster_Flame2" parent="ship_rb/exhaust/thruster_flame" index="1" unique_id=1559257390]
@@ -61,10 +61,12 @@ transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -
 shape = SubResource("SphereShape3D_s441t")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="ship_rb" unique_id=831579373]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3738334)
 light_color = Color(0.83, 1, 1, 1)
-light_energy = 5.0
-spot_range = 100.0
-spot_angle_attenuation = 9.513654
+light_energy = 3.0
+spot_range = 300.0
+spot_attenuation = 0.25
+spot_angle_attenuation = 3.0
 
 [node name="SpringArm3D" type="SpringArm3D" parent="ship_rb" unique_id=2135796650]
 collision_mask = 8

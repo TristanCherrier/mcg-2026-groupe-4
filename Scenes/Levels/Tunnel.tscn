@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://708lqva2jn2y" path="res://Scripts/tunnel.gd" id="1_slrk2"]
 [ext_resource type="PackedScene" uid="uid://b2xuea6rfsdcq" path="res://Imports/Tunnel.glb" id="2_la4or"]
 [ext_resource type="PackedScene" uid="uid://dtqqdu73iaipp" path="res://GiantMonster.tscn" id="3_waie4"]
-[ext_resource type="PackedScene" uid="uid://csrkrq681sokx" path="res://Ship.tscn" id="4_qt3k8"]
+[ext_resource type="PackedScene" uid="uid://csrkrq681sokx" path="res://ship.tscn" id="4_qt3k8"]
 [ext_resource type="PackedScene" uid="uid://cm6gj324r6uw8" path="res://Scenes/UI/HUD.tscn" id="5_yhws4"]
 [ext_resource type="Material" uid="uid://cg50y2cjesa1p" path="res://Materials/m_car_headlights.tres" id="6_la4or"]
 
@@ -51,22 +51,22 @@ environment = SubResource("Environment_b0qxh")
 [node name="Tunnel" parent="." unique_id=1691195186 instance=ExtResource("2_la4or")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="StaticBody3D" parent="Tunnel/Pipes4" parent_id_path=PackedInt32Array(1691195186, 1333114593) index="0" unique_id=135237289]
+[node name="StaticBody3D" parent="Tunnel/Pipes4" parent_id_path=PackedInt32Array(1691195186, 935638677) index="0" unique_id=892087424]
 collision_layer = 9
 
-[node name="StaticBody3D" parent="Tunnel/Pipes1" parent_id_path=PackedInt32Array(1691195186, 2072566242) index="0" unique_id=445226700]
+[node name="StaticBody3D" parent="Tunnel/Pipes1" parent_id_path=PackedInt32Array(1691195186, 1573170856) index="0" unique_id=78705053]
 collision_layer = 9
 
-[node name="StaticBody3D" parent="Tunnel/Pipes5" parent_id_path=PackedInt32Array(1691195186, 2019941330) index="0" unique_id=64203450]
+[node name="StaticBody3D" parent="Tunnel/Pipes5" parent_id_path=PackedInt32Array(1691195186, 1759578706) index="0" unique_id=1626885868]
 collision_layer = 9
 
-[node name="StaticBody3D" parent="Tunnel/Pipes3" parent_id_path=PackedInt32Array(1691195186, 261327116) index="0" unique_id=1238304462]
+[node name="StaticBody3D" parent="Tunnel/Pipes3" parent_id_path=PackedInt32Array(1691195186, 1713888726) index="0" unique_id=1912681147]
 collision_layer = 9
 
-[node name="StaticBody3D" parent="Tunnel/Wires" parent_id_path=PackedInt32Array(1691195186, 2054961023) index="0" unique_id=55149004]
+[node name="StaticBody3D" parent="Tunnel/Wires" parent_id_path=PackedInt32Array(1691195186, 1004736230) index="0" unique_id=1748009841]
 collision_layer = 9
 
-[node name="StaticBody3D" parent="Tunnel/Tube" parent_id_path=PackedInt32Array(1691195186, 1524302594) index="0" unique_id=1395476066]
+[node name="StaticBody3D" parent="Tunnel/Tube" parent_id_path=PackedInt32Array(1691195186, 590597059) index="0" unique_id=1322940780]
 collision_layer = 9
 
 [node name="TunnelPath" type="Path3D" parent="." unique_id=1324841921]

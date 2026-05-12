@@ -139,8 +139,6 @@ func _on_terminal_solved(terminal: Area3D) -> void:
 
 
 func _go_to_level_2() -> void:
-	for node in get_tree().get_nodes_in_group("small_monsters"):
-		node.queue_free()
 	GameState.complete_level()
 
 
