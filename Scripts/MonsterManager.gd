@@ -4,7 +4,8 @@ extends Node
 var player : Node3D
 var playerTarget : Node3D
 var timer : float = 2
-var SmallMonster = load("res://SmallMonster.tscn")
+@export
+var SmallMonster : Resource
 @export
 var spawnPoints : Array[Node3D]
 
@@ -20,7 +21,7 @@ func _process(delta: float) -> void:
 		
 	
 func spawn_smallmonster():
-	var node : Node3D = SmallMonster.instantiate()
+	var node : RigidBody3D = SmallMonster.instantiate()
 	node.playerTarget = playerTarget
 	self.add_child(node)
 	node.add_to_group("small_monsters")

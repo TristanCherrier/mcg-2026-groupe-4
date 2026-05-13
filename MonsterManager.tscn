@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://c68cnxdxawm3j"]
 
 [ext_resource type="Script" uid="uid://opiyjffjs7t2" path="res://Scripts/MonsterManager.gd" id="1_5hniu"]
+[ext_resource type="PackedScene" uid="uid://dynh7gxk6nir2" path="res://SmallMonster.tscn" id="2_b2jst"]
 
 [node name="MonsterManager" type="Node3D" unique_id=172152581 node_paths=PackedStringArray("spawnPoints")]
 script = ExtResource("1_5hniu")
+SmallMonster = ExtResource("2_b2jst")
 spawnPoints = [NodePath("SpawnPoint0"), NodePath("SpawnPoint1"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3")]
 
 [node name="SpawnPoint0" type="Node3D" parent="." unique_id=1914715799]

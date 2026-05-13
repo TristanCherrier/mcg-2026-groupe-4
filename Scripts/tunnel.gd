@@ -6,6 +6,8 @@ extends Node3D
 var player_body : Node3D
 @export
 var FollowNode : PathFollow3D
+@export
+var audio_player : AudioStreamPlayer3D
 var wish_speed : float = 0
 var speed : float = 0
 var max_speed : float = 90
@@ -17,6 +19,7 @@ func _ready() -> void:
 	GameState.set_objective("Echappez vous!")
 	GameState.set_help("Z pour avancer, Souris pour s'orienter.")
 	hud.configure("Niveau 3 - Poursuite", false, false)
+	audio_player.play()
 	FollowNode.progress = 0
 
 func _process(delta: float) -> void:

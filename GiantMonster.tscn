@@ -1,23 +1,18 @@
 [gd_scene format=3 uid="uid://dtqqdu73iaipp"]
 
 [ext_resource type="Script" uid="uid://jm5w16jy65jd" path="res://Scripts/giant_monster.gd" id="1_61kqj"]
-[ext_resource type="PackedScene" uid="uid://c3cuyupwi4rtr" path="res://Imports/ptitmonstre.glb" id="1_wya5j"]
-[ext_resource type="AudioStream" uid="uid://d2im1u28rp76d" path="res://Sounds/clang.mp3" id="3_obclv"]
+[ext_resource type="PackedScene" uid="uid://d33au4lvbmgow" path="res://ptitmonstre.tscn" id="2_61kqj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_61kqj"]
 size = Vector3(1.2424316, 1.2861328, 0.94433594)
 
-[node name="GiantMonster" type="Node3D" unique_id=891362101 node_paths=PackedStringArray("animation_player")]
+[node name="GiantMonster" type="Node3D" unique_id=891362101 node_paths=PackedStringArray("animation_player", "audio_player")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 script = ExtResource("1_61kqj")
-animation_player = NodePath("passiptitmonstre/AnimationPlayer")
+animation_player = NodePath("ptitmonstre/ptitmonstre/AnimationPlayer")
+audio_player = NodePath("ptitmonstre/AudioStreamPlayer3D")
 
-[node name="passiptitmonstre" parent="." unique_id=1907063195 instance=ExtResource("1_wya5j")]
-
-[node name="Skeleton3D" parent="passiptitmonstre/Armature" parent_id_path=PackedInt32Array(1907063195, 944389059) index="0" unique_id=1615372679]
-bones/0/position = Vector3(0.025326263, 0.020305907, 0.48422155)
-bones/1/rotation = Quaternion(0.9966373, 7.6189485e-07, -5.4103015e-07, 0.08193954)
-bones/2/rotation = Quaternion(0.9833231, 9.604375e-07, -8.8329216e-07, -0.18186715)
+[node name="ptitmonstre" parent="." unique_id=423742082 instance=ExtResource("2_61kqj")]
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1998061700]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.09552017)
@@ -39,10 +34,7 @@ spot_range = 81.27012
 spot_attenuation = 0.5
 spot_angle = 7.1803017
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=101398252]
-stream = ExtResource("3_obclv")
-bus = &"Tunnel"
-
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 
-[editable path="passiptitmonstre"]
+[editable path="ptitmonstre"]
+[editable path="ptitmonstre/ptitmonstre"]

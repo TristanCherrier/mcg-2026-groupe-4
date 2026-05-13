@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://b67wi12xuykg1" path="res://Imports/exhaust.glb" id="3_qyh8x"]
 [ext_resource type="PackedScene" uid="uid://bkp3iqyyuwuhf" path="res://thruster_flame.tscn" id="4_0p50t"]
 [ext_resource type="Script" uid="uid://d2nwvd48bgh5e" path="res://Scripts/ship_cam.gd" id="5_oj4er"]
+[ext_resource type="AudioStream" uid="uid://surcx7q76ov5" path="res://Sounds/thrust.ogg" id="6_pb2vj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpsff"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.5094678, 0.9999998, 0.98755187, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s441t"]
 radius = 0.18457031
@@ -22,7 +28,7 @@ radius = 0.1
 
 [node name="Ship" type="Node3D" unique_id=1728071699]
 
-[node name="ship_rb" type="RigidBody3D" parent="." unique_id=50604899 node_paths=PackedStringArray("exhaust", "flame", "sub_flame", "sub_flame2")]
+[node name="ship_rb" type="RigidBody3D" parent="." unique_id=50604899 node_paths=PackedStringArray("exhaust", "flame", "sub_flame", "sub_flame2", "thruster_light", "audio_player")]
 collision_layer = 3
 physics_material_override = ExtResource("1_7se24")
 gravity_scale = 0.0
@@ -37,6 +43,8 @@ exhaust = NodePath("exhaust")
 flame = NodePath("exhaust/thruster_flame")
 sub_flame = NodePath("exhaust/thruster_flame/Thruster_Flame")
 sub_flame2 = NodePath("exhaust/thruster_flame/Thruster_Flame2")
+thruster_light = NodePath("OmniLight3D")
+audio_player = NodePath("exhaust/AudioStreamPlayer3D")
 
 [node name="ship_frame" parent="ship_rb" unique_id=503982954 instance=ExtResource("2_7se24")]
 
@@ -44,13 +52,19 @@ sub_flame2 = NodePath("exhaust/thruster_flame/Thruster_Flame2")
 transform = Transform3D(1, 0, 0, 0, 0.99863863, -0.052161664, 0, 0.052161664, 0.99863863, 0, 0, 0)
 
 [node name="thruster_flame" parent="ship_rb/exhaust" unique_id=882116047 instance=ExtResource("4_0p50t")]
-transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 0.009555028, 0.18293166)
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0.009555028, 0.18293166)
 
-[node name="Thruster_Flame" parent="ship_rb/exhaust/thruster_flame" index="0" unique_id=401044362]
+[node name="Thruster_Flame" parent="ship_rb/exhaust/thruster_flame" index="0" unique_id=1060644940]
 layers = 32
+material_override = SubResource("StandardMaterial3D_xpsff")
 
 [node name="Thruster_Flame2" parent="ship_rb/exhaust/thruster_flame" index="1" unique_id=1559257390]
 layers = 32
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ship_rb/exhaust" unique_id=461629023]
+transform = Transform3D(1, 0, 0, 0, 0.99863875, 0.05216167, 0, -0.05216167, 0.99863875, 0, 0.009560182, 0.18303032)
+stream = ExtResource("6_pb2vj")
+bus = &"Ship"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ship_rb" unique_id=17168898]
 transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 1.9106855e-15, 0, -1.5559376e-08, -0.10428858)
@@ -68,6 +82,10 @@ spot_range = 300.0
 spot_attenuation = 0.25
 spot_angle_attenuation = 3.0
 
+[node name="OmniLight3D" type="OmniLight3D" parent="ship_rb" unique_id=965153848]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.28204346)
+light_color = Color(0, 0.7999997, 1, 1)
+
 [node name="SpringArm3D" type="SpringArm3D" parent="ship_rb" unique_id=2135796650]
 collision_mask = 8
 shape = SubResource("SphereShape3D_7se24")
@@ -82,8 +100,6 @@ spring_length = 0.6
 [node name="cam_target" type="Node3D" parent="ship_rb/SpringArm3D/SpringArm3D/Node3D" unique_id=1552464347]
 
 [node name="back_cam_target" type="Node3D" parent="ship_rb/SpringArm3D" unique_id=487506444]
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ship_rb" unique_id=1080245201]
 
 [node name="ship_cam" type="Camera3D" parent="." unique_id=1167908812 node_paths=PackedStringArray("ship_body", "target", "back_target", "back_cam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 2)

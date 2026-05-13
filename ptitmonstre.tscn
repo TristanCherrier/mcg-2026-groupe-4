@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d33au4lvbmgow"]
+
+[ext_resource type="PackedScene" uid="uid://c3cuyupwi4rtr" path="res://Imports/ptitmonstre.glb" id="1_aa4q0"]
+
+[node name="ptitmonstre" type="Node3D" unique_id=423742082]
+
+[node name="ptitmonstre" parent="." unique_id=2038276936 instance=ExtResource("1_aa4q0")]
+
+[node name="Skeleton3D" parent="ptitmonstre/Armature" parent_id_path=PackedInt32Array(2038276936, 495655664) index="0" unique_id=1292151523]
+bones/0/position = Vector3(0.025326263, 0.020305907, 0.48422155)
+bones/1/rotation = Quaternion(0.9966373, 7.6189485e-07, -5.4103015e-07, 0.08193954)
+bones/2/rotation = Quaternion(0.9833231, 9.604375e-07, -8.8329216e-07, -0.18186715)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=597201933]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3453385)
+
+[editable path="ptitmonstre"]

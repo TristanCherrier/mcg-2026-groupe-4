@@ -1,61 +1,44 @@
-[gd_scene format=3 uid="uid://d33au4lvbmgow"]
+[gd_scene format=3 uid="uid://dynh7gxk6nir2"]
 
-[ext_resource type="Script" uid="uid://cpsbuacaqts81" path="res://Scripts/small_monster.gd" id="1_kju4l"]
-[ext_resource type="PackedScene" uid="uid://c3cuyupwi4rtr" path="res://Imports/ptitmonstre.glb" id="2_fgeg3"]
+[ext_resource type="Script" uid="uid://6qy3havc7a7l" path="res://Scripts/small_monster.gd" id="1_kju4l"]
+[ext_resource type="PackedScene" uid="uid://d33au4lvbmgow" path="res://ptitmonstre.tscn" id="2_fgeg3"]
 [ext_resource type="PackedScene" uid="uid://bkp3iqyyuwuhf" path="res://thruster_flame.tscn" id="3_fgeg3"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_iry7b"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_jxt15"]
+radius = 0.05
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wh7m3"]
-cull_mode = 1
-shading_mode = 0
-albedo_color = Color(1, 0.8360001, 0.18, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2s5v5"]
-cull_mode = 1
-shading_mode = 0
-albedo_color = Color(1, 0.37, 0.100000024, 1)
-
-[node name="Small_Monster" type="RigidBody3D" unique_id=1489345249 node_paths=PackedStringArray("animation_player")]
+[node name="SmallMonster" type="RigidBody3D" unique_id=1328453682 node_paths=PackedStringArray("animation_player", "audio_player")]
 collision_layer = 3
-collision_mask = 7
+collision_mask = 5
+mass = 2.0
 gravity_scale = 0.0
-linear_damp = 2.0
+linear_damp = 1.0
 script = ExtResource("1_kju4l")
-animation_player = NodePath("CollisionShape3D/ptitmonstre/AnimationPlayer")
+animation_player = NodePath("ptitmonstre/ptitmonstre/AnimationPlayer")
+audio_player = NodePath("ptitmonstre/AudioStreamPlayer3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=587937684]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-shape = SubResource("SphereShape3D_iry7b")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=888046412]
+shape = SubResource("SphereShape3D_jxt15")
 
-[node name="ptitmonstre" parent="CollisionShape3D" unique_id=186284791 instance=ExtResource("2_fgeg3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.057247043, -0.08483809)
+[node name="ptitmonstre" parent="." unique_id=423742082 instance=ExtResource("2_fgeg3")]
+transform = Transform3D(0.105, 0, 0, 0, 0.105, 0, 0, 0, 0.105, -0.0038338713, 0, -0.005102109)
 
-[node name="ptitmonstre" parent="CollisionShape3D/ptitmonstre/Armature/Skeleton3D" parent_id_path=PackedInt32Array(186284791, 2020859258) index="0" unique_id=59050467]
-layers = 8
+[node name="thruster_flame" parent="." unique_id=1096492100 instance=ExtResource("3_fgeg3")]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0.0018399656, 0.083116524)
+metadata/_edit_group_ = true
 
-[node name="thruster_flame" parent="." unique_id=882116047 instance=ExtResource("3_fgeg3")]
-transform = Transform3D(0.21297231, 0, 0, 0, 0.22558902, 0, 0, 0, 0.1964219, 0.0042051314, -0.0025343716, 0.08918501)
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1629045327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.10522712)
+light_color = Color(1, 0.43333334, 0, 1)
 
-[node name="Thruster_Flame" parent="thruster_flame" index="0" unique_id=1803452053]
-material_override = SubResource("StandardMaterial3D_wh7m3")
-
-[node name="Thruster_Flame2" parent="thruster_flame" index="1" unique_id=308824746]
-material_override = SubResource("StandardMaterial3D_2s5v5")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=456656397]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.12993655)
-light_color = Color(1, 0.5, 0, 1)
-omni_range = 0.887
-
-[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1407377330]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.006573051, -0.056126542)
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=632867627]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.049828008)
 light_color = Color(1, 0, 0, 1)
-light_energy = 7.2
-spot_range = 10.0
-spot_angle = 10.0
+spot_range = 20.0
+spot_angle = 5.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 
-[editable path="CollisionShape3D/ptitmonstre"]
+[editable path="ptitmonstre"]
+[editable path="ptitmonstre/ptitmonstre"]
 [editable path="thruster_flame"]

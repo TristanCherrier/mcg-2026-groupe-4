@@ -3,4 +3,4 @@
 [resource]
 cull_mode = 1
 shading_mode = 0
-albedo_color = Color(0, 0.827451, 1, 1)
+albedo_color = Color(0, 0.75900024, 0.99, 1)

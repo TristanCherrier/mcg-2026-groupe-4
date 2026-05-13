@@ -5,12 +5,16 @@ signal fell
 @export
 var CamNode : Node3D
 @export
-var speed_scale : float = 0.3
+var audio_player : AudioStreamPlayer3D
+@export
+var max_speed : float = 0.3
+var smooth_speed : float = 0
 var going : bool
 var respawn_lock = false
 var respawn_safe_time = 0.0
 
 func _ready() -> void:
+	Utils.schedule(audio_player, "play", 0.01)
 	add_to_group("foot_player")
 	var robot_root = get_parent()
 	if robot_root != null:
@@ -19,29 +23,32 @@ func _ready() -> void:
 		if body_rb != null:
 			body_rb.add_to_group("foot_player")
 
-func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
+func _physics_process(delta: float) -> void:
+	audio_player.pitch_scale = 1 + smooth_speed * smooth_speed
+	audio_player.volume_db = -80 + remap(smooth_speed, 0, max_speed, 0 ,1) * 80
+	
 	going = false
 	if Input.is_action_pressed("Roll_Forward"):
-		apply_torque(-CamNode.global_basis.x * (angular_damp * speed_scale + 1))
+		apply_torque(-CamNode.global_basis.x * (angular_damp * smooth_speed + 1))
 		going = true
 	if Input.is_action_pressed("Roll_Back"):
-		apply_torque(CamNode.global_basis.x * (angular_damp * speed_scale + 1))
+		apply_torque(CamNode.global_basis.x * (angular_damp * smooth_speed + 1))
 		going = true
 	if Input.is_action_pressed("Roll_Left"):
-		apply_torque(CamNode.global_basis.z * (angular_damp * speed_scale + 1))
+		apply_torque(CamNode.global_basis.z * (angular_damp * smooth_speed + 1))
 		going = true
 	if Input.is_action_pressed("Roll_Right"):
-		apply_torque(-CamNode.global_basis.z * (angular_damp * speed_scale + 1))
+		apply_torque(-CamNode.global_basis.z * (angular_damp * smooth_speed + 1))
 		going = true
 		
 	if going:
 		lock_rotation = false
+		smooth_speed = lerpf(smooth_speed, max_speed, 10 * delta)
 	else:
 		lock_rotation = true
-
-
-func _physics_process(_delta: float) -> void:
-	respawn_safe_time = maxf(respawn_safe_time - _delta, 0.0)
+		smooth_speed = lerpf(smooth_speed, 0, 3 * delta)
+	
+	respawn_safe_time = maxf(respawn_safe_time - delta, 0.0)
 	if global_position.y < -8.0 and not respawn_lock and respawn_safe_time <= 0.0:
 		respawn_lock = true
 		fell.emit()
