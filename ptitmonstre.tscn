@@ -4,9 +4,9 @@
 
 [node name="ptitmonstre" type="Node3D" unique_id=423742082]
 
-[node name="ptitmonstre" parent="." unique_id=2038276936 instance=ExtResource("1_aa4q0")]
+[node name="ptitmonstre" parent="." unique_id=1022089804 instance=ExtResource("1_aa4q0")]
 
-[node name="Skeleton3D" parent="ptitmonstre/Armature" parent_id_path=PackedInt32Array(2038276936, 495655664) index="0" unique_id=1292151523]
+[node name="Skeleton3D" parent="ptitmonstre/Armature" parent_id_path=PackedInt32Array(1022089804, 65097567) index="0" unique_id=1203994328]
 bones/0/position = Vector3(0.025326263, 0.020305907, 0.48422155)
 bones/1/rotation = Quaternion(0.9966373, 7.6189485e-07, -5.4103015e-07, 0.08193954)
 bones/2/rotation = Quaternion(0.9833231, 9.604375e-07, -8.8329216e-07, -0.18186715)

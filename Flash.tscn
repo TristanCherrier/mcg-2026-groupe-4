@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://tvph5mrds3gt"]
 
-[ext_resource type="Script" path="res://Scripts/flash.gd" id="1_0dd8c"]
+[ext_resource type="Script" uid="uid://d3bej0fysikvt" path="res://Scripts/flash.gd" id="1_0dd8c"]
 [ext_resource type="Material" uid="uid://cb6f1q26hyuod" path="res://Materials/flash.tres" id="2_ak60a"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_crsa2"]
@@ -15,18 +15,21 @@ height = 1.2
 script = ExtResource("1_0dd8c")
 
 [node name="zone" type="Area3D" parent="." unique_id=953223396]
-visible = false
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="zone" unique_id=925619980]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.607392)
-visible = false
 shape = SubResource("ConvexPolygonShape3D_crsa2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1033714121]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="zone" unique_id=1033714121]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.607392)
 material_override = ExtResource("2_ak60a")
 mesh = SubResource("CylinderMesh_t7r3x")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=2076445617]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.097008824)
+light_energy = 10.0
 
 [connection signal="body_entered" from="zone" to="." method="_on_area_3d_body_entered"]
