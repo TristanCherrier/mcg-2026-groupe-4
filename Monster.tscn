@@ -24,7 +24,7 @@ shape = SubResource("CapsuleShape3D_vb3nq")
 [node name="Monster" parent="." unique_id=326685904 instance=ExtResource("1_vb3nq")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Monster/rig_001" parent_id_path=PackedInt32Array(326685904, 893925075) index="0" unique_id=2113359885]
+[node name="Skeleton3D" parent="Monster/rig_001" parent_id_path=PackedInt32Array(326685904, 1992419856) index="0" unique_id=809597979]
 bones/1/position = Vector3(1.12612874e-13, 0.797837, 1.1646031)
 bones/1/rotation = Quaternion(0.9940072, 6.7393075e-13, 7.473034e-12, 0.10931495)
 bones/1/scale = Vector3(1, 0.99999976, 1.0000192)

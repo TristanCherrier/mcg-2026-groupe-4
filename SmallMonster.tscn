@@ -28,17 +28,13 @@ transform = Transform3D(0.105, 0, 0, 0, 0.105, 0, 0, 0, 0.105, -0.0038338713, 0,
 transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0.0018399656, 0.083116524)
 metadata/_edit_group_ = true
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="thruster_flame" unique_id=1855539282]
-transform = Transform3D(-3.9215686, 0, 3.4283443e-07, 0, 3.9215686, 0, -3.4283443e-07, 0, -3.9215686, 0, 0, 0)
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="thruster_flame" unique_id=93297049]
 stream = ExtResource("4_iry7b")
 volume_db = -24.0
+unit_size = 3.0
 max_db = -12.0
-pitch_scale = 1.7
+pitch_scale = 1.5
 autoplay = true
-bus = &"Classroom"
-emission_angle_enabled = true
-emission_angle_degrees = 90.0
-attenuation_filter_cutoff_hz = 6518.0
 doppler_tracking = 2
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1629045327]
