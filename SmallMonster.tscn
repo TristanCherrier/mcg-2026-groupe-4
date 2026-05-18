@@ -35,6 +35,7 @@ unit_size = 3.0
 max_db = -12.0
 pitch_scale = 1.5
 autoplay = true
+bus = &"Classroom"
 doppler_tracking = 2
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1629045327]
