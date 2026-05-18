@@ -28,8 +28,6 @@ var terminal_display_map: Dictionary = {}
 @onready var hud: CanvasLayer = $HUD
 @onready var architecture_root: Node3D = $Architecture
 @onready var decor_root: Node3D = $Decor
-@onready var gameplay_root: Node3D = $GameplayNodes
-@onready var npc_root: Node3D = $NPCs
 @onready var light_root: Node3D = $AccentLights
 
 
@@ -50,7 +48,7 @@ func _ready() -> void:
 func _build_level() -> void:
 	var screen_nodes: Array[Node3D] = []
 	for path in TERMINAL_SCREEN_PATHS:
-		var screen_node = $Classroom.get_node_or_null(path) as Node3D
+		var screen_node = get_node_or_null(path) as Node3D
 		if screen_node != null:
 			screen_nodes.append(screen_node)
 

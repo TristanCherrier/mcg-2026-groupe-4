@@ -13,6 +13,11 @@ cull_mode = 1
 shading_mode = 0
 albedo_color = Color(0.5094678, 0.9999998, 0.98755187, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pb2vj"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0.75900024, 0.99, 1)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s441t"]
 radius = 0.18457031
 height = 1.0556641
@@ -52,7 +57,7 @@ audio_player = NodePath("exhaust/AudioStreamPlayer3D")
 transform = Transform3D(1, 0, 0, 0, 0.99863863, -0.052161664, 0, 0.052161664, 0.99863863, 0, 0, 0)
 
 [node name="thruster_flame" parent="ship_rb/exhaust" unique_id=882116047 instance=ExtResource("4_0p50t")]
-transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0.009555028, 0.18293166)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.009555028, 0.18293166)
 
 [node name="Thruster_Flame" parent="ship_rb/exhaust/thruster_flame" index="0" unique_id=1060644940]
 layers = 32
@@ -60,6 +65,7 @@ material_override = SubResource("StandardMaterial3D_xpsff")
 
 [node name="Thruster_Flame2" parent="ship_rb/exhaust/thruster_flame" index="1" unique_id=1559257390]
 layers = 32
+material_override = SubResource("StandardMaterial3D_pb2vj")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ship_rb/exhaust" unique_id=461629023]
 transform = Transform3D(1, 0, 0, 0, 0.99863875, 0.05216167, 0, -0.05216167, 0.99863875, 0, 0.009560182, 0.18303032)

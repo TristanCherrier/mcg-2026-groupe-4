@@ -12,7 +12,7 @@ func _on_menu_button_pressed() -> void:
 
 func _on_restart_button_pressed() -> void:
 	GameState.reset_run()
-	GameState.go_to_scene("res://Scenes/Levels/Level1.tscn")
+	GameState.go_to_scene("res://Scenes/Levels/Classroom.tscn")
 
 
 func _on_quit_button_pressed() -> void:

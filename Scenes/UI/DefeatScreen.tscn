@@ -65,6 +65,7 @@ text = "Défaite"
 horizontal_alignment = 1
 
 [node name="ReasonLabel" type="Label" parent="CenterContainer/Panel/VBoxContainer" unique_id=1002126984]
+custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Le robot a cessé de fonctionner."

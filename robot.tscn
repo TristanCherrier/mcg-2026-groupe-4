@@ -15,6 +15,12 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_ru5oq"]
 radius = 0.11
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fsqyg"]
+random_pitch = 1.0905077
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("4_754th")
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yyxj1"]
 radius = 0.12207031
 height = 0.36702538
@@ -39,6 +45,7 @@ shape = SubResource("SphereShape3D_ru5oq")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ball_rb" unique_id=910427147]
 stream = ExtResource("4_fsqyg")
+unit_size = 0.66
 bus = &"Robot"
 
 [node name="body_rb" type="RigidBody3D" parent="." unique_id=1075911092]
@@ -63,9 +70,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.045, -0.1)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="body_rb/robot_head/robot_head2/Flash" unique_id=932131524]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.196, 0.1)
-stream = ExtResource("4_754th")
+stream = SubResource("AudioStreamRandomizer_fsqyg")
 volume_db = -25.0
-bus = &"Classroom"
+bus = &"Robot"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body_rb" unique_id=1253267929]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08342457, 0)

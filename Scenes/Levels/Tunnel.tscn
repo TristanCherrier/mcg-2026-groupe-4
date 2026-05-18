@@ -7,6 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://b1ecugfkk7yk6" path="res://Sounds/rumble.ogg" id="4_waie4"]
 [ext_resource type="PackedScene" uid="uid://cm6gj324r6uw8" path="res://Scenes/UI/HUD.tscn" id="5_yhws4"]
 [ext_resource type="Material" uid="uid://cg50y2cjesa1p" path="res://Materials/m_car_headlights.tres" id="6_la4or"]
+[ext_resource type="AudioStream" uid="uid://cjv5enp187ncy" path="res://Sounds/slam.ogg" id="6_yhws4"]
+[ext_resource type="PackedScene" uid="uid://s0hh28su0dx8" path="res://Imports/Grate.glb" id="8_qt3k8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6no5b"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -32,6 +34,15 @@ _data = {
 }
 point_count = 10
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qt3k8"]
+size = Vector3(23.730469, 25.86621, 24.764648)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yhws4"]
+size = Vector3(23.730469, 25.86621, 8.564453)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_waie4"]
+size = Vector3(26.767578, 24.526367, 13.136719)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_la4or"]
 size = Vector3(10, 10, 10)
 
@@ -41,17 +52,18 @@ size = Vector3(10, 10, 10)
 [sub_resource type="ViewportTexture" id="ViewportTexture_74vla"]
 viewport_path = NodePath("Ship/SubViewport")
 
-[node name="Tunnel" type="Node3D" unique_id=49538784 node_paths=PackedStringArray("player_body", "FollowNode", "audio_player")]
+[node name="Tunnel" type="Node3D" unique_id=49538784 node_paths=PackedStringArray("player_body", "FollowNode", "audio_players")]
 script = ExtResource("1_slrk2")
 player_body = NodePath("Ship/ship_rb")
 FollowNode = NodePath("TunnelPath/PathFollow3D")
-audio_player = NodePath("TunnelPath/PathFollow3D/AudioStreamPlayer3D")
+audio_players = [NodePath("TunnelPath/PathFollow3D/MonsterAudioPlayer"), NodePath("Grate/StaticBody3D/GrateAudioPlayer")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=736711453]
 environment = SubResource("Environment_b0qxh")
 
 [node name="Tunnel" parent="." unique_id=1691195186 instance=ExtResource("2_la4or")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+metadata/_edit_group_ = true
 
 [node name="StaticBody3D" parent="Tunnel/Pipes4" parent_id_path=PackedInt32Array(1691195186, 1333114593) index="0" unique_id=135237289]
 collision_layer = 9
@@ -76,15 +88,15 @@ transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 
 curve = SubResource("Curve3D_si3wf")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="TunnelPath" unique_id=1699960121]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 341.20013, 64.606255, 209.05043)
 
 [node name="GiantMonster" parent="TunnelPath/PathFollow3D" unique_id=891362101 instance=ExtResource("3_waie4")]
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TunnelPath/PathFollow3D" unique_id=676177211]
+[node name="MonsterAudioPlayer" type="AudioStreamPlayer3D" parent="TunnelPath/PathFollow3D" unique_id=676177211]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0.14531599)
 stream = ExtResource("4_waie4")
-volume_db = -80.0
-bus = &"Ship"
+bus = &"Tunnel"
 
 [node name="Ship" parent="." unique_id=1728071699 instance=ExtResource("4_qt3k8")]
 transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 0.99999994, -187.64429, 9.323326, 38.372868)
@@ -98,10 +110,50 @@ back_sprite = NodePath("../../HUD/control/Sprite2D")
 [node name="SubViewport" parent="Ship" index="2" unique_id=1168633200]
 size = Vector2i(320, 180)
 
+[node name="Grate" type="Node3D" parent="." unique_id=1039978503]
+metadata/_edit_group_ = true
+
+[node name="GrateZone" type="Area3D" parent="Grate" unique_id=123769286]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -185.02261, 16.393602, 23.052416)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grate/GrateZone" unique_id=1140495553]
+transform = Transform3D(0.9766499, -0.104752414, -0.18756934, 0.02904227, 0.9294337, -0.3678445, 0.21286583, 0.3538077, 0.91077346, -1.1994019, -1.5912247, 3.824955)
+shape = SubResource("BoxShape3D_qt3k8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Grate" unique_id=1666627525]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -185.02261, 16.393602, 23.052416)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grate/StaticBody3D" unique_id=963862815]
+transform = Transform3D(0.9766499, -0.104752414, -0.18756934, 0.02904227, 0.9294337, -0.3678445, 0.21286583, 0.3538077, 0.91077346, 0.31991577, 1.3883514, -3.5523987)
+shape = SubResource("BoxShape3D_yhws4")
+
+[node name="GrateAudioPlayer" type="AudioStreamPlayer3D" parent="Grate/StaticBody3D" unique_id=1831180084]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+stream = ExtResource("6_yhws4")
+volume_db = 9.0
+unit_size = 30.0
+bus = &"Tunnel"
+
+[node name="Grate" parent="Grate" unique_id=1378061578 instance=ExtResource("8_qt3k8")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="StartZone" type="Area3D" parent="." unique_id=1536424304]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9354012, 0.35358915, 0, -0.35358924, 0.9354008, -125.04801, -46.984512, 78.929016)
+collision_layer = 0
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartZone" unique_id=891220159]
+transform = Transform3D(0.9905718, 0.006983877, 0.13681662, 0.008822084, 0.9933755, -0.11458054, -0.13671048, 0.11470708, 0.98394793, 0, 0, 0)
+shape = SubResource("BoxShape3D_waie4")
+
 [node name="FinishZone" type="Area3D" parent="." unique_id=1020679457]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5)
 collision_layer = 0
 collision_mask = 2
+metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone" unique_id=1050659707]
 shape = SubResource("BoxShape3D_la4or")
@@ -134,6 +186,8 @@ anchor_bottom = 1.0
 texture = SubResource("ViewportTexture_74vla")
 centered = false
 
+[connection signal="area_entered" from="Grate/GrateZone" to="." method="_on_grate_zone_area_entered"]
+[connection signal="body_entered" from="StartZone" to="." method="_on_start_zone_body_entered"]
 [connection signal="body_entered" from="FinishZone" to="." method="_on_finish_body_entered"]
 
 [editable path="Tunnel"]

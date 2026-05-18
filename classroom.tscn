@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://be0hgt7gls2r3"]
 
 [ext_resource type="PackedScene" uid="uid://c68cnxdxawm3j" path="res://MonsterManager.tscn" id="1_0hcv4"]
-[ext_resource type="PackedScene" uid="uid://dxyrscfjwxhlr" path="res://classroom_2.tscn" id="1_6e7js"]
+[ext_resource type="PackedScene" uid="uid://n10p2bde28ce" path="res://Imports/Classroom/classroom.glb" id="2_5spf0"]
 [ext_resource type="PackedScene" uid="uid://cptgpngwtjs8p" path="res://Imports/Classroom/table.glb" id="2_wx4mr"]
 [ext_resource type="PackedScene" uid="uid://cr74o1fgw2nop" path="res://Imports/Classroom/plug_strip.glb" id="3_6e7js"]
 [ext_resource type="PackedScene" uid="uid://dopko7uc5xypi" path="res://Imports/Classroom/computer.glb" id="4_0hcv4"]
@@ -39,7 +39,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6712158, 2.869998, 3.30286
 [node name="SpawnPoint3" parent="MonsterManager" index="3" unique_id=119590466]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5580606, 2.8058972, 3.2090364)
 
-[node name="classroom2" parent="." unique_id=619868367 instance=ExtResource("1_6e7js")]
+[node name="classroom" parent="." unique_id=1269944115 instance=ExtResource("2_5spf0")]
 
 [node name="Tables" type="Node3D" parent="." unique_id=1287314034]
 

@@ -11,7 +11,7 @@ func _ready() -> void:
 
 func _on_start_button_pressed() -> void:
 	GameState.reset_run()
-	GameState.go_to_scene("res://Scenes/Levels/Level1.tscn")
+	GameState.go_to_scene("res://Scenes/Levels/Classroom.tscn")
 
 
 func _on_controls_button_pressed() -> void:

@@ -24,6 +24,9 @@ var mouse_motion : Vector2
 var LocalVelocity : Vector3 = Vector3.ZERO
 func get_LocalVelocity(): return LocalVelocity
 
+func _enter_tree() -> void:
+	flame.scale = Vector3.ZERO
+
 func _ready() -> void:
 	Utils.schedule(audio_player, "play", 0.01)
 	

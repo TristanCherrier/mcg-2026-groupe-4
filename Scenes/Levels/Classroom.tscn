@@ -1,0 +1,570 @@
+[gd_scene format=3 uid="uid://2r5vtebmrixa"]
+
+[ext_resource type="Script" uid="uid://cydaurjkgqk00" path="res://Scripts/level1.gd" id="1_jdpnn"]
+[ext_resource type="PackedScene" uid="uid://bs34uwx0qsad3" path="res://robot.tscn" id="2_etplg"]
+[ext_resource type="PackedScene" uid="uid://cm6gj324r6uw8" path="res://Scenes/UI/HUD.tscn" id="3_lfl3p"]
+[ext_resource type="PackedScene" uid="uid://c68cnxdxawm3j" path="res://MonsterManager.tscn" id="4_no2uv"]
+[ext_resource type="PackedScene" uid="uid://n10p2bde28ce" path="res://Imports/Classroom/classroom.glb" id="5_3rtmh"]
+[ext_resource type="PackedScene" uid="uid://cptgpngwtjs8p" path="res://Imports/Classroom/table.glb" id="6_y1v1j"]
+[ext_resource type="PackedScene" uid="uid://cr74o1fgw2nop" path="res://Imports/Classroom/plug_strip.glb" id="7_8t4p5"]
+[ext_resource type="PackedScene" uid="uid://dopko7uc5xypi" path="res://Imports/Classroom/computer.glb" id="8_qfg4b"]
+[ext_resource type="PackedScene" uid="uid://bfghiccahw1um" path="res://Imports/Classroom/screen.glb" id="9_pofr8"]
+[ext_resource type="PackedScene" uid="uid://qibyhbciwxik" path="res://Imports/Classroom/keyboard.glb" id="10_43xhk"]
+[ext_resource type="PackedScene" uid="uid://cl3e0q0h40lf8" path="res://Imports/Classroom/mouse.glb" id="11_3mckp"]
+[ext_resource type="PhysicsMaterial" uid="uid://b14psdio4rvtv" path="res://Phys_Materials/pm_chair.tres" id="12_lico1"]
+[ext_resource type="PackedScene" uid="uid://byf5mpdrpeim1" path="res://Imports/Classroom/chair.glb" id="13_tgio6"]
+[ext_resource type="PhysicsMaterial" uid="uid://c2o0toilrsgpm" path="res://Phys_Materials/pm_classroom_floor.tres" id="14_wl5q7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="1"]
+sky_horizon_color = Color(0.74, 0.81, 0.88, 1)
+ground_horizon_color = Color(0.64, 0.69, 0.76, 1)
+
+[sub_resource type="Sky" id="2"]
+sky_material = SubResource("1")
+
+[sub_resource type="Environment" id="3"]
+background_mode = 2
+sky = SubResource("2")
+ambient_light_source = 2
+ambient_light_energy = 1.5
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dq1bd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b7wwv"]
+size = Vector3(1.5920639, 1.4169312, 0.69955444)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qeug4"]
+size = Vector3(0.4489746, 0.7763672, 0.47540283)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8t0m7"]
+size = Vector3(11.327148, 2.6334658, 10.172852)
+
+[node name="Classroom" type="Node3D" unique_id=705659379]
+script = ExtResource("1_jdpnn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=456976068]
+environment = SubResource("3")
+
+[node name="Architecture" type="Node3D" parent="." unique_id=190852369]
+
+[node name="Decor" type="Node3D" parent="." unique_id=363808171]
+
+[node name="AccentLights" type="Node3D" parent="." unique_id=990747505]
+
+[node name="Robot" parent="." unique_id=551744746 instance=ExtResource("2_etplg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 3)
+
+[node name="MonsterManager" parent="." unique_id=172152581 node_paths=PackedStringArray("player") instance=ExtResource("4_no2uv")]
+player = NodePath("../Robot")
+
+[node name="SpawnPoint0" parent="MonsterManager" index="0" unique_id=1914715799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5166378, 2.3629239, -2.8385105)
+
+[node name="SpawnPoint1" parent="MonsterManager" index="1" unique_id=714348468]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.59859, 2.7248795, -3.0494828)
+
+[node name="SpawnPoint2" parent="MonsterManager" index="2" unique_id=578697405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6712158, 2.869998, 3.302866)
+
+[node name="SpawnPoint3" parent="MonsterManager" index="3" unique_id=119590466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5580606, 2.8058972, 3.2090364)
+
+[node name="classroom" parent="." unique_id=1269944115 instance=ExtResource("5_3rtmh")]
+
+[node name="Tables" type="Node3D" parent="." unique_id=799241904]
+
+[node name="table2SB" type="StaticBody3D" parent="Tables" unique_id=650154186]
+physics_material_override = SubResource("PhysicsMaterial_dq1bd")
+
+[node name="table2" parent="Tables/table2SB" unique_id=1181538352 instance=ExtResource("6_y1v1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8319507, 0, -2.9461558)
+
+[node name="plug_strip2" parent="Tables/table2SB/table2" unique_id=1162288864 instance=ExtResource("7_8t4p5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.09862709, 0.5526746, -0.3105018)
+
+[node name="computer3" parent="Tables/table2SB/table2" unique_id=1107305782 instance=ExtResource("8_qfg4b")]
+transform = Transform3D(0.99979043, 0, -0.020471282, 0, 1, 0, 0.020471282, 0, 0.99979043, 0.621449, 0.55149186, -0.11918759)
+
+[node name="screen4" parent="Tables/table2SB/table2" unique_id=643107377 instance=ExtResource("9_pofr8")]
+transform = Transform3D(0.98912656, 0, 0.14706713, 0, 1, 0, -0.14706713, 0, 0.98912656, 0.031324863, 0.55566627, -0.17169833)
+
+[node name="computer4" parent="Tables/table2SB/table2" unique_id=1215521756 instance=ExtResource("8_qfg4b")]
+transform = Transform3D(0.98891497, 0, 0.14848256, 0, 1, 0, -0.14848256, 0, 0.98891497, -0.48917198, 0.55149186, -0.04323268)
+
+[node name="keyboard2" parent="Tables/table2SB/table2" unique_id=791922726 instance=ExtResource("10_43xhk")]
+transform = Transform3D(0.99581456, 0, -0.091397315, 0, 1, 0, 0.091397315, 0, 0.99581456, -0.011007786, 0.5573265, 0.14075041)
+
+[node name="mouse2" parent="Tables/table2SB/table2" unique_id=526103375 instance=ExtResource("11_3mckp")]
+transform = Transform3D(0.9909996, 0, 0.13386519, 0, 1, 0, -0.13386519, 0, 0.9909996, 0.39945674, 0.5531717, 0.21434999)
+
+[node name="table2CS" type="CollisionShape3D" parent="Tables/table2SB" unique_id=943544518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8329844, 0.20846558, -2.9546244)
+shape = SubResource("BoxShape3D_b7wwv")
+
+[node name="table3SB" type="StaticBody3D" parent="Tables" unique_id=1673606250]
+
+[node name="table2CS" type="CollisionShape3D" parent="Tables/table3SB" unique_id=308436573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2105263, 0.20846558, -2.948198)
+shape = SubResource("BoxShape3D_b7wwv")
+
+[node name="table3" parent="Tables/table3SB" unique_id=412232850 instance=ExtResource("6_y1v1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2237175, 0, -2.9407952)
+
+[node name="plug_strip2" parent="Tables/table3SB/table3" unique_id=507628676 instance=ExtResource("7_8t4p5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.09862709, 0.5526746, -0.3105018)
+
+[node name="screen2" parent="Tables/table3SB/table3" unique_id=509723612 instance=ExtResource("9_pofr8")]
+transform = Transform3D(0.99999964, 0, -0.0009773821, 0, 1, 0, 0.0009773821, 0, 0.99999964, -0.36251795, 0.55566627, -0.17238808)
+
+[node name="screen3" parent="Tables/table3SB/table3" unique_id=845964551 instance=ExtResource("9_pofr8")]
+transform = Transform3D(0.99954265, 0, -0.030241951, 0, 1, 0, 0.030241951, 0, 0.99954265, 0.20347285, 0.55566627, -0.17270422)
+
+[node name="computer2" parent="Tables/table3SB/table3" unique_id=2117014760 instance=ExtResource("8_qfg4b")]
+transform = Transform3D(0.99840647, 0, -0.056431413, 0, 1, 0, 0.056431413, 0, 0.99840647, 0.61331534, 0.55149186, -0.03395343)
+
+[node name="keyboard3" parent="Tables/table3SB/table3" unique_id=103298656 instance=ExtResource("10_43xhk")]
+transform = Transform3D(0.99984074, 0, -0.017853769, 0, 1, 0, 0.017853769, 0, 0.99984074, -0.40270793, 0.5573265, 0.2078855)
+
+[node name="mouse3" parent="Tables/table3SB/table3" unique_id=2089809917 instance=ExtResource("11_3mckp")]
+transform = Transform3D(0.9953292, 0, 0.096540734, 0, 1, 0, -0.096540734, 0, 0.9953292, -0.126549, 0.5531717, 0.15338492)
+
+[node name="keyboard4" parent="Tables/table3SB/table3" unique_id=1316699285 instance=ExtResource("10_43xhk")]
+transform = Transform3D(0.9982565, 0, -0.059027605, 0, 1, 0, 0.059027605, 0, 0.9982565, 0.24528873, 0.55732656, 0.19322515)
+
+[node name="mouse4" parent="Tables/table3SB/table3" unique_id=868614715 instance=ExtResource("11_3mckp")]
+transform = Transform3D(0.99739957, 0, -0.07207186, 0, 1, 0, 0.07207186, 0, 0.99739957, 0.4705028, 0.5531717, 0.23881388)
+
+[node name="table4SB" type="StaticBody3D" parent="Tables" unique_id=1274537777]
+
+[node name="table4" parent="Tables/table4SB" unique_id=1837388678 instance=ExtResource("6_y1v1j")]
+transform = Transform3D(-0.99999994, 0, 0.00055859284, 0, 1, 0, -0.00055859284, 0, -0.99999994, 2.829128, 0, 1.6912689)
+
+[node name="plug_strip2" parent="Tables/table4SB/table4" unique_id=157804742 instance=ExtResource("7_8t4p5")]
+transform = Transform3D(-0.99999994, 0, -8.742791e-08, 0, 1, 0, 8.742791e-08, 0, -0.99999994, 0.09897208, 0.5526746, 0.3079412)
+
+[node name="screen3" parent="Tables/table4SB/table4" unique_id=249487006 instance=ExtResource("9_pofr8")]
+transform = Transform3D(-0.9721697, 0, -0.2342769, 0, 1, 0, 0.2342769, 0, -0.9721697, -0.087655544, 0.55566627, 0.19314075)
+
+[node name="computer2" parent="Tables/table4SB/table4" unique_id=1784437451 instance=ExtResource("8_qfg4b")]
+transform = Transform3D(-0.999781, 0, -0.020907637, 0, 1, 0, 0.020907637, 0, -0.999781, -0.639853, 0.55149186, 0.071591616)
+
+[node name="keyboard4" parent="Tables/table4SB/table4" unique_id=41104387 instance=ExtResource("10_43xhk")]
+transform = Transform3D(-0.9798199, 0, -0.19988105, 0, 1, 0, 0.19988105, 0, -0.9798199, -0.065410376, 0.55732656, -0.13669908)
+
+[node name="mouse4" parent="Tables/table4SB/table4" unique_id=1073253176 instance=ExtResource("11_3mckp")]
+transform = Transform3D(-0.9955701, 0, 0.094021276, 0, 1, 0, -0.094021276, 0, -0.9955701, -0.4073105, 0.5531717, -0.22561896)
+
+[node name="table4CS" type="CollisionShape3D" parent="Tables/table4SB" unique_id=1056088690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8027854, 0.20846558, 1.6874983)
+shape = SubResource("BoxShape3D_b7wwv")
+
+[node name="table6SB" type="StaticBody3D" parent="Tables" unique_id=1188222645]
+
+[node name="table6" parent="Tables/table6SB" unique_id=338408818 instance=ExtResource("6_y1v1j")]
+transform = Transform3D(-0.9999748, 0, 0.0071035177, 0, 1, 0, -0.0071035177, 0, -0.9999748, 2.8258245, 0, -0.10597396)
+
+[node name="plug_strip2" parent="Tables/table6SB/table6" unique_id=672714868 instance=ExtResource("7_8t4p5")]
+transform = Transform3D(-0.99999994, 0, -8.742791e-08, 0, 1, 0, 8.742791e-08, 0, -0.99999994, 0.09897208, 0.5526746, 0.3079412)
+
+[node name="screen3" parent="Tables/table6SB/table6" unique_id=202521690 instance=ExtResource("9_pofr8")]
+transform = Transform3D(-0.99998343, 0, -0.0057596555, 0, 1, 0, 0.0057596555, 0, -0.99998343, 0.049405813, 0.55566627, 0.2312192)
+
+[node name="computer2" parent="Tables/table6SB/table6" unique_id=1517219587 instance=ExtResource("8_qfg4b")]
+transform = Transform3D(-0.9998164, 0, 0.019162446, 0, 1, 0, -0.019162446, 0, -0.9998164, -0.5637865, 0.55149186, 0.024472088)
+
+[node name="keyboard4" parent="Tables/table6SB/table6" unique_id=598159325 instance=ExtResource("10_43xhk")]
+transform = Transform3D(-0.9630454, 0, -0.26934016, 0, 1, 0, 0.26934016, 0, -0.9630454, 0.2620437, 0.55732656, -0.15404452)
+
+[node name="mouse4" parent="Tables/table6SB/table6" unique_id=1741340000 instance=ExtResource("11_3mckp")]
+transform = Transform3D(-0.99656993, 0, -0.0827562, 0, 1, 0, 0.0827562, 0, -0.99656993, -0.1366179, 0.5531717, -0.26347864)
+
+[node name="table6CS" type="CollisionShape3D" parent="Tables/table6SB" unique_id=1114137108]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8411813, 0.20846558, -0.1223678)
+shape = SubResource("BoxShape3D_b7wwv")
+
+[node name="table8SB" type="StaticBody3D" parent="Tables" unique_id=736055674]
+
+[node name="table8" parent="Tables/table8SB" unique_id=452837782 instance=ExtResource("6_y1v1j")]
+transform = Transform3D(-0.99999994, 0, 0.00055859284, 0, 1, 0, -0.00055859284, 0, -0.99999994, 2.8445234, 0, -2.0733733)
+
+[node name="plug_strip2" parent="Tables/table8SB/table8" unique_id=733758133 instance=ExtResource("7_8t4p5")]
+transform = Transform3D(-0.99999994, 0, -8.742791e-08, 0, 1, 0, 8.742791e-08, 0, -0.99999994, 0.09897208, 0.5526746, 0.3079412)
+
+[node name="screen3" parent="Tables/table8SB/table8" unique_id=762987131 instance=ExtResource("9_pofr8")]
+transform = Transform3D(-0.9999833, 0, -0.0057596555, 0, 1, 0, 0.0057596555, 0, -0.9999833, -0.063577175, 0.55566627, 0.12105036)
+
+[node name="computer2" parent="Tables/table8SB/table8" unique_id=1737276147 instance=ExtResource("8_qfg4b")]
+transform = Transform3D(-0.9951502, 0, -0.09836461, 0, 1, 0, 0.09836461, 0, -0.9951502, -0.5027933, 0.55149186, 0.035428762)
+
+[node name="keyboard4" parent="Tables/table8SB/table8" unique_id=1708658679 instance=ExtResource("10_43xhk")]
+transform = Transform3D(-0.99965507, 0, -0.026264284, 0, 1, 0, 0.026264284, 0, -0.99965507, -0.0109119415, 0.55732656, -0.17245781)
+
+[node name="mouse4" parent="Tables/table8SB/table8" unique_id=1055483366 instance=ExtResource("11_3mckp")]
+transform = Transform3D(-0.99656993, 0, -0.082756184, 0, 1, 0, 0.082756184, 0, -0.99656993, -0.31630516, 0.5531717, -0.21183825)
+
+[node name="table8CS" type="CollisionShape3D" parent="Tables/table8SB" unique_id=479285485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8474433, 0.20846558, -2.0769844)
+shape = SubResource("BoxShape3D_b7wwv")
+
+[node name="table10SB" type="StaticBody3D" parent="Tables" unique_id=1763909525]
+
+[node name="table10" parent="Tables/table10SB" unique_id=740895881 instance=ExtResource("6_y1v1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.806439, 0, -1.1042752)
+
+[node name="plug_strip2" parent="Tables/table10SB/table10" unique_id=1492227799 instance=ExtResource("7_8t4p5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.09862709, 0.5526746, -0.3105018)
+
+[node name="computer3" parent="Tables/table10SB/table10" unique_id=1127582353 instance=ExtResource("8_qfg4b")]
+transform = Transform3D(0.99624175, 0, 0.08661675, 0, 1, 0, -0.08661675, 0, 0.99624175, 0.621449, 0.55149186, -0.11918759)
+
+[node name="screen4" parent="Tables/table10SB/table10" unique_id=1600483475 instance=ExtResource("9_pofr8")]
+transform = Transform3D(0.99804646, 0, 0.062476985, 0, 1, 0, -0.062476985, 0, 0.99804646, 0.06867409, 0.5556664, -0.15004647)
+
+[node name="computer4" parent="Tables/table10SB/table10" unique_id=430206508 instance=ExtResource("8_qfg4b")]
+transform = Transform3D(0.98891497, 0, 0.14848256, 0, 1, 0, -0.14848256, 0, 0.98891497, -0.5307176, 0.55149186, -0.04323268)
+
+[node name="keyboard2" parent="Tables/table10SB/table10" unique_id=101667835 instance=ExtResource("10_43xhk")]
+transform = Transform3D(0.99921805, 0, 0.039538853, 0, 1, 0, -0.039538853, 0, 0.99921805, 0.00082445145, 0.5573266, 0.17775697)
+
+[node name="mouse2" parent="Tables/table10SB/table10" unique_id=48983858 instance=ExtResource("11_3mckp")]
+transform = Transform3D(0.99538285, 0, 0.09598482, 0, 1, 0, -0.09598482, 0, 0.99538285, 0.297745, 0.5531717, 0.18238229)
+
+[node name="table10CS" type="CollisionShape3D" parent="Tables/table10SB" unique_id=1664070977]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7980666, 0.20846558, -1.1160085)
+shape = SubResource("BoxShape3D_b7wwv")
+
+[node name="table11SB" type="StaticBody3D" parent="Tables" unique_id=2128701733]
+
+[node name="table11" parent="Tables/table11SB" unique_id=126930857 instance=ExtResource("6_y1v1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.202206, 0, -1.1086032)
+
+[node name="plug_strip2" parent="Tables/table11SB/table11" unique_id=687575266 instance=ExtResource("7_8t4p5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.09862709, 0.5526746, -0.3105018)
+
+[node name="screen2" parent="Tables/table11SB/table11" unique_id=868778360 instance=ExtResource("9_pofr8")]
+transform = Transform3D(0.9963573, 0, 0.08527782, 0, 1, 0, -0.08527782, 0, 0.9963573, -0.4083265, 0.55566627, -0.16641438)
+
+[node name="screen3" parent="Tables/table11SB/table11" unique_id=684494157 instance=ExtResource("9_pofr8")]
+transform = Transform3D(0.9998422, 0, -0.01776652, 0, 1, 0, 0.01776652, 0, 0.9998422, 0.20347285, 0.55566627, -0.17270422)
+
+[node name="computer2" parent="Tables/table11SB/table11" unique_id=1126363023 instance=ExtResource("8_qfg4b")]
+transform = Transform3D(0.99840647, 0, -0.056431413, 0, 1, 0, 0.056431413, 0, 0.99840647, 0.6436918, 0.551492, -0.05535531)
+
+[node name="keyboard3" parent="Tables/table11SB/table11" unique_id=1440202612 instance=ExtResource("10_43xhk")]
+transform = Transform3D(0.99984074, 0, -0.017853769, 0, 1, 0, 0.017853769, 0, 0.99984074, -0.4310224, 0.5573265, 0.14420956)
+
+[node name="mouse3" parent="Tables/table11SB/table11" unique_id=686098892 instance=ExtResource("11_3mckp")]
+transform = Transform3D(0.9953292, 0, 0.096540734, 0, 1, 0, -0.096540734, 0, 0.9953292, -0.17896235, 0.5531717, 0.15338492)
+
+[node name="keyboard4" parent="Tables/table11SB/table11" unique_id=375714458 instance=ExtResource("10_43xhk")]
+transform = Transform3D(0.9917274, 0, -0.12836291, 0, 1, 0, 0.12836291, 0, 0.9917274, 0.23171502, 0.55732644, 0.14918667)
+
+[node name="mouse4" parent="Tables/table11SB/table11" unique_id=808273499 instance=ExtResource("11_3mckp")]
+transform = Transform3D(0.99739957, 0, -0.07207186, 0, 1, 0, 0.07207186, 0, 0.99739957, 0.48941272, 0.5531717, 0.22062385)
+
+[node name="table11CS" type="CollisionShape3D" parent="Tables/table11SB" unique_id=431525038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2105263, 0.20846558, -1.1175953)
+shape = SubResource("BoxShape3D_b7wwv")
+
+[node name="table12SB" type="StaticBody3D" parent="Tables" unique_id=1850843993]
+
+[node name="table12" parent="Tables/table12SB" unique_id=388608242 instance=ExtResource("6_y1v1j")]
+transform = Transform3D(0.9999786, 0, -0.0065449383, 0, 1, 0, 0.0065449383, 0, 0.9999786, -2.802062, 0, 0.8172796)
+
+[node name="plug_strip2" parent="Tables/table12SB/table12" unique_id=1800600957 instance=ExtResource("7_8t4p5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.09862709, 0.5526746, -0.3105018)
+
+[node name="computer3" parent="Tables/table12SB/table12" unique_id=1041820846 instance=ExtResource("8_qfg4b")]
+transform = Transform3D(0.9999924, 0, -0.003944437, 0, 1, 0, 0.003944437, 0, 0.9999924, 0.6607797, 0.5514919, -0.16272157)
+
+[node name="screen4" parent="Tables/table12SB/table12" unique_id=461965566 instance=ExtResource("9_pofr8")]
+transform = Transform3D(0.9217346, 0, 0.38782138, 0, 1, 0, -0.38782138, 0, 0.9217346, 0.18920541, 0.55566627, -0.038895905)
+
+[node name="computer4" parent="Tables/table12SB/table12" unique_id=1924967920 instance=ExtResource("8_qfg4b")]
+transform = Transform3D(0.988915, 0, 0.14848256, 0, 1, 0, -0.14848256, 0, 0.988915, -0.54181004, 0.5514919, -0.039289713)
+
+[node name="keyboard2" parent="Tables/table12SB/table12" unique_id=1390699974 instance=ExtResource("10_43xhk")]
+transform = Transform3D(0.96686375, 0, 0.2552939, 0, 1, 0, -0.2552939, 0, 0.96686375, 0.28233266, 0.55732656, 0.18516171)
+
+[node name="mouse2" parent="Tables/table12SB/table12" unique_id=198894067 instance=ExtResource("11_3mckp")]
+transform = Transform3D(0.94145304, 0, 0.33714467, 0, 1, 0, -0.33714467, 0, 0.94145304, 0.5404272, 0.55317175, 0.17824757)
+
+[node name="table12CS" type="CollisionShape3D" parent="Tables/table12SB" unique_id=1450980447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.788187, 0.20846558, 0.82188797)
+shape = SubResource("BoxShape3D_b7wwv")
+
+[node name="table13SB" type="StaticBody3D" parent="Tables" unique_id=1012158491]
+
+[node name="table13" parent="Tables/table13SB" unique_id=1826958381 instance=ExtResource("6_y1v1j")]
+transform = Transform3D(0.9999826, 0, -0.005899179, 0, 1, 0, 0.005899179, 0, 0.9999826, -1.2025629, 1.7881393e-07, 0.81694037)
+
+[node name="plug_strip2" parent="Tables/table13SB/table13" unique_id=246398482 instance=ExtResource("7_8t4p5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.09862709, 0.5526746, -0.3105018)
+
+[node name="screen2" parent="Tables/table13SB/table13" unique_id=904125772 instance=ExtResource("9_pofr8")]
+transform = Transform3D(0.98673713, 0, -0.16232716, 0, 1, 0, 0.16232716, 0, 0.98673713, -0.3961501, 0.55566627, -0.1429823)
+
+[node name="screen3" parent="Tables/table13SB/table13" unique_id=732012110 instance=ExtResource("9_pofr8")]
+transform = Transform3D(0.9952834, 0, -0.097009666, 0, 1, 0, 0.097009666, 0, 0.9952834, 0.18990827, 0.55566627, -0.168922)
+
+[node name="computer2" parent="Tables/table13SB/table13" unique_id=520920504 instance=ExtResource("8_qfg4b")]
+transform = Transform3D(0.9998875, 0, -0.014991814, 0, 1, 0, 0.014991814, 0, 0.9998875, 0.632028, 0.55149186, -0.027923763)
+
+[node name="keyboard3" parent="Tables/table13SB/table13" unique_id=1216259207 instance=ExtResource("10_43xhk")]
+transform = Transform3D(0.9807343, 0, -0.19534712, 0, 1, 0, 0.19534712, 0, 0.9807343, -0.441118, 0.5573265, 0.16876513)
+
+[node name="mouse3" parent="Tables/table13SB/table13" unique_id=2031991128 instance=ExtResource("11_3mckp")]
+transform = Transform3D(0.99532914, 0, 0.09654073, 0, 1, 0, -0.09654073, 0, 0.99532914, -0.119329095, 0.5531717, 0.199368)
+
+[node name="keyboard4" parent="Tables/table13SB/table13" unique_id=1002267366 instance=ExtResource("10_43xhk")]
+transform = Transform3D(0.99466884, 0, 0.10312243, 0, 1, 0, -0.10312243, 0, 0.99466884, 0.1896044, 0.55732656, 0.20609331)
+
+[node name="mouse4" parent="Tables/table13SB/table13" unique_id=505099542 instance=ExtResource("11_3mckp")]
+transform = Transform3D(0.999723, 0, 0.023542397, 0, 1, 0, -0.023542397, 0, 0.999723, 0.47159624, 0.5531717, 0.16172749)
+
+[node name="table13CS" type="CollisionShape3D" parent="Tables/table13SB" unique_id=992359537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2105263, 0.20846558, 0.81375504)
+shape = SubResource("BoxShape3D_b7wwv")
+
+[node name="table14SB" type="StaticBody3D" parent="Tables" unique_id=779920827]
+
+[node name="table14" parent="Tables/table14SB" unique_id=1661459793 instance=ExtResource("6_y1v1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8181033, 0, 2.9304416)
+
+[node name="plug_strip2" parent="Tables/table14SB/table14" unique_id=1522178703 instance=ExtResource("7_8t4p5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.09862709, 0.5526746, -0.3105018)
+
+[node name="computer3" parent="Tables/table14SB/table14" unique_id=935859443 instance=ExtResource("8_qfg4b")]
+transform = Transform3D(0.9948983, 0, 0.10088266, 0, 1, 0, -0.10088266, 0, 0.9948983, 0.621449, 0.55149186, -0.11918759)
+
+[node name="screen4" parent="Tables/table14SB/table14" unique_id=1218866888 instance=ExtResource("9_pofr8")]
+transform = Transform3D(0.9964047, 0, 0.08472133, 0, 1, 0, -0.08472133, 0, 0.9964047, 0.031324863, 0.55566627, -0.17169833)
+
+[node name="computer4" parent="Tables/table14SB/table14" unique_id=1910284184 instance=ExtResource("8_qfg4b")]
+transform = Transform3D(0.98891497, 0, 0.14848256, 0, 1, 0, -0.14848256, 0, 0.98891497, -0.48917198, 0.55149186, -0.04323268)
+
+[node name="keyboard2" parent="Tables/table14SB/table14" unique_id=1278076472 instance=ExtResource("10_43xhk")]
+transform = Transform3D(0.99921805, 0, 0.039538853, 0, 1, 0, -0.039538853, 0, 0.99921805, -0.011007786, 0.5573265, 0.14075041)
+
+[node name="mouse2" parent="Tables/table14SB/table14" unique_id=1089414641 instance=ExtResource("11_3mckp")]
+transform = Transform3D(0.99538285, 0, 0.09598482, 0, 1, 0, -0.09598482, 0, 0.99538285, 0.3001604, 0.5531717, 0.21434999)
+
+[node name="table14CS" type="CollisionShape3D" parent="Tables/table14SB" unique_id=1223459484]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7948318, 0.20846558, 2.933666)
+shape = SubResource("BoxShape3D_b7wwv")
+
+[node name="table15SB" type="StaticBody3D" parent="Tables" unique_id=893482606]
+
+[node name="table15" parent="Tables/table15SB" unique_id=1052636181 instance=ExtResource("6_y1v1j")]
+transform = Transform3D(0.9999998, 0, -0.00055850536, 0, 1, 0, 0.00055850536, 0, 0.9999998, -1.2227434, 0, 2.9313338)
+
+[node name="plug_strip2" parent="Tables/table15SB/table15" unique_id=619545395 instance=ExtResource("7_8t4p5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.09862709, 0.5526746, -0.3105018)
+
+[node name="screen2" parent="Tables/table15SB/table15" unique_id=28187669 instance=ExtResource("9_pofr8")]
+transform = Transform3D(0.9963573, 0, 0.08527782, 0, 1, 0, -0.08527782, 0, 0.9963573, -0.36251795, 0.55566627, -0.17238808)
+
+[node name="screen3" parent="Tables/table15SB/table15" unique_id=272069348 instance=ExtResource("9_pofr8")]
+transform = Transform3D(0.9888866, 0, -0.14867245, 0, 1, 0, 0.14867245, 0, 0.9888866, 0.20347285, 0.55566627, -0.17270422)
+
+[node name="computer2" parent="Tables/table15SB/table15" unique_id=201662977 instance=ExtResource("8_qfg4b")]
+transform = Transform3D(0.99840647, 0, -0.056431413, 0, 1, 0, 0.056431413, 0, 0.99840647, 0.61331534, 0.55149186, -0.03395343)
+
+[node name="keyboard3" parent="Tables/table15SB/table15" unique_id=519507820 instance=ExtResource("10_43xhk")]
+transform = Transform3D(0.99984074, 0, -0.017853769, 0, 1, 0, 0.017853769, 0, 0.99984074, -0.36620307, 0.5573265, 0.14404202)
+
+[node name="mouse3" parent="Tables/table15SB/table15" unique_id=1413546861 instance=ExtResource("11_3mckp")]
+transform = Transform3D(0.9953292, 0, 0.096540734, 0, 1, 0, -0.096540734, 0, 0.9953292, -0.126549, 0.5531717, 0.15338492)
+
+[node name="keyboard4" parent="Tables/table15SB/table15" unique_id=835662233 instance=ExtResource("10_43xhk")]
+transform = Transform3D(0.9917274, 0, -0.12836291, 0, 1, 0, 0.12836291, 0, 0.9917274, 0.2368952, 0.55732656, 0.13025022)
+
+[node name="mouse4" parent="Tables/table15SB/table15" unique_id=240449903 instance=ExtResource("11_3mckp")]
+transform = Transform3D(0.99739957, 0, -0.07207186, 0, 1, 0, 0.07207186, 0, 0.99739957, 0.4705028, 0.5531717, 0.23881388)
+
+[node name="table15CS" type="CollisionShape3D" parent="Tables/table15SB" unique_id=66414013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2105263, 0.20846558, 2.923649)
+shape = SubResource("BoxShape3D_b7wwv")
+
+[node name="Chaises" type="Node3D" parent="." unique_id=1662239949]
+
+[node name="chaise2RB" type="RigidBody3D" parent="Chaises" unique_id=759698755]
+physics_material_override = ExtResource("12_lico1")
+
+[node name="chair2" parent="Chaises/chaise2RB" unique_id=116062807 instance=ExtResource("13_tgio6")]
+transform = Transform3D(0.9975409, 0, -0.07008727, 0, 1, 0, 0.07008727, 0, 0.9975409, -2.8585029, 0, 1.8631663)
+
+[node name="chaise2CS" type="CollisionShape3D" parent="Chaises/chaise2RB" unique_id=323772474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8544104, 0.35689735, 1.8471571)
+shape = SubResource("BoxShape3D_qeug4")
+
+[node name="chaise3RB" type="RigidBody3D" parent="Chaises" unique_id=156311127]
+physics_material_override = ExtResource("12_lico1")
+
+[node name="chair3" parent="Chaises/chaise3RB" unique_id=909817696 instance=ExtResource("13_tgio6")]
+transform = Transform3D(0.96906745, 0, 0.24679606, 0, 1, 0, -0.24679606, 0, 0.96906745, -1.6884646, 0, 1.407335)
+
+[node name="chaise3CS" type="CollisionShape3D" parent="Chaises/chaise3RB" unique_id=29100806]
+transform = Transform3D(0.9690157, 0, 0.24699901, 0, 1, 0, -0.24699901, 0, 0.9690157, -1.684, 0.357, 1.423)
+shape = SubResource("BoxShape3D_qeug4")
+
+[node name="chaise4RB" type="RigidBody3D" parent="Chaises" unique_id=710768021]
+physics_material_override = ExtResource("12_lico1")
+
+[node name="chair4" parent="Chaises/chaise4RB" unique_id=1633531119 instance=ExtResource("13_tgio6")]
+transform = Transform3D(0.7256386, 0, -0.688076, 0, 1, 0, 0.688076, 0, 0.7256386, -2.838081, 0, 3.6084948)
+
+[node name="chaise4CS" type="CollisionShape3D" parent="Chaises/chaise4RB" unique_id=354639426]
+transform = Transform3D(0.7253744, 0, -0.68835455, 0, 1, 0, 0.68835455, 0, 0.7253744, -2.7923641, 0.357, 3.5708704)
+shape = SubResource("BoxShape3D_qeug4")
+
+[node name="chaise5RB" type="RigidBody3D" parent="Chaises" unique_id=2035376061]
+physics_material_override = ExtResource("12_lico1")
+
+[node name="chair5" parent="Chaises/chaise5RB" unique_id=554719319 instance=ExtResource("13_tgio6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6008272, 0, 3.5115662)
+
+[node name="chaise5CS" type="CollisionShape3D" parent="Chaises/chaise5RB" unique_id=479044649]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5887039, 0.357, 3.4676137)
+shape = SubResource("BoxShape3D_qeug4")
+
+[node name="chaise6RB" type="RigidBody3D" parent="Chaises" unique_id=811089598]
+physics_material_override = ExtResource("12_lico1")
+
+[node name="chair6" parent="Chaises/chaise6RB" unique_id=806266484 instance=ExtResource("13_tgio6")]
+transform = Transform3D(0.9906576, 0, -0.13637263, 0, 1, 0, 0.13637263, 0, 0.9906576, -0.9626299, 0, 3.5328193)
+
+[node name="chaise6CS" type="CollisionShape3D" parent="Chaises/chaise6RB" unique_id=90264949]
+transform = Transform3D(0.99074787, 0, -0.13571557, 0, 1, 0, 0.13571557, 0, 0.99074787, -0.9789337, 0.357, 3.5424466)
+shape = SubResource("BoxShape3D_qeug4")
+
+[node name="chaise7RB" type="RigidBody3D" parent="Chaises" unique_id=1709587898]
+physics_material_override = ExtResource("12_lico1")
+
+[node name="chair7" parent="Chaises/chaise7RB" unique_id=793146492 instance=ExtResource("13_tgio6")]
+transform = Transform3D(0.98178005, 0, -0.19002084, 0, 1, 0, 0.19002084, 0, 0.98178005, -2.9648662, -2.3841858e-07, -0.30700755)
+
+[node name="chaise7CS" type="CollisionShape3D" parent="Chaises/chaise7RB" unique_id=415717014]
+transform = Transform3D(0.98162717, 0, -0.190809, 0, 1, 0, 0.190809, 0, 0.98162717, -2.9629476, 0.357, -0.31239203)
+shape = SubResource("BoxShape3D_qeug4")
+
+[node name="chaise8RB" type="RigidBody3D" parent="Chaises" unique_id=132587862]
+physics_material_override = ExtResource("12_lico1")
+
+[node name="chair8" parent="Chaises/chaise8RB" unique_id=2142788583 instance=ExtResource("13_tgio6")]
+transform = Transform3D(0.99062425, 0, -0.1366147, 0, 1, 0, 0.1366147, 0, 0.99062425, -1.5411726, -2.3841858e-07, -0.47617072)
+
+[node name="chaise8CS" type="CollisionShape3D" parent="Chaises/chaise8RB" unique_id=1913047371]
+transform = Transform3D(0.99050945, 0, -0.13744454, 0, 1, 0, 0.13744454, 0, 0.99050945, -1.523296, 0.357, -0.5270909)
+shape = SubResource("BoxShape3D_qeug4")
+
+[node name="chaise9RB" type="RigidBody3D" parent="Chaises" unique_id=1533084412]
+physics_material_override = ExtResource("12_lico1")
+
+[node name="chair9" parent="Chaises/chaise9RB" unique_id=2002930075 instance=ExtResource("13_tgio6")]
+transform = Transform3D(0.98073757, 0, 0.19532996, 0, 1, 0, -0.19532996, 0, 0.98073757, -0.84437287, 0, -0.5029086)
+
+[node name="chaise9CS" type="CollisionShape3D" parent="Chaises/chaise9RB" unique_id=356206816]
+transform = Transform3D(0.98061466, 0, 0.19594614, 0, 1, 0, -0.19594614, 0, 0.98061466, -0.8570297, 0.357, -0.55218375)
+shape = SubResource("BoxShape3D_qeug4")
+
+[node name="chaise10RB" type="RigidBody3D" parent="Chaises" unique_id=1872735015]
+physics_material_override = ExtResource("12_lico1")
+
+[node name="chair10" parent="Chaises/chaise10RB" unique_id=1792061441 instance=ExtResource("13_tgio6")]
+transform = Transform3D(0.99721, 0, -0.07464808, 0, 1, 0, 0.07464808, 0, 0.99721, -3.0938504, 2.3841858e-07, -2.1030974)
+
+[node name="chaise10CS" type="CollisionShape3D" parent="Chaises/chaise10RB" unique_id=1670133281]
+transform = Transform3D(0.9971851, 0, -0.074978724, 0, 1, 0, 0.074978724, 0, 0.9971851, -3.0953922, 0.357, -2.144494)
+shape = SubResource("BoxShape3D_qeug4")
+
+[node name="chaise11RB" type="RigidBody3D" parent="Chaises" unique_id=1957216672]
+physics_material_override = ExtResource("12_lico1")
+
+[node name="chair11" parent="Chaises/chaise11RB" unique_id=192600708 instance=ExtResource("13_tgio6")]
+transform = Transform3D(0.97160697, 0, -0.23660074, 0, 1, 0, 0.23660074, 0, 0.97160697, -1.7383449, 0, -2.0267515)
+
+[node name="chaise11CS" type="CollisionShape3D" parent="Chaises/chaise11RB" unique_id=1603990940]
+transform = Transform3D(0.9715491, 0, -0.23683815, 0, 1, 0, 0.23683815, 0, 0.9715491, -1.7387322, 0.357, -2.0406656)
+shape = SubResource("BoxShape3D_qeug4")
+
+[node name="chaise12RB" type="RigidBody3D" parent="Chaises" unique_id=75163009]
+physics_material_override = ExtResource("12_lico1")
+
+[node name="chair12" parent="Chaises/chaise12RB" unique_id=1874650787 instance=ExtResource("13_tgio6")]
+transform = Transform3D(0.9972385, 0, -0.07426514, 0, 1, 0, 0.07426514, 0, 0.9972385, -0.9337738, 0, -2.4355369)
+
+[node name="chaise12CS" type="CollisionShape3D" parent="Chaises/chaise12RB" unique_id=583443819]
+transform = Transform3D(0.99718505, 0, -0.07497872, 0, 1, 0, 0.07497872, 0, 0.99718505, -0.9412701, 0.357, -2.4661024)
+shape = SubResource("BoxShape3D_qeug4")
+
+[node name="chaise13RB" type="RigidBody3D" parent="Chaises" unique_id=1886698105]
+physics_material_override = ExtResource("12_lico1")
+
+[node name="chair13" parent="Chaises/chaise13RB" unique_id=1430296809 instance=ExtResource("13_tgio6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8519366, 2.3841858e-07, -1.5689335)
+
+[node name="chaise13CS" type="CollisionShape3D" parent="Chaises/chaise13RB" unique_id=18759469]
+transform = Transform3D(0.99718505, 0, -0.07497872, 0, 1, 0, 0.07497872, 0, 0.99718505, 2.8705993, 0.357, -1.5729918)
+shape = SubResource("BoxShape3D_qeug4")
+
+[node name="chaise14RB" type="RigidBody3D" parent="Chaises" unique_id=478334384]
+physics_material_override = ExtResource("12_lico1")
+
+[node name="chair14" parent="Chaises/chaise14RB" unique_id=807818376 instance=ExtResource("13_tgio6")]
+transform = Transform3D(0.97062, 0, 0.24061769, 0, 1, 0, -0.24061769, 0, 0.97062, 2.8424685, 0, 0.78529274)
+
+[node name="chaise14CS" type="CollisionShape3D" parent="Chaises/chaise14RB" unique_id=1580717605]
+transform = Transform3D(0.97071636, 0, 0.24022801, 0, 1, 0, -0.24022801, 0, 0.97071636, 2.8430324, 0.357, 0.7855884)
+shape = SubResource("BoxShape3D_qeug4")
+
+[node name="chaise15RB" type="RigidBody3D" parent="Chaises" unique_id=1634151428]
+physics_material_override = ExtResource("12_lico1")
+
+[node name="chair15" parent="Chaises/chaise15RB" unique_id=1001612957 instance=ExtResource("13_tgio6")]
+transform = Transform3D(0.94627744, 0, 0.32335597, 0, 1, 0, -0.32335597, 0, 0.94627744, 3.1316633, 0, 2.3219967)
+
+[node name="chaise15CS" type="CollisionShape3D" parent="Chaises/chaise15RB" unique_id=618478403]
+transform = Transform3D(0.9460852, 0, 0.3239174, 0, 1, 0, -0.3239174, 0, 0.9460852, 3.130673, 0.357, 2.3161917)
+shape = SubResource("BoxShape3D_qeug4")
+
+[node name="chaise16RB" type="RigidBody3D" parent="Chaises" unique_id=1117588812]
+physics_material_override = ExtResource("12_lico1")
+
+[node name="chair16" parent="Chaises/chaise16RB" unique_id=167747926 instance=ExtResource("13_tgio6")]
+transform = Transform3D(0.9712507, 0, -0.23805884, 0, 1, 0, 0.23805884, 0, 0.9712507, -0.8690063, 0, 1.5225887)
+
+[node name="chaise16CS" type="CollisionShape3D" parent="Chaises/chaise16RB" unique_id=1806502961]
+transform = Transform3D(0.9711342, 0, -0.23853344, 0, 1, 0, 0.23853344, 0, 0.9711342, -0.86358476, 0.357, 1.5142971)
+shape = SubResource("BoxShape3D_qeug4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2024552774]
+collision_layer = 9
+collision_mask = 9
+physics_material_override = ExtResource("14_wl5q7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=211423232]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.297, 0)
+shape = SubResource("BoxShape3D_8t0m7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=481702468]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.319336, -5.6265507)
+shape = SubResource("BoxShape3D_8t0m7")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=1500140556]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.319, 5.627)
+shape = SubResource("BoxShape3D_8t0m7")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=1451284497]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -4.867218, -0.319, 0)
+shape = SubResource("BoxShape3D_8t0m7")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" unique_id=1475266767]
+transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 1.9106855e-15, 4.867, -0.319, 0)
+shape = SubResource("BoxShape3D_8t0m7")
+
+[node name="HUD" parent="." unique_id=1507543146 instance=ExtResource("3_lfl3p")]
+
+[editable path="MonsterManager"]

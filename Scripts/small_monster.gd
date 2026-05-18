@@ -20,6 +20,7 @@ func _ready() -> void:
 		anima.track_set_enabled(3, true)
 		animation_player.play("ani_ptitmonstre_gnaw", -1, speed)
 		audio_player.bus = "Classroom"
+		audio_player.volume_db = -18
 	
 func _physics_process(delta: float) -> void:
 	cooldown_timer = maxf(cooldown_timer - delta, 0.0)
